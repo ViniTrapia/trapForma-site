@@ -1,10 +1,28 @@
-<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>body{margin:0}</style></head><body>
-<title>TrapForma Loja</title>
-<meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="Peças impressas em 3D sob medida. Varejo e atacado. Monte seu pedido e envie pelo WhatsApp.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500;62..125,700;62..125,900&family=Figtree:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>TrapForma · Impressão 3D</title>
+<meta name="description" content="Peças em impressão 3D: personagens, chaveiros, brindes, Natal e peças sob encomenda. Varejo e atacado, pedido direto pelo WhatsApp.">
+<meta name="theme-color" content="#0a0a0b">
+<link rel="canonical" href="https://trapforma.com.br/">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="TrapForma">
+<meta property="og:title" content="TrapForma · Ideias que ganham forma">
+<meta property="og:description" content="Peças em impressão 3D: personagens, chaveiros, brindes, Natal e peças sob encomenda. Varejo e atacado, pedido direto pelo WhatsApp.">
+<meta property="og:url" content="https://trapforma.com.br/">
+<meta property="og:image" content="https://trapforma.com.br/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<style>body{margin:0}</style>
+</head>
+<body>
 <style>
 /* Layout: a mesa da impressora. Hero escuro onde o nome é "impresso" camada por camada; faixa rolante; prateleiras com cards em camadas; carrinho lateral que vira mensagem de WhatsApp */
 :root{
@@ -213,7 +231,8 @@ footer b{color:var(--night-fg)}
 @media (prefers-reduced-motion:reduce){
   .ticker div,.ph svg,.ph img,.floaters svg,.hero .aura,.scroll i{animation:none}
   .hero h1 .w{animation:none;opacity:1;transform:none}
-  .card,.card:hover,.ph svg,.btn,.drawer,.fab,.scrim{transition:none!important;transform:none!important}
+  .card,.card:hover,.ph svg,.btn{transition:none!important;transform:none!important}
+  .drawer,.fab,.scrim{transition:none!important}
   .js .card.pre{opacity:1}
 }
 /* ===== v10: cards limpos ===== */
@@ -600,7 +619,7 @@ body{overflow-x:clip}
 .sprog{position:fixed;left:0;top:0;right:0;height:3px;z-index:60;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,var(--brand),var(--brand-2));box-shadow:0 0 12px rgba(255,90,31,.7);pointer-events:none}
 .btn.primary,.cartbtn{will-change:transform}
 .hero .hcenter{will-change:transform,opacity}
-#shelves>.shelf:not(#natal){content-visibility:auto;contain-intrinsic-size:auto 1100px}
+
 .cv-off #shelves>.shelf:not(#natal){content-visibility:visible}
 /* ---------- categorias em destaque ---------- */
 .catsec{display:flex;flex-direction:column;gap:20px;margin-block:10px 34px}
@@ -684,6 +703,304 @@ html.pm-open{overflow:hidden}
   .pm-n{font-size:30px}
 }
 @media (prefers-reduced-motion:reduce){.pm[open] .pm-in,.pm-b li,.pm[open] .pm-ph img{animation:none!important;opacity:1;transform:none}}
+
+/* latin-ext */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url(fonts/dm-sans-1.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url(fonts/dm-sans-2.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url(fonts/manrope-3.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url(fonts/manrope-4.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url(fonts/manrope-5.woff2) format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url(fonts/manrope-6.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url(fonts/manrope-7.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url(fonts/manrope-8.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* Camada tipográfica sobre a direção de fundos aprovada. */
+:root {
+  --f-display:"Manrope",ui-sans-serif,system-ui,sans-serif;
+  --f-body:"DM Sans",ui-sans-serif,system-ui,sans-serif;
+  --f-mono:"DM Sans",ui-sans-serif,system-ui,sans-serif;
+}
+body { font-family:var(--f-body); font-size:16px; line-height:1.65; }
+button,input,select,textarea { font-family:var(--f-body); }
+h1,h2,h3 { font-stretch:normal; }
+.brand { font-family:var(--f-display); font-weight:750; font-size:22px; font-stretch:normal; letter-spacing:-.045em; }
+.top nav { font-weight:500; font-size:14px; gap:24px; }
+.hero .hcenter { max-width:760px; gap:25px; }
+.hero h1 { font-family:var(--f-display); font-size:clamp(48px,6.8vw,94px); font-weight:650; font-stretch:normal; line-height:1.03; letter-spacing:-.065em; text-shadow:none; }
+.hero h1 em { font-weight:650; }
+.kicker { font-family:var(--f-body); font-weight:500; font-size:12px; letter-spacing:.025em; text-transform:none; color:#dca48d; }
+.hero-lead { margin:0; font-size:17px; line-height:1.65; font-weight:400; color:#bdbbc0; max-width:44ch; }
+.btn { font-family:var(--f-body); font-size:14px; font-weight:600; letter-spacing:-.015em; padding:14px 22px; min-height:48px; }
+.btn.primary { color:#1b0c07; }
+.hero .scroll { font-family:var(--f-body); font-size:11px; font-weight:400; text-transform:none; letter-spacing:.015em; }
+.ticker div { font-family:var(--f-body); font-size:13px; font-weight:500; font-stretch:normal; text-transform:none; letter-spacing:.015em; padding-block:11px; }
+.seg button { font-size:13px; font-weight:550; padding:9px 17px; }
+.modehint { font-size:13px; font-weight:400; color:#ababB4; }
+.modehint b { font-weight:500; }
+.cartbtn { font-family:var(--f-body); font-weight:600; font-size:13px; min-height:42px; }
+.cartbtn .n,.fab .n { font-family:var(--f-body); font-weight:600; }
+.how .hw b { font-size:14px; font-weight:600; line-height:1.45; }
+.how .hw span { font-size:12.5px; font-weight:400; line-height:1.5; }
+.sh { padding-bottom:8px; }
+.sh h2,#natal .sh h2 { font-family:var(--f-display); font-weight:600; font-stretch:normal; font-size:clamp(30px,3.1vw,43px); line-height:1.17; letter-spacing:-.045em; }
+.sh h2 small,#natal .sh h2 small {
+  font-family:var(--f-body); font-size:12px; font-weight:500; line-height:1.5;
+  letter-spacing:.015em; text-transform:none; margin-bottom:10px;
+}
+.catsec .sh p { font-size:15px; font-weight:400; line-height:1.6; max-width:50ch; margin-top:14px; }
+.cats { row-gap:27px; }
+.cats a { gap:13px; }
+.cats b { font-family:var(--f-body); font-size:13px; font-weight:500; line-height:1.45; letter-spacing:-.015em; }
+.card h3 { font-family:var(--f-body); font-size:15.5px; font-weight:550; font-stretch:normal; line-height:1.4; letter-spacing:-.025em; }
+.card .body { padding:16px; gap:9px; }
+.spec,.card p { font-family:var(--f-body); font-size:12.5px; font-weight:400; line-height:1.5; color:#a7a7b0; }
+.opts label { font-family:var(--f-body); font-weight:450; font-size:12px; line-height:1.5; gap:5px; }
+.opts input,.opts select { font-size:13px; font-weight:400; min-height:40px; padding:9px 10px; }
+.swatches { gap:6px; }
+.swatches button { font-family:var(--f-body); font-weight:450; font-size:12px; line-height:1.35; min-height:32px; padding:5px 8px 5px 6px; }
+.buy { flex-direction:column; align-items:flex-start; gap:12px; padding-top:20px; }
+.price,#natal .price { font-family:var(--f-body); font-size:23px; font-weight:600; font-stretch:normal; line-height:1.25; letter-spacing:-.04em; font-variant-numeric:tabular-nums; }
+.price s { font-family:var(--f-body); font-size:11.5px; font-weight:400; letter-spacing:-.015em; }
+.price small,.price small.un { font-family:var(--f-body); font-size:11px; font-weight:400; letter-spacing:0; }
+.qty button { font-family:var(--f-body); font-size:17px; font-weight:400; width:31px; min-height:36px; }
+.qty input { font-family:var(--f-body); font-size:13px; font-weight:500; width:34px; }
+.minline { font-size:11px; font-weight:450; line-height:1.5; }
+.add { font-family:var(--f-body); font-size:13px; font-weight:550; line-height:1.4; letter-spacing:-.01em; min-height:44px; padding:11px 8px; border-radius:12px; margin-top:3px; }
+.ph .soon { font-family:var(--f-body); font-size:10px; font-weight:450; line-height:1.3; }
+.ph .tag { font-family:var(--f-body); font-size:10px; font-weight:600; line-height:1.3; color:#210e07; }
+#natal .ph .tag { color:#fff4e2; }
+.morebtn { font-family:var(--f-body); font-size:13px; font-weight:500; line-height:1.4; padding:12px 20px; min-height:44px; border-width:1px; }
+.subf button { font-family:var(--f-body); font-size:12px; font-weight:500; line-height:1.4; min-height:36px; padding:8px 14px; }
+.atac-lead { font-size:16px; font-weight:400; line-height:1.65; max-width:60ch; }
+.vt b { font-size:13px; font-weight:500; line-height:1.45; letter-spacing:-.015em; }
+.vt small { font-size:11.5px; font-weight:400; line-height:1.5; }
+.nfc-txt b { font-family:var(--f-display); font-size:clamp(24px,2.3vw,32px); font-weight:600; line-height:1.2; letter-spacing:-.04em; }
+.nfc-txt p { font-size:14px; line-height:1.65; }
+.eyebrow { border:0; padding:0; font-family:var(--f-body); font-weight:500; font-size:12px; letter-spacing:.015em; text-transform:none; }
+.idea h2,.ix-head h2 { font-family:var(--f-display); font-size:clamp(34px,4.2vw,58px); font-weight:600; font-stretch:normal; line-height:1.17; letter-spacing:-.045em; }
+.ix-head p { font-size:16px; font-weight:400; line-height:1.65; max-width:50ch; }
+.ix-step h3 { font-family:var(--f-display); font-weight:600; font-size:18px; line-height:1.35; letter-spacing:-.025em; }
+.ix-step p { font-family:var(--f-body); font-weight:400; font-size:14px; line-height:1.6; }
+.ix-num span { font-family:var(--f-body); font-weight:550; font-size:16px; }
+.ix-btn { font-size:14px; font-weight:600; }
+.idea-ex b { font-family:var(--f-body); font-size:13px; font-weight:500; line-height:1.4; }
+.faq h3 { font-family:var(--f-display); font-size:17px; font-weight:600; letter-spacing:-.025em; line-height:1.4; }
+.faq p { font-size:14px; line-height:1.65; color:#b2b2bb; }
+.fab { font-family:var(--f-body); font-size:13px; font-weight:600; min-height:44px; }
+.pm-n { font-family:var(--f-display); font-weight:600; font-stretch:normal; font-size:clamp(27px,3vw,38px); line-height:1.2; letter-spacing:-.04em; }
+.pm-t,.pm-b li { font-family:var(--f-body); line-height:1.65; }
+.pm-tag { font-size:11px; text-transform:none; letter-spacing:.01em; font-weight:500; }
+.drawer h2 { font-family:var(--f-display); font-weight:600; letter-spacing:-.04em; line-height:1.2; }
+.form label { font-family:var(--f-body); font-weight:500; font-size:13px; line-height:1.5; }
+.form input,.form select,.form textarea { font-family:var(--f-body); font-weight:400; font-size:14px; line-height:1.5; }
+footer .in { font-size:12px; font-weight:400; line-height:1.65; }
+@media(max-width:760px) {
+  .hero .hcenter { gap:21px; }
+  .hero h1 { font-size:clamp(44px,10.8vw,74px); line-height:1.08; letter-spacing:-.06em; }
+  .hero-lead { font-size:15px; line-height:1.65; max-width:34ch; }
+  .hero .ctas { gap:9px; }
+  .hero .ctas .btn { font-size:14px; padding:13px 17px; }
+  .sh h2,#natal .sh h2 { font-size:30px; line-height:1.2; }
+  .sh h2 small,#natal .sh h2 small { font-size:11px; margin-bottom:8px; }
+  .cats b { font-size:12.5px; line-height:1.4; }
+  .card .body { padding:12px 10px; gap:8px; }
+  .card h3 { font-size:14px; line-height:1.4; }
+  .spec,.card p { font-size:11.5px; }
+  .buy { padding-top:14px; gap:10px; }
+  .price,#natal .price { font-size:21px; }
+  .price s { font-size:10px; }
+  .qty button { width:29px; min-height:44px; }
+  .qty input { width:32px; }
+  .add { font-size:13px; padding:10px 6px; min-height:44px; }
+  .subf button { font-size:11.5px; min-height:44px; padding:8px 12px; }
+  .idea h2,.ix-head h2 { font-size:34px; line-height:1.2; }
+  .ix-step h3 { font-size:16px; }
+  .ix-step p { font-size:13px; }
+}
+
+/* Faixa superior estável, sem palavras recortadas pela rolagem. */
+.ticker { background:#101012; color:#c3c3ca; white-space:normal; overflow:visible; border-top:1px solid #ffffff09; border-bottom:0; }
+.ticker #tick {
+  display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); align-items:center;
+  width:min(100%,1280px); margin-inline:auto; padding:13px 16px;
+  gap:24px; animation:none; text-align:center;
+  font-family:var(--f-body); font-size:12px; font-weight:450; line-height:1.5;
+}
+.ticker #tick span { min-width:0; }
+.ticker span::after { display:none; }
+
+/* Modo de compra: os controles têm posições e espaço próprios. */
+.bar { background:#0c0c0e; border-bottom:0; }
+.bar::after { content:""; position:absolute; left:0; right:0; bottom:0; height:1px; pointer-events:none; background:linear-gradient(90deg,transparent,#ffffff16 20%,#ffffff16 80%,transparent); }
+.bar .in { display:grid; grid-template-columns:auto minmax(0,1fr) auto; align-items:center; gap:24px; padding-block:12px; }
+.seg { width:max-content; border-radius:14px; padding:4px; background:#17171a; border-color:#ffffff0d; }
+.seg i,.seg button { border-radius:10px; }
+.seg button { min-height:40px; padding:9px 17px; }
+.seg button[aria-pressed="true"] { color:#201008; }
+.modehint { display:block; min-width:0; font-size:13px; line-height:1.5; }
+.cartbtn { min-height:44px; padding-inline:15px; border-radius:12px; }
+.fab { display:none; }
+.shelf,.idea,.catsec { scroll-margin-top:calc(var(--purchasebar-height,72px) + 24px); }
+
+/* As orientações formam uma única linha de leitura. */
+.how { grid-template-columns:repeat(3,minmax(0,1fr)); gap:28px; padding-block:14px; }
+.hw { min-width:0; padding:0; gap:12px; background:transparent; border:0; border-radius:0; align-items:center; }
+.hw i { width:38px; height:38px; border-radius:11px; background:#261a13; color:#ff8a4c; border:1px solid #ff5a1f22; }
+.hw svg { width:21px; height:21px; }
+.hw > div { min-width:0; }
+.how .hw b { font-size:14px; line-height:1.45; }
+.how .hw span { display:block; font-size:12px; line-height:1.55; margin-top:3px; }
+
+/* A mídia mantém sua proporção real, sem preencher um recorte arbitrário. */
+.nfc { grid-template-columns:minmax(0,1.15fr) minmax(0,1fr); align-items:center; gap:36px; border:0; background:transparent; overflow:visible; }
+.process-media { padding:10px; border:1px solid #ffffff0b; border-radius:20px; background:#101012; }
+.nfc video { width:100%; height:auto; min-height:0; aspect-ratio:16/9; object-fit:contain; object-position:center; background:#0b0b0d; border-radius:18px; display:block; }
+.nfc-txt { min-width:0; max-width:38ch; padding:12px 0; gap:16px; }
+.nfc-txt b { overflow:visible; font-size:clamp(26px,2.4vw,34px); line-height:1.24; }
+.nfc-txt b > span { display:inline-block; }
+.nfc-txt b { max-width:9.6em; }
+.mo .sh::after,.mo #natal .sh::after{display:none}
+@media (min-width:1100px){.shelf[data-n="5"]:not(#natal) .grid{grid-template-columns:repeat(5,minmax(0,1fr))}}
+@media (min-width:1300px){#natal>*{width:min(100%,84vw)}}
+.nfc-txt p { line-height:1.7; }
+.nfc-txt .btn { margin-top:3px; }
+.atac { gap:28px; }
+.atac-cta { gap:12px; }
+.vimg { display:grid; place-items:center; aspect-ratio:1; }
+.vimg img { width:100%; height:100%; object-fit:contain; padding:6px; }
+.vt { min-width:0; }
+.vt b { min-height:2.9em; }
+.card .ph img,.card .ph img.photo,.ph.gal .gal-tr img { object-fit:contain; object-position:center; }
+.ph.gal .gal-tr video { object-fit:contain; background:#101013; }
+.card:hover .ph img { transform:none; }
+
+/* Sequência de criação: fotos inteiras e sem máscara de construção. */
+.ix-vis { display:grid; place-items:center; }
+.ix-v2 .ix-ghost { display:none; }
+.ix-v2 .ix-build { position:relative; inset:auto; width:100%; height:100%; object-fit:contain; padding:12px; clip-path:none!important; -webkit-clip-path:none!important; }
+.ix-v2::after,.ix-chip { display:none; }
+.ix-v3 img { width:82%; height:82%; max-width:82%; object-fit:contain; margin:0; }
+.ix-step:not(:last-child) .ix-num::after { height:1px; background:#ff5a1f44; box-shadow:none; }
+
+@media(max-width:760px) {
+  .ticker #tick { gap:8px; padding:12px 16px; font-size:10.5px; }
+  .bar .in { grid-template-columns:minmax(0,1fr) auto; column-gap:10px; row-gap:8px; padding-block:10px; }
+  .bar .seg { grid-column:1; grid-row:1; }
+  .bar .cartbtn { grid-column:2; grid-row:1; min-height:44px; padding-inline:11px; font-size:12px; }
+  .bar .modehint { display:block; grid-column:1 / -1; grid-row:2; font-size:12px; }
+  .bar .seg button { font-size:12px; padding-inline:13px; }
+  .how { grid-template-columns:minmax(0,1fr); gap:20px; padding-block:8px; }
+  .hw { padding:0; }
+  .nfc { grid-template-columns:minmax(0,1fr); gap:22px; }
+  .process-media { padding:8px; border-radius:17px; }
+  .nfc video { min-height:0; height:auto; border-radius:14px; }
+  .nfc-txt { max-width:100%; padding:0; gap:14px; }
+  .nfc-txt b { font-size:28px; }
+  .nfc-txt p { font-size:14px; }
+  .atac { gap:24px; }
+  .atac-cta { flex-wrap:wrap; gap:10px; }
+  .atac-cta .btn { font-size:13px; }
+}
+
+
+/* ===== Fundos temáticos (base visual) ===== */
+#shelves>.shelf:not(#natal){content-visibility:visible}
+.shelf[data-shelf]:not(#natal),.catsec,#duvidas{position:relative;isolation:isolate}
+.shelf[data-shelf]:not(#natal)::before,.catsec::before,#duvidas::before{content:"";position:absolute;z-index:-1;inset:-70px auto -70px 50%;width:100vw;transform:translateX(-50%);pointer-events:none;background:var(--tema,none) center/cover no-repeat;filter:brightness(2) contrast(1.08) saturate(1.15);-webkit-mask-image:linear-gradient(180deg,transparent,#000 14%,#000 86%,transparent),linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);-webkit-mask-composite:source-in;mask-image:linear-gradient(180deg,transparent,#000 14%,#000 86%,transparent),linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-composite:intersect}
+.catsec{--tema:url(temas/atelier.webp)}#duvidas{--tema:url(temas/atelier.webp)}
+#futebol{--tema:url(temas/futebol.webp)}#esporte{--tema:url(temas/esporte.webp)}#animes{--tema:url(temas/animes.webp)}#desenhos{--tema:url(temas/personagens.webp)}#saude{--tema:url(temas/saude.webp)}#religioso{--tema:url(temas/religioso.webp)}#cases{--tema:url(temas/cases.webp)}#casa{--tema:url(temas/casa.webp)}#jogos{--tema:url(temas/jogos.webp)}#fidgets{--tema:url(temas/fidgets.webp)}#bichinhos{--tema:url(temas/bichinhos.webp)}#personalizados{--tema:url(temas/atelier.webp)}#brindes{--tema:url(temas/atelier.webp)}
+#animes[data-tema="dbz"]{--tema:url(temas/dragon-ball.webp)}#animes[data-tema="onepiece"]{--tema:url(temas/one-piece.webp)}
+.sh,#natal .sh{border-bottom:0}
+.ticker{border-block:0}
+@media (max-width:760px){.shelf[data-shelf]:not(#natal)::before,.catsec::before,#duvidas::before{inset:-40px auto -40px 50%}}
+
+/* ===== Fundo global único ===== */
+body{background-color:#0a0a0b;background-image:linear-gradient(rgba(0,0,0,.62),rgba(0,0,0,.62)),url(fundo.webp);background-size:100% 100%,100% auto;background-position:center top;background-repeat:no-repeat,repeat-y}
+.shelf[data-shelf]:not(#natal)::before,.catsec::before,#duvidas::before{display:none}
+@media (max-width:760px){body{background-image:linear-gradient(rgba(0,0,0,.75),rgba(0,0,0,.75)),url(fundo.webp)}}
+
+.aviso{display:flex;align-items:center;gap:14px;width:fit-content;max-width:100%;margin:22px auto 4px;padding:12px 20px 12px 14px;border-radius:16px;background:linear-gradient(180deg,#18181b,#121214);border:1px solid #ff5a1f33;box-shadow:0 12px 30px -18px #000}
+.aviso i{flex:0 0 auto;display:grid;place-items:center;width:36px;height:36px;border-radius:11px;background:#261a13;color:#ff8a4c}
+.aviso svg{width:20px;height:20px}
+.aviso p{margin:0;font-size:14px;line-height:1.5;color:#bdbbc0}
+.aviso b{color:#f2f0ee;font-weight:600}
+@media (max-width:760px){.aviso{width:100%;margin-top:16px;padding:12px 14px;border-radius:14px}.aviso p{font-size:13px}}
+
+/* ===== Promoção de inauguração ===== */
+.ticker{transform:none!important}
+.ticker.promo{background:linear-gradient(90deg,#ff5a1f,#ff7a3d 50%,#ff5a1f);color:#1b0c07;overflow:hidden;white-space:nowrap;border:0}
+.ticker.promo #tick{display:flex;grid-template-columns:none;width:max-content;max-width:none;margin:0;padding:11px 0;gap:0;text-align:left;animation:tick 40s linear infinite}
+.ticker.promo #tick span{padding:0 0 0 28px;font:600 13px var(--f-body);letter-spacing:.02em;text-transform:none}
+.ticker.promo #tick span::after{display:inline;content:"✦";margin-left:28px;opacity:.65}
+#promocao{padding:26px clamp(14px,2.4vw,30px) 30px;border-radius:26px;background:linear-gradient(180deg,#ff5a1f1a,#ff5a1f06 55%,transparent);border:1px solid #ff5a1f3d}
+#promocao .sh h2 small{color:#ffb089}
+#promocao .card{border-color:#ff5a1f55}
+#promocao .price s{color:#8d8a90}
+#promocao .ph .tag{background:#ff5a1f;color:#1b0c07}
+@media (prefers-reduced-motion:reduce){.ticker.promo #tick{animation:none}}
 </style>
 
 <header class="hero" id="topo">
@@ -696,11 +1013,12 @@ html.pm-open{overflow:hidden}
       <nav aria-label="Seções"><a href="#catalogo">Catálogo</a><a href="#brindes">Atacado</a><a href="#encomenda">Sob encomenda</a></nav>
     </div>
     <div class="hcenter">
-      <span class="kicker">Impressão 3D sob medida</span>
+      <span class="kicker">Impressão 3D feita para você</span>
       <h1><span class="w">Ideias</span> <span class="w" style="animation-delay:.12s">que</span><br><em class="w" style="animation-delay:.28s">ganham</em> <em class="w" style="animation-delay:.42s">forma.</em></h1>
+      <p class="hero-lead">Colecionáveis, presentes e peças personalizadas, impressos em 3D para você.</p>
       <div class="ctas"><a class="btn primary" href="#catalogo">Ver catálogo</a><a class="btn ghost" href="#brindes">Comprar no atacado</a></div>
     </div>
-    <div class="scroll"><i></i>Role para ver as peças</div>
+    <div class="scroll"><i></i>Explore as coleções</div>
   </div>
 </header>
 
@@ -713,19 +1031,20 @@ html.pm-open{overflow:hidden}
 </div></div>
 
 <main class="in" id="catalogo">
+  <aside class="aviso" role="note" aria-label="Aviso sobre cores"><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9c0-1.2-.9-2-2-2h-2.2a2 2 0 0 1-1.4-3.4A9 9 0 0 0 12 3z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="7.6" cy="11.4" r="1.2" fill="currentColor"/><circle cx="10.6" cy="7.4" r="1.2" fill="currentColor"/><circle cx="15" cy="6.9" r="1.2" fill="currentColor"/></svg></i><p><b>Algumas cores ainda estão chegando.</b> Pedidos com essas cores podem levar de 1 a 2 semanas a mais, no máximo.</p></aside>
   <section class="how" aria-label="Como comprar">
-    <div class="hw"><i><svg viewBox="0 0 24 24"><path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L21 8H6.2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="10" cy="20" r="1.5" fill="currentColor"/><circle cx="17" cy="20" r="1.5" fill="currentColor"/></svg></i><div><b>1. Escolha</b><span>Toque em Adicionar</span></div></div>
-    <div class="hw"><i><svg viewBox="0 0 24 24"><path d="M4 7h11M4 7l3-3M4 7l3 3M20 17H9m11 0-3-3m3 3-3 3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></i><div><b>2. Varejo ou atacado</b><span>Atacado: 10+ peças, mais barato</span></div></div>
-    <div class="hw"><i><svg viewBox="0 0 24 24"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 19z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9 10.5c.5 2 2 3.5 4.5 4.5l1.2-1.2 1.8.8-.4 1.6c-3.6.2-7.5-3.4-7.8-7.2l1.6-.5.9 1.7z" fill="currentColor"/></svg></i><div><b>3. Envie no WhatsApp</b><span>A mensagem já vai pronta</span></div></div>
+    <div class="hw"><i><svg viewBox="0 0 24 24"><path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L21 8H6.2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="10" cy="20" r="1.5" fill="currentColor"/><circle cx="17" cy="20" r="1.5" fill="currentColor"/></svg></i><div><b>Escolha suas peças</b><span>Adicione seus favoritos ao pedido.</span></div></div>
+    <div class="hw"><i><svg viewBox="0 0 24 24"><path d="M4 7h11M4 7l3-3M4 7l3 3M20 17H9m11 0-3-3m3 3-3 3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></i><div><b>Varejo ou atacado</b><span>A partir de 10 unidades no atacado.</span></div></div>
+    <div class="hw"><i><svg viewBox="0 0 24 24"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 19z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9 10.5c.5 2 2 3.5 4.5 4.5l1.2-1.2 1.8.8-.4 1.6c-3.6.2-7.5-3.4-7.8-7.2l1.6-.5.9 1.7z" fill="currentColor"/></svg></i><div><b>Finalize no WhatsApp</b><span>Revise o pedido e envie a mensagem.</span></div></div>
   </section>
-  <section class="catsec" aria-label="Categorias"><div class="sh"><h2><small>Escolha por categoria</small>O que você procura?</h2></div><nav class="cats" id="cats" aria-label="Categorias"></nav></section>
+  <section class="catsec" aria-label="Categorias"><div class="sh"><h2><small>Explore as coleções</small>O que você procura?</h2><p>Do seu personagem favorito a uma peça feita só para você.</p></div><nav class="cats" id="cats" aria-label="Categorias"></nav></section>
   <div id="shelves" style="display:flex;flex-direction:column;gap:64px"></div>
 
   <section class="idea ix" id="encomenda">
     <div class="ix-head">
       <span class="eyebrow">Sob encomenda</span>
       <h2>Sua ideia ganha forma <em>em 3D.</em></h2>
-      <p>Envie uma foto ou conte sua ideia. A gente modela e imprime sua peça personalizada.</p>
+      <p>Envie uma foto, desenho ou referência. A gente cuida da modelagem e da impressão.</p>
     </div>
     <ol class="ix-steps">
       <li class="ix-step"><div class="ix-vis ix-v1"><svg class="ix-phone" viewBox="0 0 200 300" aria-hidden="true">
@@ -756,9 +1075,9 @@ html.pm-open{overflow:hidden}
   </section>
 
   <section class="shelf" id="duvidas">
-    <div class="sh"><h2><small>Rapidinho</small>Dúvidas</h2></div>
+    <div class="sh"><h2><small>Informações úteis</small>Dúvidas</h2></div>
     <div class="faq">
-      <div><span class="fi"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7v5l3 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span><h3>Prazo</h3><p>Até 3 dias úteis. Personalizado e atacado: 5 a 10.</p></div>
+      <div><span class="fi"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7v5l3 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span><h3>Prazo</h3><p>Até 3 dias úteis. Personalizado e atacado: 5 a 10. Cores que ainda estão chegando: 1 a 2 semanas a mais.</p></div>
       <div><span class="fi"><svg viewBox="0 0 24 24"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="7" cy="18" r="2" fill="currentColor"/><circle cx="17" cy="18" r="2" fill="currentColor"/></svg></span><h3>Entrega</h3><p>Na região ou Correios para todo o Brasil.</p></div>
       <div><span class="fi"><svg viewBox="0 0 24 24"><path d="M12 3l3 3-3 3-3-3zM6 9l3 3-3 3-3-3zM18 9l3 3-3 3-3-3zM12 15l3 3-3 3-3-3z" fill="currentColor"/></svg></span><h3>Pagamento</h3><p>Pix, combinado no WhatsApp.</p></div>
       <div><span class="fi"><svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span><h3>Atacado</h3><p>A partir de 10 peças, com preço menor.</p></div>
@@ -795,7 +1114,7 @@ html.pm-open{overflow:hidden}
 
 <script>
 /* ===== CONFIGURAÇÃO: troque aqui ===== */
-const WHATSAPP = "";            // número com DDI e DDD, só dígitos. Ex.: "5587999999999". Vazio = a pessoa escolhe o contato.
+const WHATSAPP = "5587997698263";            // número com DDI e DDD, só dígitos. Ex.: "5587999999999". Vazio = a pessoa escolhe o contato.
 const MIN_ATACADO = 10;         // mínimo por peça no atacado
 const HERO_FRAMES = {path:"hf/", n:45};    // quadros do giro do topo (hf/01.webp ... hf/45.webp)
 /* ===================================== */
@@ -835,12 +1154,12 @@ const SHELVES = [
   {id:"z-camaleao", g:"repteis", n:"Camaleão olhudo", i:"lizard", img:"p/z-camaleao.webp", photo:true, s:"10 cm · escolha a cor", v:19.90, a:11.90, tag:"Novo"},
   ...BICHOS
  ]},
- {id:"animes", k:"Montados e coloridos", t:"Animes", d:"Cada parte impressa na cor original e montada à mão.", tabs:[["pokemon","Pokémon"],["dbz","Dragon Ball"],["onepiece","One Piece"]], items:[
+ {id:"animes", k:"Montados e coloridos", t:"Animes", d:"Cada parte impressa na cor original e montada à mão.", tabs:[["","Todos"],["pokemon","Pokémon"],["dbz","Dragon Ball"],["onepiece","One Piece"]], items:[
   {g:"pokemon", id:"pk-charmander", n:"Charmander", i:"bust", img:"p/pk-charmander.webp", cores:"laranja, creme, vermelho, amarelo e azul", v:89.90, a:69.90, tag:"Colorido"},
   {g:"pokemon", id:"pk-squirtle", n:"Squirtle", i:"bust", img:"p/f-squirtle.webp", photo:true, fit:true, real:true, cores:"azul, creme, marrom e branco", v:89.90, a:69.90, tag:"Colorido"},
   {g:"pokemon", id:"pk-bulbasaur", n:"Bulbasaur", i:"bust", img:"p/f-bulbasaur.webp", photo:true, fit:true, real:true, cores:"verde-água, verde, vermelho e branco", v:99.90, a:79.90, tag:"Colorido"},
   {g:"pokemon", id:"pk-charizard", n:"Charizard de asas abertas", i:"dragon", img:"p/f-charizard.webp", photo:true, fit:true, real:true, cores:"laranja, creme, azul-petróleo e chama", v:129.90, a:99.90, tag:"Destaque"},
-  {g:"onepiece", id:"a-luffy", n:"Luffy Gear 5 em chamas", i:"bust", img:"p/a-luffy.webp", photo:true, cover:true, cores:"branco", v:89.90, a:69.90, tag:"Novo"},
+  {g:"onepiece", id:"a-luffy", n:"Luffy Gear 5 em chamas", i:"bust", img:"p/a-luffy.webp", photo:true, cores:"branco", v:89.90, a:69.90, tag:"Novo"},
   {g:"dbz", id:"a-goku", fit:true, n:"Goku Super Saiyajin 3", i:"bust", img:"p/a-goku.webp", photo:true, cores:"amarelo, laranja, azul e tom de pele", v:169.90, a:129.90, tag:"Destaque"}
  ]},
  {id:"futebol", k:"Para a torcida", t:"Futebol", d:"Mascotes bombadões e chaveiros do seu time.", items:[
@@ -856,16 +1175,16 @@ const SHELVES = [
  {id:"desenhos", k:"Desenhos, filmes e ícones", t:"Personagens", items:[
   {id:"x-hogwarts", n:"Castelo de Hogwarts", i:"tag", img:"p/x-hogwarts.webp", photo:true, cores:"branco", v:99.90, a:79.90, tag:"Destaque"},
   {id:"x-einstein", n:"Einstein colecionável", i:"bust", img:"p/x-einstein.webp", photo:true, cores:"cinza, bege, marrom e branco", v:129.90, a:99.90, tag:"Novo"},
-  {id:"d-trono", n:"Dragão sobre o trono de espadas", i:"dragon", img:"p/d-trono1.webp", imgs:["p/d-trono1.webp","p/d-trono2.webp","p/d-trono3.webp"], photo:true, real:true, cover:true, cores:"preto", v:259.90, a:189.90, tag:"Destaque"},
+  {id:"d-trono", n:"Dragão sobre o trono de espadas", i:"dragon", img:"p/d-trono1.webp", imgs:["p/d-trono1.webp","p/d-trono2.webp","p/d-trono3.webp"], photo:true, real:true, cores:"preto", v:259.90, a:189.90, tag:"Destaque"},
   {id:"d-venom", n:"Venom cabeçudo", i:"bust", img:"p/d-venom.webp", photo:true, real:true, cores:"preto e branco", v:79.90, a:59.90, tag:"Novo"},
   {id:"d-batman", n:"Batman cabeçudo", i:"bust", img:"p/d-batman.webp", photo:true, cover:true, cores:"preto, bege e branco", v:79.90, a:59.90, tag:"Novo"},
   {id:"d-aranha", cover:true, n:"Homem-Aranha Noir", i:"bust", img:"p/d-aranha.webp", photo:true, real:true, cores:"preto, cinza e bege", v:79.90, a:59.90, tag:"Novo"}
  ]},
  {id:"jogos", k:"Para gamers", t:"Jogos", d:"Mapas e peças para quem vive jogando.", items:[
-  {id:"j-atlas", n:"Suporte de controle Atlas", i:"tag", img:"p/j-atlas.webp", photo:true, cover:true, d:"Um titã segurando o seu controle. Serve para PlayStation e Xbox.", cores:"branco", v:139.90, a:99.90, tag:"Novo"},
+  {id:"j-atlas", n:"Suporte de controle Atlas", i:"tag", img:"p/j-atlas.webp", photo:true, d:"Um titã segurando o seu controle. Serve para PlayStation e Xbox.", cores:"branco", v:139.90, a:99.90, tag:"Novo"},
   {id:"j-revolver", n:"Revólver gótico de cosplay", i:"tag", img:"p/j-revolver.webp", photo:true, cover:true, d:"Réplica decorativa para cosplay e coleção.", cores:"preto", v:199.90, a:149.90, tag:"Novo"},
-  {id:"j-busto", n:"Busto do assassino encapuzado", i:"bust", img:"p/j-busto.webp", photo:true, cover:true, cores:"branco", v:39.90, a:29.90, tag:"Novo"},
-  {id:"j-faca", n:"Faca tática de treino", i:"tag", img:"p/j-faca.webp", photo:true, cover:true, d:"Réplica decorativa de plástico, para cosplay e coleção.", cores:"preto", v:34.90, a:24.90, tag:"Novo"},
+  {id:"j-busto", n:"Busto do assassino encapuzado", i:"bust", img:"p/j-busto.webp", photo:true, cores:"branco", v:39.90, a:29.90, tag:"Novo"},
+  {id:"j-faca", n:"Faca tática de treino", i:"tag", img:"p/j-faca.webp", photo:true, d:"Réplica decorativa de plástico, para cosplay e coleção.", cores:"preto", v:34.90, a:24.90, tag:"Novo"},
   {id:"j-dust2", n:"Mapa Dust II em relevo", i:"tag", img:"p/j-dust2.webp", photo:true, d:"O mapa clássico em 3D, para pendurar ou deixar na mesa.", cores:"bege e verde-oliva", v:119.90, a:89.90, tag:"Novo"}
  ]},
  {id:"saude", k:"Para o consultório", t:"Médico e dentista", d:"Presentes e organizadores para quem cuida da saúde.", items:[
@@ -876,8 +1195,8 @@ const SHELVES = [
  {id:"esporte", k:"Para atletas", t:"Esporte", d:"Para quem vive o esporte.", items:[
   {id:"e-senna", n:"Busto Ayrton Senna", i:"bust", img:"p/e-senna.webp", photo:true, real:true, dark:true, s:"cerca de 10 cm", cores:"branco", v:99.90, a:79.90, tag:"Destaque"},
   {id:"e-medalhas", n:"Porta-medalhas hexagonal", i:"tag", img:"p/e-medalhas.webp", photo:true, d:"Cada hexágono guarda uma medalha e encaixa no outro. Monte a colmeia do seu jeito.", cores:"preto", v:34.90, a:24.90, ask:"Quantas peças e esporte"},
-  {id:"c-kettlebell", n:"Chaveiro kettlebell com nome", i:"tag", img:"p/c-kettlebell2.webp", photo:true, cover:true, d:"As cores podem mudar da foto.", v:19.90, a:11.90, ask:"Nome no chaveiro", tag:"Personalizado"},
-  {id:"e-suporte-medalhas", n:"Suporte de medalhas do seu esporte", i:"tag", img:"p/e-suporte-medalhas2.webp", photo:true, cover:true, cores:"branco", v:59.90, a:44.90, ask:"Qual esporte", tag:"Novo"},
+  {id:"c-kettlebell", n:"Chaveiro kettlebell com nome", i:"tag", img:"p/c-kettlebell2.webp", photo:true, d:"As cores podem mudar da foto.", v:19.90, a:11.90, ask:"Nome no chaveiro", tag:"Personalizado"},
+  {id:"e-suporte-medalhas", n:"Suporte de medalhas do seu esporte", i:"tag", img:"p/e-suporte-medalhas2.webp", photo:true, cores:"branco", v:59.90, a:44.90, ask:"Qual esporte", tag:"Novo"},
   {id:"e-porta-anel-kettlebell", n:"Porta-anel kettlebell", i:"tag", img:"p/e-porta-anel-kettlebell2.webp", photo:true, cover:true, d:"Tampa de rosca. Guarda anel e corrente.", v:24.90, a:14.90, tag:"Novo"}
  ]},
  {id:"personalizados", k:"Com o seu nome", t:"Personalizados", d:"Nome, cor ou o seu pet. Você escreve aqui e já vai na mensagem.", items:[
@@ -885,20 +1204,22 @@ const SHELVES = [
   {id:"chaveiro-nome", n:"Chaveiro com nome", i:"tag", img:"p/p-chaveiro-nome.webp", photo:true, d:"Seu nome em relevo, na cor que escolher.", v:14.90, a:6.90, ask:"Nome no chaveiro", c:["Customisable Nametag","Ryno_man","CC0"]},
   {id:"b-selo", n:"Carimbo com a sua logo", i:"logo", img:"p/p-carimbo.webp", photo:true, cover:true, d:"Selo de fabricante com a sua marca. A logo você manda no WhatsApp.", v:59.90, a:44.90, ask:"Nome da marca", tag:"Personalizado"},
   {id:"p-lapis", n:"Ponteira de lápis com nome", i:"tag", img:"p/p-lapis.webp", photo:true, v:9.90, a:5.90, ask:"Nome", tag:"Novo"},
-  {id:"pix", n:"Plaquinha Pix com QR Code", i:"qr", img:"p/p-pix.webp", photo:true, cover:true, d:"Para o balcão, com a sua logo e o QR do Pix.", v:39.90, a:27.90, ask:"Nome da loja", c:["Customizable Pix Sign BRAZIL","Th3D.br","CC0"]}
+  {id:"pix", n:"Plaquinha Pix com QR Code", i:"qr", img:"p/p-pix.webp", photo:true, d:"Para o balcão, com a sua logo e o QR do Pix.", v:39.90, a:27.90, ask:"Nome da loja", c:["Customizable Pix Sign BRAZIL","Th3D.br","CC0"]}
  ]},
  {id:"natal", k:"Natal 2026", t:"Enfeites de Natal", d:"Bonequinhos de crochê, porta-panetone e enfeites com foto.", items:[
+  {id:"n-combo", fit:true, n:"Combo de Natal com bandeja", i:"ornament", img:"p/n-combo1.webp", imgs:["p/n-combo1.webp","p/n-combo2.webp"], photo:true, d:"Três bonequinhos de crochê numa bandeja canelada.", cores:"branco, vermelho, caramelo e a cor da bandeja", ask:"Biscoito ou poodle? Bandeja bege ou verde?", v:119.90, a:89.90, tag:"Destaque"},
   {id:"n-rena", n:"Rena de crochê", i:"ornament", img:"p/n-rena.webp", photo:true, d:"Textura de crochê, mas é impressa em 3D.", cores:"caramelo, marrom, preto e vermelho", v:39.90, a:27.90, tag:"Natal"},
   {id:"n-urso", n:"Ursinho polar de Natal", i:"ornament", img:"p/n-urso.webp", photo:true, d:"Com gorro de Papai Noel.", cores:"branco, vermelho e preto", v:39.90, a:27.90, tag:"Natal"},
+  {id:"n-neve", n:"Boneco de neve de crochê", i:"ornament", img:"p/n-boneco-neve.webp", photo:true, real:true, d:"Com gorro e cachecol vermelhos.", cores:"branco, vermelho, preto e laranja", v:39.90, a:27.90, tag:"Natal"},
   {id:"n-gengibre", n:"Biscoitinho de gengibre", i:"ornament", img:"p/n-gengibre.webp", photo:true, d:"O boneco de biscoito mais fofo da árvore.", cores:"caramelo, branco, preto e laranja", v:39.90, a:27.90, tag:"Natal"},
   {id:"n-poodle", n:"Poodle de Natal", i:"ornament", img:"p/n-poodle.webp", photo:true, d:"Com gorro de Papai Noel.", cores:"caramelo, vermelho, branco e preto", v:39.90, a:27.90, tag:"Natal"},
   {id:"porta-panetone", n:"Porta-panetone Papai Noel", i:"ornament", img:"p/panetone.webp", photo:true, cores:"vermelho, branco, preto e amarelo", v:89.90, a:69.90, tag:"Natal"}
  ]},
  {id:"religioso", k:"Fé em casa", t:"Religioso", d:"Imagens e presépios para o lar e para presentear.", items:[
-  {id:"r-nossa-senhora", n:"Nossa Senhora porta-terço", i:"tag", img:"p/c-porta-terco.webp", photo:true, cover:true, d:"Guarda o terço com carinho e enfeita o cantinho de oração.", cores:"branco", v:59.90, a:44.90, tag:"Novo"},
-  {id:"r-presepio", n:"Presépio completo com arco", i:"ornament", img:"p/r-presepio1.webp", photo:true, cover:true, cores:"branco", v:129.90, a:99.90, tag:"Novo"},
-  {id:"r-presepio-estrela", n:"Presépio com estrela de Belém", i:"ornament", img:"p/r-presepio2.webp", photo:true, cover:true, cores:"branco", v:64.90, a:49.90, tag:"Novo"},
-  {id:"r-sagrada", n:"Sagrada Família minimalista", i:"ornament", img:"p/r-sagrada.webp", photo:true, cover:true, cores:"branco", v:29.90, a:22.90, tag:"Novo"},
+  {id:"r-nossa-senhora", n:"Nossa Senhora porta-terço", i:"tag", img:"p/c-porta-terco.webp", photo:true, d:"Guarda o terço com carinho e enfeita o cantinho de oração.", cores:"branco", v:59.90, a:44.90, tag:"Novo"},
+  {id:"r-presepio", n:"Presépio completo com arco", i:"ornament", img:"p/r-presepio1.webp", photo:true, cores:"branco", v:129.90, a:99.90, tag:"Novo"},
+  {id:"r-presepio-estrela", n:"Presépio com estrela de Belém", i:"ornament", img:"p/r-presepio2.webp", photo:true, cores:"branco", v:64.90, a:49.90, tag:"Novo"},
+  {id:"r-sagrada", n:"Sagrada Família minimalista", i:"ornament", img:"p/r-sagrada.webp", photo:true, cores:"branco", v:29.90, a:22.90, tag:"Novo"},
   {id:"r-cristo", n:"Cristo em relevo", i:"bust", img:"p/r-cristo1.webp", imgs:["p/r-cristo1.webp","p/r-cristo2.webp"], photo:true, cover:true, cores:"branco", v:99.90, a:74.90, tag:"Novo"}
  ]},
  {id:"cases", k:"Para os seus fones", t:"Cases para fones", d:"Capas impressas em 3D para o estojo dos AirPods.", items:[
@@ -908,34 +1229,48 @@ const SHELVES = [
   {id:"k-presilha", n:"Presilha para case de AirPods", i:"tag", img:"p/k-presilha.webp", photo:true, cover:true, d:"Prende o estojo dos AirPods onde você precisar.", cores:"preto", v:14.90, a:8.90, tag:"Novo"}
  ]},
  {id:"casa", k:"Para a sua casa", t:"Casa e decoração", d:"Peças úteis que também enfeitam.", items:[
-  {id:"c-cacto", n:"Suporte cacto para fone e relógio", i:"tag", img:"p/c-cacto1.webp", imgs:["p/c-cacto1.webp","p/c-cacto2.webp"], photo:true, cover:true, d:"Pendura o fone, encaixa o relógio e a base guarda o resto.", cores:"verde e bege", v:159.90, a:119.90, tag:"Novo"}
+  {id:"c-cacto", n:"Suporte cacto para fone e relógio", i:"tag", img:"p/c-cacto1.webp", photo:true, d:"Pendura o fone, encaixa o relógio e a base guarda o resto.", cores:"verde e bege", v:159.90, a:119.90, tag:"Novo"}
  ]},
  {id:"fidgets", k:"Para as mãos inquietas", t:"Fidgets", d:"Gira, clica, desliza. Difícil largar.", items:[
   {id:"estrela", n:"Estrela fidget", i:"star", img:"p/f-estrela.webp", photo:true, cover:true, d:"Gira e se transforma na mão.", v:19.90, a:11.90, c:["Amazing star fidget","Big-D-SyneS","CC BY-SA"]},
   {id:"cone", n:"Cone espiral", i:"spiral", img:"p/f-cone.webp", photo:true, d:"Uma espiral que sobe e desce sem parar.", v:24.90, a:14.90, c:["Spiral Cone Fidget","rangido","CC BY"]},
-  {id:"f-laranja", n:"Laranja sensorial", i:"star", img:"p/f-laranja1.webp", imgs:["p/f-laranja1.webp","p/f-laranja2.webp"], photo:true, cover:true, cores:"laranja, branco e verde", d:"Abre ao meio e os gomos saem um a um.", v:69.90, a:49.90, tag:"Novo"},
+  {id:"f-laranja", n:"Laranja sensorial", i:"star", img:"p/f-laranja1.webp", imgs:["p/f-laranja1.webp","p/f-laranja2.webp"], photo:true, cores:"laranja, branco e verde", d:"Abre ao meio e os gomos saem um a um.", v:69.90, a:49.90, tag:"Novo"},
   {id:"f-bastao", n:"Bastão giratório de esqueletos", i:"star", img:"p/f-bastao1.webp", imgs:["p/f-bastao1.webp","p/f-bastao2.webp","p/f-bastao.mp4"], poster:"p/f-bastao-poster.webp", photo:true, cover:true, cores:"branco, preto, azul e laranja", d:"Gire o bastão e os esqueletos voam.", v:59.90, a:44.90, tag:"Novo"},
   {id:"clicker", n:"Clicker de bolinho", i:"dumpling", img:"p/f-dumpling.webp", photo:true, d:"Aperta e faz clique.", v:14.90, a:7.90, c:["Squishy Dumpling Fidget Clickers","Ada & K 3DA","CC BY-ND"]}
  ]},
  {id:"brindes", k:"Para empresas, festas e eventos", t:"Atacado e brindes", vitrine:true, items:[
-  {id:"chaveiro-logo", n:"Chaveiro com a sua logo", i:"logo", img:"p/b-chaveiro-logo2.webp", photo:true, cover:true, d:"Na cor da sua marca. A logo você manda no WhatsApp.", v:6.00, consulta:true, min:15, ask:"Nome da empresa"},
-  {id:"b-placa-google", n:"Placa de avaliação Google com NFC", i:"tag", img:"p/b-placa-google2.webp", imgs:["p/b-placa-google2.webp","p/b-placa-google.webp"], photo:true, cover:true, cores:"azul ou branco, com o G colorido", v:49.90, a:34.90, ask:"Link do Google da sua empresa", tag:"Novo"},
+  {id:"chaveiro-logo", n:"Chaveiro com a sua logo", i:"logo", img:"p/b-chaveiro-logo2.webp", photo:true, d:"Na cor da sua marca. A logo você manda no WhatsApp.", v:6.00, consulta:true, min:15, ask:"Nome da empresa"},
+  {id:"b-placa-google", n:"Placa de avaliação Google com NFC", i:"tag", img:"p/b-placa-google2.webp", imgs:["p/b-placa-google2.webp","p/b-placa-google.webp"], photo:true, cores:"azul ou branco, com o G colorido", v:49.90, a:34.90, ask:"Link do Google da sua empresa", tag:"Novo"},
   {id:"b-microfone", n:"Canopla de microfone com logo", i:"logo", img:"p/b-microfone.webp", photo:true, d:"Para entrevistas, eventos e podcasts.", v:59.90, a:44.90, ask:"Nome da empresa", tag:"Personalizado"}
  ]}
 ];
 // Produtos guardados (não aparecem no site). Ids da página ADM.
-const OCULTOS = ["b-microfone","c-kettlebell","porta-panetone","k-furada","k-lisa","k-presilha","r-cristo"];
+const OCULTOS = ["b-microfone","porta-panetone","k-furada","k-lisa","k-presilha","r-cristo","a-capa-aranha","c-corinthians","clicker","e-porta-anel-kettlebell"];
 SHELVES.forEach(s => s.items = s.items.filter(i => !OCULTOS.includes(i.id)));
+// Promoção (ADM > Promoção): itens escolhidos sobem para a prateleira da campanha. Preço null = mesmo preço.
+// Nomes alterados pelo ADM: {id: nome}.
+const NOMES = {"c-kettlebell":"Chaveiro kettlebell"};
+SHELVES.forEach(s => s.items.forEach(i => { if (NOMES[i.id]) i.n = NOMES[i.id]; }));
+// Atacado sob consulta (ADM): produtos que mostram "Sob consulta" no atacado; o varejo continua normal.
+const ATAC_CONSULTA = ["c-kettlebell"];
+SHELVES.forEach(s => s.items.forEach(i => { if (ATAC_CONSULTA.includes(i.id)) i.ac = true; }));
+const acon = i => i.consulta || i.ac;
+const PROMO = {ativa:true, nome:"Promoção de inauguração", itens:{"a-luffy":69.9,"chav-joelho":20,"e-suporte-medalhas":null,"r-nossa-senhora":49.9,"s-jaleco":44.9}};
+if (PROMO.ativa && Object.keys(PROMO.itens).length){
+  const sobem = [];
+  SHELVES.forEach(s => s.items = s.items.filter(i => { if (!(i.id in PROMO.itens)) return true; const p = PROMO.itens[i.id]; if (p && !i.consulta && !i.tiers) i.pv = p; i.tag = "Inauguração"; i.g = ""; sobem.push(i); return false; }));
+  if (sobem.length) SHELVES.unshift({id:"promocao", k:"Por tempo limitado", t:PROMO.nome, items:sobem});
+}
 for (let k = SHELVES.length - 1; k >= 0; k--) if (!SHELVES[k].items.length) SHELVES.splice(k, 1);
-const ORDEM = ["natal","brindes","futebol","esporte","animes","desenhos","saude","religioso","cases","casa","jogos","personalizados","fidgets","bichinhos"];
+const ORDEM = ["promocao","natal","brindes","futebol","esporte","animes","desenhos","saude","religioso","cases","casa","jogos","personalizados","fidgets","bichinhos"];
 SHELVES.sort((a, b) => ORDEM.indexOf(a.id) - ORDEM.indexOf(b.id));
 // o que aparece na primeira fileira de cada prateleira: o mais bonito e com mais chance de vender
-const PRIORIDADE = ["j-atlas","j-revolver","j-busto","j-faca","n-rena","n-urso","n-gengibre","n-poodle",
+const PRIORIDADE = ["n-combo","j-atlas","j-revolver","j-dust2","j-busto","j-faca","n-rena","n-urso","n-neve","n-gengibre","n-poodle",
   "b-placa-google","chaveiro-logo",
   "m-flamengo","m-corinthians","m-palmeiras","m-santos",
   "e-senna","e-suporte-medalhas","e-medalhas","e-porta-anel-kettlebell",
-  "pk-charizard","pk-squirtle","pk-bulbasaur","pk-charmander",
-  "d-batman","d-trono","d-venom","d-aranha","x-hogwarts","x-einstein",
+  "pk-charizard","a-goku","a-luffy","pk-squirtle","pk-bulbasaur","pk-charmander",
+  "d-trono","d-batman","x-hogwarts","x-einstein","d-venom","d-aranha",
   "caricatura","pix","chaveiro-nome","b-selo","p-lapis",
   "r-presepio-estrela","r-presepio","r-nossa-senhora","r-sagrada",
   "f-bastao","f-laranja","estrela","cone","clicker",
@@ -958,25 +1293,29 @@ const minFor = i => mode === "atacado" ? (i.min || MIN_ATACADO) : 1;
 function unit(i, q){
   if (i.tiers){ let p = i.tiers[0][1]; for (const [m, v] of i.tiers) if (q >= m) p = v; return p; }
   if (i.consulta) return i.v;
-  return mode === "atacado" ? i.a : i.v;
+  return mode === "atacado" ? i.a : (i.pv || i.v);
 }
-cart = cart.filter(l => byId[l.id] && !(mode === "atacado" && byId[l.id].consulta));
+cart = cart.filter(l => byId[l.id] && !(mode === "atacado" && acon(byId[l.id])));
 
 /* ---------- catálogo ---------- */
-$("tick").innerHTML = (Array(2).fill(["Bichinhos articulados","Animes","Mascotes de futebol","Jogos","Médico e dentista","Porta-medalhas","Chaveiros com nome","Enfeites de Natal","Porta-panetone","Brindes para empresas","Fidgets","Topo de bolo","Peças sob encomenda","Varejo e atacado"].map(t => `<span>${t}</span>`).join(""))).join("");
+if (PROMO.ativa){
+  const msgs = [PROMO.nome, "Peças selecionadas com preço especial", "Aproveite enquanto durar"];
+  document.querySelector(".ticker").classList.add("promo");
+  $("tick").innerHTML = [0, 1].map(() => msgs.concat(msgs).map(t => `<span>${esc(t)}</span>`).join("")).join("");
+} else $("tick").innerHTML = ["Impressão 3D","Varejo e atacado","Peças sob medida"].map(t => `<span>${t}</span>`).join("");
 function galHTML(i){
   return `<div class="gal-tr">${i.imgs.map((src, k) => /\.mp4$/.test(src) ? `<video class="photo" src="${src}"${i.poster ? ` poster="${i.poster}"` : ""} muted loop playsinline preload="none" aria-label="Vídeo: ${esc(i.n)}"></video>` : `<img loading="lazy" class="photo" src="${src}" alt="${esc(i.n)}${k ? " (foto " + (k + 1) + ")" : ""}">`).join("")}</div>`
     + `<button class="gal-nav prev" type="button" aria-label="Foto anterior" hidden>‹</button><button class="gal-nav next" type="button" aria-label="Próxima foto">›</button>`
     + `<span class="gal-dots">${i.imgs.map((_, k) => `<i${k ? "" : ' class="on"'}></i>`).join("")}</span>`;
 }
 const CAPA = {esporte:"e-suporte-medalhas", bichinhos:"z-tubarao"};  // foto de cada bloco de categoria, quando não é a primeira peça
-$("cats").innerHTML = SHELVES.map(s => { const f = s.items.find(i => i.id === CAPA[s.id] && i.img) || s.items.find(i => i.img); return `<a href="#${s.id}" data-shelf="${s.id}"><span class="ct">${f ? `<img loading="lazy"${f.cover ? ' class="photo"' : ""} src="${f.img}" alt="">` : svg(s.items[0].i)}</span><b>${esc(s.t)}</b></a>`; }).join("");
-const TAGS_OK = ["Destaque","Novo","Sob encomenda","Personalizado"];
+$("cats").innerHTML = SHELVES.filter(s => s.id !== "promocao").map(s => { const f = s.items.find(i => i.id === CAPA[s.id] && i.img) || s.items.find(i => i.img); return `<a href="#${s.id}" data-shelf="${s.id}"><span class="ct">${f ? `<img loading="lazy"${f.cover ? ' class="photo"' : ""} src="${f.img}" alt="">` : svg(s.items[0].i)}</span><b>${esc(s.t)}</b></a>`; }).join("");
+const TAGS_OK = ["Destaque","Novo","Sob encomenda","Personalizado","Inauguração"];
 function vitrineHTML(){
-  const from = id => { const sh = SHELVES.find(x => x.id === id); return Math.min(...sh.items.filter(i => !i.consulta).map(i => i.tiers ? i.tiers[i.tiers.length-1][1] : i.a)); };
+  const from = id => { const sh = SHELVES.find(x => x.id === id), v = sh.items.filter(i => !acon(i)).map(i => i.tiers ? i.tiers[i.tiers.length-1][1] : i.a); return v.length ? Math.min(...v) : null; };
   return `<div class="atac"><p class="atac-lead">A partir de ${MIN_ATACADO} unidades por peça, com preço de atacado. Ideal para empresas, festas, clínicas e eventos.</p>
-  <div class="vgrid">${VITRINE.map(([img, t, id]) => `<a class="vt" href="#${id}" data-goatac="${id}"><span class="vimg"><img loading="lazy" src="${img}" alt=""></span><b>${esc(t)}</b><small>${id === "brindes" ? "a partir de 15 unidades" : `a partir de ${brl(from(id))}/un`}</small></a>`).join("")}</div>
-  <div class="nfc"><video src="nfc.mp4" muted loop playsinline autoplay preload="metadata" aria-hidden="true"></video><div class="nfc-txt"><span class="eyebrow">Feito aqui</span><b>Da impressora para a sua mão.</b><p>Chaveiros, enfeites, bonecos e peças sob medida, impressos camada por camada.</p><a class="btn primary orcwa2" href="#" target="_blank" rel="noopener">Pedir orçamento</a></div></div>
+  <div class="vgrid">${VITRINE.map(([img, t, id]) => `<a class="vt" href="#${id}" data-goatac="${id}"><span class="vimg"><img loading="lazy" src="${img}" alt=""></span><b>${esc(t)}</b><small>${id === "brindes" ? "a partir de 15 unidades" : from(id) == null ? "sob consulta" : `a partir de ${brl(from(id))}/un`}</small></a>`).join("")}</div>
+  <div class="nfc"><div class="process-media"><video src="nfc.mp4" muted loop playsinline autoplay preload="metadata" aria-hidden="true"></video></div><div class="nfc-txt"><span class="eyebrow">Feito aqui</span><b>Da impressora para a sua mão.</b><p>Chaveiros, enfeites, bonecos e peças sob medida, impressos camada por camada.</p></div></div>
   <div class="atac-cta"><button class="btn primary" type="button" data-goatac="">Ver preços de atacado</button><a class="btn outline" id="orcwa" href="#" target="_blank" rel="noopener">Pedir orçamento</a></div></div>`;
 }
 const SUBS = [["","Todos"],["pets","Pets"],["selvagens","Bichos da mata"],["mar","Do mar"],["repteis","Répteis, dinos e insetos"]];
@@ -1008,6 +1347,7 @@ function applyShelf(sec){
   const lim = ok.length <= st.lim + 1 ? ok.length : st.lim;
   cards.forEach(c => c.classList.add("hide"));
   ok.forEach((c, k) => c.classList.toggle("hide", k >= lim));
+  sec.dataset.n = lim;
   const btn = sec.querySelector("[data-more]"), rest = ok.length - lim;
   btn.hidden = rest <= 0;
   btn.textContent = `Ver mais ${rest} ${sec.id === "bichinhos" ? (rest === 1 ? "bichinho" : "bichinhos") : (rest === 1 ? "peça" : "peças")}`;
@@ -1017,7 +1357,7 @@ document.addEventListener("click", e => {
   const m = e.target.closest("[data-more]");
   if (m){ const sec = m.closest(".shelf"); shelfSt[sec.id].lim += 8; applyShelf(sec); unPre(sec); return; }
   const t = e.target.closest(".subf button[data-tab]");
-  if (t){ const sec = t.closest(".shelf"); t.parentElement.querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", b === t)); const st = shelfSt[sec.id]; st.tab = t.dataset.tab; st.lim = lim0(sec); applyShelf(sec); unPre(sec); return; }
+  if (t){ const sec = t.closest(".shelf"); t.parentElement.querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", b === t)); const st = shelfSt[sec.id]; st.tab = t.dataset.tab; sec.dataset.tema = t.dataset.tab; st.lim = lim0(sec); applyShelf(sec); unPre(sec); return; }
   const f = e.target.closest(".subf button[data-sub]");
   if (f){ const sec = f.closest(".shelf"), st = shelfSt[sec.id]; st.sub = f.dataset.sub; st.lim = lim0(sec); f.parentElement.querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", b === f)); applyShelf(sec); unPre(sec); }
 });
@@ -1029,12 +1369,13 @@ function paintPrices(){
     if (+q.value < min) q.value = min;
     q.min = min;
     const p = unit(i, +q.value), pe = card.querySelector("[data-price]"), ml = card.querySelector("[data-min]");
-    const ad = card.querySelector("[data-add]"), cons = i.consulta && mode === "atacado";
-    if (i.consulta){ ad.textContent = cons ? "Pedir orçamento" : "Adicionar"; ad.toggleAttribute("data-consulta", cons); }
-    if (cons) pe.innerHTML = `Sob consulta<small class="un">pelo peso</small>`;
+    const ad = card.querySelector("[data-add]"), cons = acon(i) && mode === "atacado";
+    if (acon(i)){ ad.textContent = cons ? "Pedir orçamento" : "Adicionar"; ad.toggleAttribute("data-consulta", cons); }
+    if (cons) pe.innerHTML = i.consulta ? `Sob consulta<small class="un">pelo peso</small>` : `Sob consulta<small class="un">no atacado</small>`;
     else if (i.consulta) pe.innerHTML = `${brl(p)}<small class="un">/un</small>`;
     else if (i.tiers) pe.innerHTML = `${brl(p)}<small class="un">/un</small>`;
     else if (mode === "atacado") pe.innerHTML = `${brl(p)}<s>${brl(i.v)}</s>`;
+    else if (i.pv) pe.innerHTML = `${brl(p)}<s>${brl(i.v)}</s>`;
     else pe.innerHTML = brl(p);
     ml.hidden = mode !== "atacado"; ml.textContent = `Mínimo ${min} unidades`;
   });
@@ -1047,7 +1388,7 @@ function setMode(m){
   const on = document.querySelector(`.seg button[data-mode="${m}"]`), pill = $("segpill");
   pill.style.width = on.offsetWidth + "px"; pill.style.transform = `translateX(${on.offsetLeft - 4}px)`;
   $("modehint").innerHTML = m === "atacado" ? `<b>Atacado:</b> a partir de ${MIN_ATACADO} unidades por peça, preço menor.` : `<b>Varejo:</b> compre a partir de 1 unidade.`;
-  if (m === "atacado"){ cart = cart.filter(l => !byId[l.id].consulta); store.set("tf_cart", cart); }
+  if (m === "atacado"){ cart = cart.filter(l => !acon(byId[l.id])); store.set("tf_cart", cart); }
   cart.forEach(l => { const mn = minFor(byId[l.id]); if (l.qty < mn) l.qty = mn; });
   paintPrices(); renderCart();
 }
@@ -1061,7 +1402,7 @@ document.addEventListener("click", e => {
   const add = e.target.closest("[data-add]");
   if (add){
     const card = add.closest(".card"), i = byId[card.dataset.id];
-    if (add.hasAttribute("data-consulta")){ const q = Math.max(minFor(i), parseInt($("q-" + i.id).value) || 1), emp = i.ask ? $("ask-" + i.id).value.trim() : ""; window.open(waLink(`Olá, TrapForma! Quero orçamento de ${q} chaveiros com a minha logo${emp ? " (" + emp + ")" : ""}.`), "_blank", "noopener"); return; }
+    if (add.hasAttribute("data-consulta")){ const q = Math.max(minFor(i), parseInt($("q-" + i.id).value) || 1), emp = i.ask ? $("ask-" + i.id).value.trim() : ""; window.open(waLink(i.consulta ? `Olá, TrapForma! Quero orçamento de ${q} chaveiros com a minha logo${emp ? " (" + emp + ")" : ""}.` : `Olá, TrapForma! Quero orçamento no atacado de ${q} un. de ${i.n}${emp ? " (" + emp + ")" : ""}.`), "_blank", "noopener"); return; }
     const qty = Math.max(minFor(i), parseInt($("q-" + i.id).value) || 1);
     const cor = card.querySelector('.swatches button[aria-pressed="true"]')?.dataset.cor || (i.cores ? "cores originais" : "Preto");
     const obs = i.ask ? $("ask-" + i.id).value.trim() : "";
@@ -1173,6 +1514,7 @@ document.addEventListener("scroll", e => {
 const vio = "IntersectionObserver" in window ? new IntersectionObserver(es => es.forEach(en => { if (!en.isIntersecting) en.target.pause(); else if (Math.round(en.target.parentElement.scrollLeft / Math.max(1, en.target.parentElement.clientWidth)) === [...en.target.parentElement.children].indexOf(en.target)) en.target.play?.().catch(() => {}); }), {threshold:.4}) : null;
 
 /* ---------- saltos para seções: desenha tudo antes de rolar ---------- */
+(() => { const b = document.querySelector(".bar"); if (!b) return; const set = () => document.documentElement.style.setProperty("--purchasebar-height", b.offsetHeight + "px"); set(); if (window.ResizeObserver) new ResizeObserver(set).observe(b); addEventListener("resize", set); })();
 const cvOff = () => document.documentElement.classList.add("cv-off");
 if (location.hash) cvOff();
 document.addEventListener("click", e => {
@@ -1333,7 +1675,7 @@ setMode(mode);
 })();
 
 /* ---------- janelinha do produto ---------- */
-const DESC = {"n-rena": ["Enfeite de Natal com textura de crochê, mas feito em impressão 3D. Fica lindo na árvore, na mesa da ceia ou como lembrancinha.", ["Cada cor é impressa separada e montada à mão", "Não desfia nem amassa como crochê de verdade", "Ótimo para amigo secreto e lembrancinha"]], "n-urso": ["Ursinho polar com gorro de Papai Noel e textura de crochê, feito em impressão 3D.", ["Cada cor é impressa separada e montada à mão", "Decora árvore, mesa ou estante", "Ótimo para amigo secreto e lembrancinha"]], "n-gengibre": ["O clássico biscoitinho de gengibre do Natal, com textura de crochê e botões vermelhos.", ["Cada cor é impressa separada e montada à mão", "Decora árvore, mesa ou estante", "Ótimo para amigo secreto e lembrancinha"]], "n-poodle": ["Poodle fofinho com gorro de Papai Noel e textura de crochê, feito em impressão 3D.", ["Cada cor é impressa separada e montada à mão", "Presente certo para quem ama cachorro", "Ótimo para amigo secreto e lembrancinha"]], "porta-panetone": ["Porta-panetone do Papai Noel para deixar a mesa da ceia mais bonita.", ["Você coloca o panetone dentro e serve na mesa", "Cada cor é impressa separada e montada à mão", "Pode ser usado todo Natal"]], "chaveiro-logo": ["Chaveiro com a logo da sua empresa em relevo. Brinde barato, útil e que o cliente carrega todo dia.", ["Você manda a logo pelo WhatsApp", "A gente adapta a logo para o 3D e imprime na cor da sua marca", "No atacado, a partir de 15 unidades, o preço é calculado pelo peso"]], "b-placa-google": ["Placa de balcão para o cliente avaliar a sua empresa no Google sem precisar procurar.", ["Tem um chip NFC dentro: o cliente encosta o celular e abre a sua página de avaliação", "Você manda o link do Google da empresa e a gente grava no chip", "Mais avaliações, mais gente encontrando você"]], "b-microfone": ["Canopla com a logo da sua empresa para encaixar no microfone. Sua marca aparece em toda entrevista, evento ou podcast.", ["Encaixa no cabo do microfone", "Logo da empresa em destaque", "Você manda a logo pelo WhatsApp"]], "m-santos": ["A Baleia do Santos em versão bombada, para o torcedor colecionar ou decorar o cantinho do time.", ["Cada cor é impressa separada e montada à mão", "Presente certo para santista", "Peça de coleção, não é brinquedo"]], "m-palmeiras": ["O Porco do Palmeiras em versão bombada, para o torcedor colecionar ou decorar o cantinho do time.", ["Cada cor é impressa separada e montada à mão", "Presente certo para palmeirense", "Peça de coleção, não é brinquedo"]], "m-flamengo": ["O Urubu do Flamengo em versão bombada, para o torcedor colecionar ou decorar o cantinho do time.", ["Cada cor é impressa separada e montada à mão", "Presente certo para flamenguista", "Peça de coleção, não é brinquedo"]], "m-corinthians": ["O Gavião do Corinthians em versão bombada, com base, para o torcedor colecionar ou decorar o cantinho do time.", ["Cada cor é impressa separada e montada à mão", "Presente certo para corintiano", "Peça de coleção, não é brinquedo"]], "c-palmeiras": ["Chaveiro com o escudo do Palmeiras em relevo.", ["Leve, cabe no bolso", "Vem com argola de metal", "Bom para lembrancinha e brinde de torcida"]], "c-corinthians": ["Chaveiro com o escudo do Corinthians em relevo.", ["Leve, cabe no bolso", "Vem com argola de metal", "Bom para lembrancinha e brinde de torcida"]], "c-saopaulo": ["Chaveiro com o escudo do São Paulo em relevo.", ["Leve, cabe no bolso", "Vem com argola de metal", "Bom para lembrancinha e brinde de torcida"]], "c-santos": ["Chaveiro com o escudo do Santos em relevo.", ["Leve, cabe no bolso", "Vem com argola de metal", "Bom para lembrancinha e brinde de torcida"]], "e-senna": ["Busto em homenagem ao Ayrton Senna, todo em branco, para estante, escritório ou presente para fã de Fórmula 1.", ["Peça única, sem montagem", "Acabamento fosco", "Cerca de 10 cm"]], "e-medalhas": ["Porta-medalhas em hexágonos: cada peça guarda uma medalha e encaixa na outra, formando uma colmeia na parede.", ["Cada hexágono segura uma medalha", "Os hexágonos se encaixam um no outro", "Compre quantos quiser e monte do seu jeito"]], "e-suporte-medalhas": ["Suporte de parede para pendurar medalhas, com a silhueta do seu esporte em destaque.", ["Você escolhe o esporte: natação, ginástica, esgrima, basquete e outros", "Cada gancho segura a fita de uma medalha", "Fica preso na parede"]], "e-porta-anel-kettlebell": ["Mini kettlebell que abre: a parte de cima é uma tampa de rosca e por dentro guarda anel, brinco ou corrente.", ["Tampa de rosca, fecha bem", "Presente diferente para quem treina", "Guarda joias pequenas"]], "c-kettlebell": ["Chaveiro em formato de kettlebell com o seu nome. Para quem vive na academia.", ["Você escolhe o nome", "As cores podem mudar da foto", "Vem com argola de metal"]], "pk-charmander": ["Charmander colorido, nas cores do personagem, para colecionar ou decorar.", ["Cada cor é impressa separada e montada à mão", "Peça de coleção, não é brinquedo", "Bom presente para fã de Pokémon"]], "pk-squirtle": ["Squirtle colorido, nas cores do personagem, para colecionar ou decorar.", ["Cada cor é impressa separada e montada à mão", "Peça de coleção, não é brinquedo", "Bom presente para fã de Pokémon"]], "pk-bulbasaur": ["Bulbasaur colorido, nas cores do personagem, para colecionar ou decorar.", ["Cada cor é impressa separada e montada à mão", "Peça de coleção, não é brinquedo", "Bom presente para fã de Pokémon"]], "pk-charizard": ["Charizard de asas abertas, colorido e cheio de detalhe. Um dos destaques da coleção.", ["Cada cor é impressa separada e montada à mão", "Asas abertas, chama na cauda", "Peça de coleção, não é brinquedo"]], "a-goku": ["Goku na transformação Super Saiyajin 3, com o cabelo longo dourado. Peça grande de coleção.", ["Cada cor é impressa separada e montada à mão", "Muitos detalhes no cabelo e na roupa", "Peça de coleção, não é brinquedo"]], "x-hogwarts": ["Castelo de Hogwarts em branco, cheio de torres e detalhes, para fã de Harry Potter decorar a estante.", ["Peça de decoração cheia de detalhe", "Impressão longa, quase 10 horas", "Acabamento fosco em branco"]], "x-einstein": ["Einstein colecionável, com o cabelo bagunçado de sempre. Ótimo para professor, estudante ou escritório.", ["Cada cor é impressa separada e montada à mão", "As cores podem variar um pouco da foto", "Peça de coleção, não é brinquedo"]], "d-venom": ["Venom em versão cabeçuda e divertida, em preto e branco.", ["Duas cores montadas à mão", "Bom para mesa, estante ou presente", "Peça de coleção, não é brinquedo"]], "d-aranha": ["Homem-Aranha Noir, a versão sombria e detetive do herói.", ["Cada cor é impressa separada e montada à mão", "Bom para mesa, estante ou presente", "Peça de coleção, não é brinquedo"]], "s-jaleco": ["Porta-canetas em forma de jaleco, com o nome e a especialidade do profissional em relevo.", ["Você manda o nome e a especialidade", "Fica na mesa do consultório", "Presente certo para formatura e Dia do Médico"]], "s-dente": ["Porta-cartões de dentista com dente, escova e instrumentos. Fica na recepção e segura os cartões de visita.", ["Espaço para cartões de visita", "Decora a mesa do consultório", "Presente certo para dentista"]], "chav-joelho": ["Chaveiro com a articulação do joelho em detalhe anatômico.", ["Presente certo para fisioterapeuta, ortopedista e estudante", "Vem com argola de metal", "Leve, cabe no bolso"]], "j-dust2": ["O mapa Dust II do Counter-Strike em relevo, para pendurar na parede ou deixar na mesa do setup.", ["O mapa clássico em 3D", "Duas cores, bege e verde-oliva", "Presente certo para quem joga CS"]], "caricatura": ["Você manda uma foto e a gente cria um bonequinho 3D inspirado na pessoa. Presente único, que ninguém mais tem.", ["Mande uma foto de frente, de corpo inteiro se tiver", "A gente modela e imprime a peça", "Feito sob encomenda: prazo de 5 a 10 dias"]], "chaveiro-nome": ["Chaveiro com o nome que você quiser, em relevo, na cor que escolher.", ["Você escolhe o nome e a cor", "Vem com argola de metal", "Bom para lembrancinha e presente"]], "p-lapis": ["Ponteira que encaixa na ponta do lápis, com o nome da criança. Ninguém mais perde o lápis na escola.", ["Você escolhe o nome", "Encaixa no lápis comum", "Ótimo para volta às aulas e lembrancinha"]], "pix": ["Plaquinha de balcão com o QR Code do seu Pix. O cliente aponta a câmera e paga na hora.", ["Você manda o QR Code ou a chave Pix", "Pode ter o nome ou a logo da loja", "Fica em pé no balcão"]], "estrela": ["Fidget em forma de estrela que gira e muda de forma na mão. Para quem não consegue ficar parado.", ["Gira e se transforma", "Sem pilha, sem barulho", "Bom para escritório, escola e viagem"]], "cone": ["Espiral que sobe e desce quando você passa a mão. Difícil de largar.", ["Movimento hipnotizante", "Sem pilha, sem barulho", "Bom para escritório, escola e viagem"]], "clicker": ["Bolinho que faz clique quando você aperta. Para quem vive apertando a caneta.", ["Clique gostoso de apertar", "Cabe no bolso", "Bom para escritório, escola e viagem"]], "z-tubarao": ["Tubarãozinho articulado: o corpo é feito em gomos que se mexem de um lado para o outro.", ["Sai pronto da impressora, já se mexendo", "Não precisa montar", "Ótimo para lembrancinha de festa"]], "z-martelo": ["Tubarão-martelo articulado, com o corpo em gomos que balançam.", ["Sai pronto da impressora, já se mexendo", "Não precisa montar", "Ótimo para lembrancinha de festa"]], "z-coelho": ["Coelhinho com textura de crochê, feito em impressão 3D.", ["Cada cor é impressa separada e montada à mão", "Fofo para decorar ou presentear", "Ótimo para lembrancinha de festa e Páscoa"]], "z-camaleao": ["Camaleão olhudo e articulado, com o corpo que se mexe. Você escolhe a cor.", ["Sai pronto da impressora, já se mexendo", "Você escolhe a cor", "Ótimo para lembrancinha de festa"]], "b-canguru-articulado": ["Canguru articulado que se mexe nas juntas.", ["Sai pronto da impressora, já se mexendo", "Cores montadas à mão", "Ótimo para lembrancinha de festa"]], "b-estrela-do-mar-flexivel": ["Estrela-do-mar flexível: os braços dobram e balançam.", ["Sai pronta da impressora, já se mexendo", "Cores montadas à mão", "Ótimo para lembrancinha de festa"]], "b-gatinho-das-sombras-flexivel": ["Gatinho preto flexível, de olhos amarelos, com o corpo que se mexe.", ["Sai pronto da impressora, já se mexendo", "Cores montadas à mão", "Ótimo para lembrancinha de festa"]], "b-macaquinho-articulado": ["Macaquinho articulado que se mexe nos braços, pernas e cauda.", ["Sai pronto da impressora, já se mexendo", "Cores montadas à mão", "Ótimo para lembrancinha de festa"]], "a-luffy": ["Luffy no Gear 5, cercado de chamas, numa peça de coleção cheia de detalhes. Fica linda na estante, na mesa ou no setup.", ["Impresso em uma peça só, em branco", "Acabamento feito à mão", "Presente certeiro para fã de One Piece"]], "a-capa-aranha": ["Capa para AirPods no rosto do Homem-Aranha, com os olhos em relevo. Protege o estojo e chama atenção.", ["Serve nos AirPods Pro 1, 2 e 3", "Abre e fecha normalmente, sem tirar a capa", "Vermelho, preto e branco, montada à mão"]], "d-batman": ["Batman cabeçudo com capa esvoaçante e rosto pintado. Pequeno, cheio de atitude e ótimo para a mesa.", ["Cada cor impressa separada e montada à mão", "Detalhes da armadura em relevo", "Presente para fã de herói"]], "b-selo": ["Carimbo com a logo da sua marca para marcar embalagens, sacolas e cartões. A gente monta o carimbo a partir da sua logo.", ["Você manda a logo pelo WhatsApp", "Ótimo para marcar papel kraft e etiquetas", "Feito sob medida para a sua marca"]], "c-cacto": ["Suporte em forma de cacto que organiza fone, relógio e o que mais estiver solto na mesa.", ["Braço para pendurar o fone", "Encaixe para o relógio", "Base em bandeja para fones, chaves e anéis"]], "r-nossa-senhora": ["Nossa Senhora estilizada com bandeja na base para guardar o terço. Um presente bonito para quem tem fé.", ["Guarda o terço sempre à mão", "Fica linda no quarto ou no cantinho de oração", "Ótima para presentear mães e avós"]], "f-laranja": ["Uma laranja que abre ao meio e os gomos saem um a um, presos entre si. Dá vontade de abrir e fechar sem parar.", ["Brinquedo sensorial para as mãos", "Os gomos saem e voltam para dentro", "Diverte crianças e adultos"]], "f-bastao": ["Gire o bastão e os esqueletos articulados voam em volta dele. Divertido de mexer e ótimo para o Halloween.", ["Esqueletos totalmente articulados", "Gira solto no bastão", "Veja o vídeo na galeria"]], "k-furada": ["Case para o estojo dos AirPods Pro com furinhos em espiral. Protege e deixa o estojo com cara única.", ["Serve nos AirPods Pro 1, 2 e 3", "Abre e fecha normalmente", "Na cor que você escolher"]], "k-lisa": ["Case lisa e resistente para o estojo dos AirPods Pro, de acabamento limpo.", ["Serve nos AirPods Pro 1, 2 e 3", "Cantos arredondados que protegem de quedas", "Na cor que você escolher"]], "k-presilha": ["Presilha que prende o estojo dos AirPods, para levar sempre junto.", ["Simples e discreta", "Encaixa no estojo sem cola", "Impressa em preto"]], "r-presepio": ["Presépio completo sob um arco, com os três reis magos, José, Maria, o menino na manjedoura e os animais. Uma peça de destaque para o Natal.", ["Muitos detalhes, de cima a baixo", "Impresso em branco, com cara de porcelana", "Peça central para a mesa do Natal"]], "r-presepio-estrela": ["Presépio delicado com José, Maria e o menino sob um arco, com a estrela de Belém no topo.", ["Estrela de Belém sobre o arco", "Base redonda para a mesa ou estante", "Presente que vale o ano todo"]], "r-sagrada": ["Sagrada Família em linhas simples e modernas, que combina com qualquer cantinho da casa.", ["Visual minimalista e delicado", "Cabe em prateleira e mesa de cabeceira", "Ótima para presentear"]], "r-cristo": ["Rosto de Cristo com a coroa de espinhos em alto relevo, com base para ficar em pé.", ["Relevo com muitos detalhes", "Fica em pé na mesa ou estante", "Para quem tem fé e gosta de arte sacra"]], "j-atlas": ["Um titã de joelhos segurando o seu controle nos ombros. Guarda o controle com estilo e enfeita a mesa ou o setup.", ["Serve para controle de PlayStation e de Xbox", "Base firme para o controle não cair", "Peça de decoração para gamer"]], "j-revolver": ["Revólver de fantasia com detalhes góticos, impresso em partes e montado à mão. Feito para cosplay, coleção e decoração.", ["Réplica decorativa de plástico, não é arma de verdade", "Muitos detalhes em relevo", "Para cosplay, estante e fotos"]], "j-busto": ["Busto de um assassino encapuzado, de braços cruzados, com capuz e armadura cheios de detalhes. Boa peça de estante para gamer.", ["Capuz e armadura em relevo", "Fica bem na estante ou na mesa do setup", "Impresso em branco"]], "j-faca": ["Faca tática com cabo vazado, de plástico, feita para treino, cosplay e coleção. Não corta.", ["Réplica decorativa de plástico, não corta", "Cabo vazado com cordão", "Para cosplay, vitrine e fotos"]], "d-trono": ["Um dragão de asas abertas sobre um trono feito de espadas, numa base de pedra. Peça de coleção e muito difícil de imprimir.", ["Centenas de espadas em relevo no trono", "Dragão com asas abertas e escamas detalhadas", "Peça de destaque para estante ou mesa"]]};
+const DESC = {"n-neve": ["Boneco de neve com gorro e cachecol vermelhos, em textura de crochê feita por impressão 3D.", ["Cada cor é impressa separada e montada à mão", "Decora árvore, mesa ou estante", "Combina com o combo de Natal"]], "n-combo": ["Ursinho polar, boneco de neve e mais um bonequinho (biscoito de gengibre ou poodle), todos em textura de crochê, sentados numa bandeja canelada.", ["Você escolhe o terceiro boneco e a cor da bandeja", "Pronto para dar de presente ou enfeitar a mesa", "Sai mais em conta que comprar os três separados"]], "n-rena": ["Enfeite de Natal com textura de crochê, mas feito em impressão 3D. Fica lindo na árvore, na mesa da ceia ou como lembrancinha.", ["Cada cor é impressa separada e montada à mão", "Não desfia nem amassa como crochê de verdade", "Ótimo para amigo secreto e lembrancinha"]], "n-urso": ["Ursinho polar com gorro de Papai Noel e textura de crochê, feito em impressão 3D.", ["Cada cor é impressa separada e montada à mão", "Decora árvore, mesa ou estante", "Ótimo para amigo secreto e lembrancinha"]], "n-gengibre": ["O clássico biscoitinho de gengibre do Natal, com textura de crochê e botões vermelhos.", ["Cada cor é impressa separada e montada à mão", "Decora árvore, mesa ou estante", "Ótimo para amigo secreto e lembrancinha"]], "n-poodle": ["Poodle fofinho com gorro de Papai Noel e textura de crochê, feito em impressão 3D.", ["Cada cor é impressa separada e montada à mão", "Presente certo para quem ama cachorro", "Ótimo para amigo secreto e lembrancinha"]], "porta-panetone": ["Porta-panetone do Papai Noel para deixar a mesa da ceia mais bonita.", ["Você coloca o panetone dentro e serve na mesa", "Cada cor é impressa separada e montada à mão", "Pode ser usado todo Natal"]], "chaveiro-logo": ["Chaveiro com a logo da sua empresa em relevo. Brinde barato, útil e que o cliente carrega todo dia.", ["Você manda a logo pelo WhatsApp", "A gente adapta a logo para o 3D e imprime na cor da sua marca", "No atacado, a partir de 15 unidades, o preço é calculado pelo peso"]], "b-placa-google": ["Placa de balcão para o cliente avaliar a sua empresa no Google sem precisar procurar.", ["Tem um chip NFC dentro: o cliente encosta o celular e abre a sua página de avaliação", "Você manda o link do Google da empresa e a gente grava no chip", "Mais avaliações, mais gente encontrando você"]], "b-microfone": ["Canopla com a logo da sua empresa para encaixar no microfone. Sua marca aparece em toda entrevista, evento ou podcast.", ["Encaixa no cabo do microfone", "Logo da empresa em destaque", "Você manda a logo pelo WhatsApp"]], "m-santos": ["A Baleia do Santos em versão bombada, para o torcedor colecionar ou decorar o cantinho do time.", ["Cada cor é impressa separada e montada à mão", "Presente certo para santista", "Peça de coleção, não é brinquedo"]], "m-palmeiras": ["O Porco do Palmeiras em versão bombada, para o torcedor colecionar ou decorar o cantinho do time.", ["Cada cor é impressa separada e montada à mão", "Presente certo para palmeirense", "Peça de coleção, não é brinquedo"]], "m-flamengo": ["O Urubu do Flamengo em versão bombada, para o torcedor colecionar ou decorar o cantinho do time.", ["Cada cor é impressa separada e montada à mão", "Presente certo para flamenguista", "Peça de coleção, não é brinquedo"]], "m-corinthians": ["O Gavião do Corinthians em versão bombada, com base, para o torcedor colecionar ou decorar o cantinho do time.", ["Cada cor é impressa separada e montada à mão", "Presente certo para corintiano", "Peça de coleção, não é brinquedo"]], "c-palmeiras": ["Chaveiro com o escudo do Palmeiras em relevo.", ["Leve, cabe no bolso", "Vem com argola de metal", "Bom para lembrancinha e brinde de torcida"]], "c-corinthians": ["Chaveiro com o escudo do Corinthians em relevo.", ["Leve, cabe no bolso", "Vem com argola de metal", "Bom para lembrancinha e brinde de torcida"]], "c-saopaulo": ["Chaveiro com o escudo do São Paulo em relevo.", ["Leve, cabe no bolso", "Vem com argola de metal", "Bom para lembrancinha e brinde de torcida"]], "c-santos": ["Chaveiro com o escudo do Santos em relevo.", ["Leve, cabe no bolso", "Vem com argola de metal", "Bom para lembrancinha e brinde de torcida"]], "e-senna": ["Busto em homenagem ao Ayrton Senna, todo em branco, para estante, escritório ou presente para fã de Fórmula 1.", ["Peça única, sem montagem", "Acabamento fosco", "Cerca de 10 cm"]], "e-medalhas": ["Porta-medalhas em hexágonos: cada peça guarda uma medalha e encaixa na outra, formando uma colmeia na parede.", ["Cada hexágono segura uma medalha", "Os hexágonos se encaixam um no outro", "Compre quantos quiser e monte do seu jeito"]], "e-suporte-medalhas": ["Suporte de parede para pendurar medalhas, com a silhueta do seu esporte em destaque.", ["Você escolhe o esporte: natação, ginástica, esgrima, basquete e outros", "Cada gancho segura a fita de uma medalha", "Fica preso na parede"]], "e-porta-anel-kettlebell": ["Mini kettlebell que abre: a parte de cima é uma tampa de rosca e por dentro guarda anel, brinco ou corrente.", ["Tampa de rosca, fecha bem", "Presente diferente para quem treina", "Guarda joias pequenas"]], "c-kettlebell": ["Chaveiro em formato de kettlebell com o seu nome. Para quem vive na academia.", ["Você escolhe o nome", "As cores podem mudar da foto", "Vem com argola de metal"]], "pk-charmander": ["Charmander colorido, nas cores do personagem, para colecionar ou decorar.", ["Cada cor é impressa separada e montada à mão", "Peça de coleção, não é brinquedo", "Bom presente para fã de Pokémon"]], "pk-squirtle": ["Squirtle colorido, nas cores do personagem, para colecionar ou decorar.", ["Cada cor é impressa separada e montada à mão", "Peça de coleção, não é brinquedo", "Bom presente para fã de Pokémon"]], "pk-bulbasaur": ["Bulbasaur colorido, nas cores do personagem, para colecionar ou decorar.", ["Cada cor é impressa separada e montada à mão", "Peça de coleção, não é brinquedo", "Bom presente para fã de Pokémon"]], "pk-charizard": ["Charizard de asas abertas, colorido e cheio de detalhe. Um dos destaques da coleção.", ["Cada cor é impressa separada e montada à mão", "Asas abertas, chama na cauda", "Peça de coleção, não é brinquedo"]], "a-goku": ["Goku na transformação Super Saiyajin 3, com o cabelo longo dourado. Peça grande de coleção.", ["Cada cor é impressa separada e montada à mão", "Muitos detalhes no cabelo e na roupa", "Peça de coleção, não é brinquedo"]], "x-hogwarts": ["Castelo de Hogwarts em branco, cheio de torres e detalhes, para fã de Harry Potter decorar a estante.", ["Peça de decoração cheia de detalhe", "Impressão longa, quase 10 horas", "Acabamento fosco em branco"]], "x-einstein": ["Einstein colecionável, com o cabelo bagunçado de sempre. Ótimo para professor, estudante ou escritório.", ["Cada cor é impressa separada e montada à mão", "As cores podem variar um pouco da foto", "Peça de coleção, não é brinquedo"]], "d-venom": ["Venom em versão cabeçuda e divertida, em preto e branco.", ["Duas cores montadas à mão", "Bom para mesa, estante ou presente", "Peça de coleção, não é brinquedo"]], "d-aranha": ["Homem-Aranha Noir, a versão sombria e detetive do herói.", ["Cada cor é impressa separada e montada à mão", "Bom para mesa, estante ou presente", "Peça de coleção, não é brinquedo"]], "s-jaleco": ["Porta-canetas em forma de jaleco, com o nome e a especialidade do profissional em relevo.", ["Você manda o nome e a especialidade", "Fica na mesa do consultório", "Presente certo para formatura e Dia do Médico"]], "s-dente": ["Porta-cartões de dentista com dente, escova e instrumentos. Fica na recepção e segura os cartões de visita.", ["Espaço para cartões de visita", "Decora a mesa do consultório", "Presente certo para dentista"]], "chav-joelho": ["Chaveiro com a articulação do joelho em detalhe anatômico.", ["Presente certo para fisioterapeuta, ortopedista e estudante", "Vem com argola de metal", "Leve, cabe no bolso"]], "j-dust2": ["O mapa Dust II do Counter-Strike em relevo, para pendurar na parede ou deixar na mesa do setup.", ["O mapa clássico em 3D", "Duas cores, bege e verde-oliva", "Presente certo para quem joga CS"]], "caricatura": ["Você manda uma foto e a gente cria um bonequinho 3D inspirado na pessoa. Presente único, que ninguém mais tem.", ["Mande uma foto de frente, de corpo inteiro se tiver", "A gente modela e imprime a peça", "Feito sob encomenda: prazo de 5 a 10 dias"]], "chaveiro-nome": ["Chaveiro com o nome que você quiser, em relevo, na cor que escolher.", ["Você escolhe o nome e a cor", "Vem com argola de metal", "Bom para lembrancinha e presente"]], "p-lapis": ["Ponteira que encaixa na ponta do lápis, com o nome da criança. Ninguém mais perde o lápis na escola.", ["Você escolhe o nome", "Encaixa no lápis comum", "Ótimo para volta às aulas e lembrancinha"]], "pix": ["Plaquinha de balcão com o QR Code do seu Pix. O cliente aponta a câmera e paga na hora.", ["Você manda o QR Code ou a chave Pix", "Pode ter o nome ou a logo da loja", "Fica em pé no balcão"]], "estrela": ["Fidget em forma de estrela que gira e muda de forma na mão. Para quem não consegue ficar parado.", ["Gira e se transforma", "Sem pilha, sem barulho", "Bom para escritório, escola e viagem"]], "cone": ["Espiral que sobe e desce quando você passa a mão. Difícil de largar.", ["Movimento hipnotizante", "Sem pilha, sem barulho", "Bom para escritório, escola e viagem"]], "clicker": ["Bolinho que faz clique quando você aperta. Para quem vive apertando a caneta.", ["Clique gostoso de apertar", "Cabe no bolso", "Bom para escritório, escola e viagem"]], "z-tubarao": ["Tubarãozinho articulado: o corpo é feito em gomos que se mexem de um lado para o outro.", ["Sai pronto da impressora, já se mexendo", "Não precisa montar", "Ótimo para lembrancinha de festa"]], "z-martelo": ["Tubarão-martelo articulado, com o corpo em gomos que balançam.", ["Sai pronto da impressora, já se mexendo", "Não precisa montar", "Ótimo para lembrancinha de festa"]], "z-coelho": ["Coelhinho com textura de crochê, feito em impressão 3D.", ["Cada cor é impressa separada e montada à mão", "Fofo para decorar ou presentear", "Ótimo para lembrancinha de festa e Páscoa"]], "z-camaleao": ["Camaleão olhudo e articulado, com o corpo que se mexe. Você escolhe a cor.", ["Sai pronto da impressora, já se mexendo", "Você escolhe a cor", "Ótimo para lembrancinha de festa"]], "b-canguru-articulado": ["Canguru articulado que se mexe nas juntas.", ["Sai pronto da impressora, já se mexendo", "Cores montadas à mão", "Ótimo para lembrancinha de festa"]], "b-estrela-do-mar-flexivel": ["Estrela-do-mar flexível: os braços dobram e balançam.", ["Sai pronta da impressora, já se mexendo", "Cores montadas à mão", "Ótimo para lembrancinha de festa"]], "b-gatinho-das-sombras-flexivel": ["Gatinho preto flexível, de olhos amarelos, com o corpo que se mexe.", ["Sai pronto da impressora, já se mexendo", "Cores montadas à mão", "Ótimo para lembrancinha de festa"]], "b-macaquinho-articulado": ["Macaquinho articulado que se mexe nos braços, pernas e cauda.", ["Sai pronto da impressora, já se mexendo", "Cores montadas à mão", "Ótimo para lembrancinha de festa"]], "a-luffy": ["Luffy no Gear 5, cercado de chamas, numa peça de coleção cheia de detalhes. Fica linda na estante, na mesa ou no setup.", ["Impresso em uma peça só, em branco", "Acabamento feito à mão", "Presente certeiro para fã de One Piece"]], "a-capa-aranha": ["Capa para AirPods no rosto do Homem-Aranha, com os olhos em relevo. Protege o estojo e chama atenção.", ["Serve nos AirPods Pro 1, 2 e 3", "Abre e fecha normalmente, sem tirar a capa", "Vermelho, preto e branco, montada à mão"]], "d-batman": ["Batman cabeçudo com capa esvoaçante e rosto pintado. Pequeno, cheio de atitude e ótimo para a mesa.", ["Cada cor impressa separada e montada à mão", "Detalhes da armadura em relevo", "Presente para fã de herói"]], "b-selo": ["Carimbo com a logo da sua marca para marcar embalagens, sacolas e cartões. A gente monta o carimbo a partir da sua logo.", ["Você manda a logo pelo WhatsApp", "Ótimo para marcar papel kraft e etiquetas", "Feito sob medida para a sua marca"]], "c-cacto": ["Suporte em forma de cacto que organiza fone, relógio e o que mais estiver solto na mesa.", ["Braço para pendurar o fone", "Encaixe para o relógio", "Base em bandeja para fones, chaves e anéis"]], "r-nossa-senhora": ["Nossa Senhora estilizada com bandeja na base para guardar o terço. Um presente bonito para quem tem fé.", ["Guarda o terço sempre à mão", "Fica linda no quarto ou no cantinho de oração", "Ótima para presentear mães e avós"]], "f-laranja": ["Uma laranja que abre ao meio e os gomos saem um a um, presos entre si. Dá vontade de abrir e fechar sem parar.", ["Brinquedo sensorial para as mãos", "Os gomos saem e voltam para dentro", "Diverte crianças e adultos"]], "f-bastao": ["Gire o bastão e os esqueletos articulados voam em volta dele. Divertido de mexer e ótimo para o Halloween.", ["Esqueletos totalmente articulados", "Gira solto no bastão", "Veja o vídeo na galeria"]], "k-furada": ["Case para o estojo dos AirPods Pro com furinhos em espiral. Protege e deixa o estojo com cara única.", ["Serve nos AirPods Pro 1, 2 e 3", "Abre e fecha normalmente", "Na cor que você escolher"]], "k-lisa": ["Case lisa e resistente para o estojo dos AirPods Pro, de acabamento limpo.", ["Serve nos AirPods Pro 1, 2 e 3", "Cantos arredondados que protegem de quedas", "Na cor que você escolher"]], "k-presilha": ["Presilha que prende o estojo dos AirPods, para levar sempre junto.", ["Simples e discreta", "Encaixa no estojo sem cola", "Impressa em preto"]], "r-presepio": ["Presépio completo sob um arco, com os três reis magos, José, Maria, o menino na manjedoura e os animais. Uma peça de destaque para o Natal.", ["Muitos detalhes, de cima a baixo", "Impresso em branco, com cara de porcelana", "Peça central para a mesa do Natal"]], "r-presepio-estrela": ["Presépio delicado com José, Maria e o menino sob um arco, com a estrela de Belém no topo.", ["Estrela de Belém sobre o arco", "Base redonda para a mesa ou estante", "Presente que vale o ano todo"]], "r-sagrada": ["Sagrada Família em linhas simples e modernas, que combina com qualquer cantinho da casa.", ["Visual minimalista e delicado", "Cabe em prateleira e mesa de cabeceira", "Ótima para presentear"]], "r-cristo": ["Rosto de Cristo com a coroa de espinhos em alto relevo, com base para ficar em pé.", ["Relevo com muitos detalhes", "Fica em pé na mesa ou estante", "Para quem tem fé e gosta de arte sacra"]], "j-atlas": ["Um titã de joelhos segurando o seu controle nos ombros. Guarda o controle com estilo e enfeita a mesa ou o setup.", ["Serve para controle de PlayStation e de Xbox", "Base firme para o controle não cair", "Peça de decoração para gamer"]], "j-revolver": ["Revólver de fantasia com detalhes góticos, impresso em partes e montado à mão. Feito para cosplay, coleção e decoração.", ["Réplica decorativa de plástico, não é arma de verdade", "Muitos detalhes em relevo", "Para cosplay, estante e fotos"]], "j-busto": ["Busto de um assassino encapuzado, de braços cruzados, com capuz e armadura cheios de detalhes. Boa peça de estante para gamer.", ["Capuz e armadura em relevo", "Fica bem na estante ou na mesa do setup", "Impresso em branco"]], "j-faca": ["Faca tática com cabo vazado, de plástico, feita para treino, cosplay e coleção. Não corta.", ["Réplica decorativa de plástico, não corta", "Cabo vazado com cordão", "Para cosplay, vitrine e fotos"]], "d-trono": ["Um dragão de asas abertas sobre um trono feito de espadas, numa base de pedra. Peça de coleção e muito difícil de imprimir.", ["Centenas de espadas em relevo no trono", "Dragão com asas abertas e escamas detalhadas", "Peça de destaque para estante ou mesa"]]};
 (() => {
   const pm = document.createElement("dialog");
   pm.className = "pm"; pm.setAttribute("aria-label", "Detalhes do produto");
@@ -1388,4 +1730,5 @@ const DESC = {"n-rena": ["Enfeite de Natal com textura de crochê, mas feito em 
 })();
 </script>
 
-</body></html>
+</body>
+</html>
