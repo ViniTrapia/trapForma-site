@@ -1,0 +1,1391 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>body{margin:0}</style></head><body>
+<title>TrapForma Loja</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Peças impressas em 3D sob medida. Varejo e atacado. Monte seu pedido e envie pelo WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500;62..125,700;62..125,900&family=Figtree:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: a mesa da impressora. Hero escuro onde o nome é "impresso" camada por camada; faixa rolante; prateleiras com cards em camadas; carrinho lateral que vira mensagem de WhatsApp */
+:root{
+  --bg:#0a0a0b; --surface:#141416; --fg:#f5f5f6; --muted:#9d9da6; --line:#26262b;
+  --brand:#ff5a1f; --brand-2:#ff8a4c; --brand-ink:#ffffff; --brand-soft:#2a140b;
+  --layer:#1b1b1e; --layer2:#232327; --night:#000000; --night-2:#111113; --night-fg:#f5f5f6; --night-muted:#9d9da6;
+  --wa:#25c463; --wa-ink:#06130b; color-scheme:dark;
+  --f-display:"Archivo",ui-sans-serif,system-ui,sans-serif;
+  --f-body:"Figtree",ui-sans-serif,system-ui,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  --ease:cubic-bezier(.2,.8,.2,1);
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0a0a0b; --surface:#141416; --fg:#f5f5f6; --muted:#9d9da6; --line:#26262b;
+  --brand:#ff5a1f; --brand-2:#ff8a4c; --brand-ink:#ffffff; --brand-soft:#2a140b;
+  --layer:#1b1b1e; --layer2:#232327; --night:#000000; --night-2:#111113; --night-fg:#f5f5f6; --night-muted:#9d9da6;
+  --wa:#25c463; --wa-ink:#06130b; color-scheme:dark;}}
+:root[data-theme="dark"]{
+  --bg:#0a0a0b; --surface:#141416; --fg:#f5f5f6; --muted:#9d9da6; --line:#26262b;
+  --brand:#ff5a1f; --brand-2:#ff8a4c; --brand-ink:#ffffff; --brand-soft:#2a140b;
+  --layer:#1b1b1e; --layer2:#232327; --night:#000000; --night-2:#111113; --night-fg:#f5f5f6; --night-muted:#9d9da6;
+  --wa:#25c463; --wa-ink:#06130b; color-scheme:dark;}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--fg);font:16px/1.55 var(--f-body);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+h1,h2,h3{font-family:var(--f-display);margin:0;text-wrap:balance}
+.in{max-width:1160px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+
+/* hero */
+.hero{position:relative;overflow:hidden;background:var(--night);color:#fff;min-height:min(92svh,820px);display:flex;isolation:isolate}
+.hero .hv{position:absolute;top:0;right:2%;bottom:0;height:100%;width:min(52%,780px);opacity:.75;z-index:-2;-webkit-mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 55%,transparent 100%);mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 55%,transparent 100%)}
+@media (max-width:760px){.hero .hv{right:0;width:100%;opacity:.45}}
+.hero .aura{position:absolute;inset:-20%;z-index:-3;background:radial-gradient(40% 40% at 30% 40%,rgba(242,67,30,.55),transparent 70%),radial-gradient(35% 35% at 75% 60%,rgba(255,139,92,.35),transparent 70%);animation:aura 14s ease-in-out infinite alternate}
+@keyframes aura{to{transform:translate(6%,-4%) rotate(8deg) scale(1.08)}}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(11,8,7,.55) 0%,rgba(11,8,7,.15) 40%,rgba(11,8,7,.85) 100%)}
+.hero .in{width:100%;padding-block:18px 40px;display:flex;flex-direction:column;justify-content:space-between;gap:24px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font:900 21px var(--f-display);font-stretch:90%;color:#fff}
+.brand img{width:38px;height:38px;border-radius:9px}
+.top nav{display:flex;gap:18px;font:600 14px var(--f-body);flex-wrap:wrap}
+.top nav a{text-decoration:none;color:rgba(255,255,255,.8);transition:color .2s}
+.top nav a:hover{color:#fff}
+.hcenter{display:flex;flex-direction:column;gap:22px;max-width:780px}
+.kicker{font:500 13px var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:#ffb79c}
+.hero h1{font-size:clamp(52px,11vw,132px);font-weight:900;font-stretch:72%;line-height:.86;letter-spacing:-.02em;text-shadow:0 6px 40px rgba(0,0,0,.45)}
+.hero h1 em{font-style:normal;color:#ff6a40;display:inline-block}
+.hero h1 .w{display:inline-block;opacity:0;transform:translateY(40%);animation:rise .9s var(--ease) forwards}
+@keyframes rise{to{opacity:1;transform:none}}
+.ctas{display:flex;gap:10px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:700 16px var(--f-body);text-decoration:none;border-radius:999px;padding:14px 24px;border:2px solid transparent;cursor:pointer;transition:transform .2s var(--ease),box-shadow .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn.primary{background:#f2431e;color:#fff;box-shadow:0 10px 30px -10px rgba(242,67,30,.8)}
+.btn.ghost{border-color:rgba(255,255,255,.55);color:#fff;background:rgba(255,255,255,.06)}
+.floaters{position:absolute;inset:0;z-index:-1;pointer-events:none}
+.floaters svg{position:absolute;width:clamp(44px,7vw,92px);color:#ff6a40;opacity:.85;filter:drop-shadow(0 10px 20px rgba(0,0,0,.4));animation:bob 6s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-18px) rotate(8deg)}}
+.scroll{font:500 12px var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.7);display:flex;align-items:center;gap:10px}
+.scroll i{width:1px;height:34px;background:linear-gradient(#fff,transparent);animation:drip 1.8s ease-in-out infinite}
+@keyframes drip{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+/* faixa rolante */
+.ticker{background:var(--brand);color:#fff;overflow:hidden;white-space:nowrap;border-block:2px solid var(--night)}
+.ticker div{display:inline-flex;gap:28px;padding-block:10px;animation:tick 32s linear infinite;font:900 18px var(--f-display);font-stretch:75%;text-transform:uppercase;letter-spacing:.02em}
+.ticker span::after{content:"✦";margin-left:28px;opacity:.7}
+@keyframes tick{to{transform:translateX(-50%)}}
+
+/* barra de modo */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--bg) 96%,transparent);border-bottom:1px solid var(--line)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--bg)}
+.bar .in{display:flex;align-items:center;gap:12px;padding-block:10px;flex-wrap:wrap}
+.seg{display:inline-flex;background:var(--layer);border-radius:999px;padding:4px;position:relative}
+.seg button{position:relative;z-index:1;border:0;background:transparent;font:700 14px var(--f-body);padding:8px 16px;border-radius:999px;cursor:pointer;color:var(--muted);transition:color .25s}
+.seg button[aria-pressed="true"]{color:var(--brand-ink)}
+.seg i{position:absolute;z-index:0;top:4px;bottom:4px;left:4px;border-radius:999px;background:var(--brand);transition:transform .35s var(--ease),width .35s var(--ease)}
+.modehint{font-size:13.5px;color:var(--muted);flex:1;min-width:180px}
+.modehint b{color:var(--fg)}
+.cartbtn{display:inline-flex;align-items:center;gap:8px;border:0;background:var(--fg);color:var(--bg);font:700 14px var(--f-body);border-radius:999px;padding:9px 14px 9px 12px;cursor:pointer}
+.cartbtn .n{min-width:22px;height:22px;border-radius:999px;background:var(--brand);color:#fff;font:700 12px var(--f-mono);display:inline-flex;align-items:center;justify-content:center;padding-inline:6px}
+.cartbtn.bump{animation:bump .45s var(--ease)}
+@keyframes bump{30%{transform:scale(1.12)}60%{transform:scale(.96)}}
+
+/* catálogo */
+main{display:flex;flex-direction:column;gap:64px;padding-block:40px 64px}
+.cats{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none}
+.cats a{flex:0 0 auto;text-decoration:none;font:600 14px var(--f-body);border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:7px 14px;transition:border-color .2s,color .2s}
+.cats a:hover{border-color:var(--brand);color:var(--brand)}
+.shelf{display:flex;flex-direction:column;gap:20px;scroll-margin-top:80px}
+.sh{display:flex;justify-content:space-between;align-items:end;gap:14px;flex-wrap:wrap}
+.sh h2{font-size:clamp(30px,5vw,52px);font-weight:900;font-stretch:72%;line-height:.95;letter-spacing:-.01em}
+.sh h2 small{display:block;font:500 12px var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--brand);margin-bottom:6px;font-stretch:100%}
+.sh p{margin:0;color:var(--muted);max-width:48ch}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;min-width:0;transition:transform .35s var(--ease),box-shadow .35s var(--ease),border-color .3s;opacity:1}
+.card:hover{transform:translateY(-6px);box-shadow:0 18px 40px -18px rgba(60,25,10,.35);border-color:color-mix(in srgb,var(--brand) 40%,var(--line))}
+.js .card.pre{opacity:0;transform:translateY(24px)}
+.ph{aspect-ratio:5/4;max-width:100%;position:relative;overflow:hidden;background:repeating-linear-gradient(0deg,var(--layer) 0 7px,var(--layer2) 7px 8px)}
+.ph svg{position:absolute;inset:12% 18%;width:64%;height:76%;color:var(--brand);transition:transform .5s var(--ease);animation:idle 5s ease-in-out infinite}
+@keyframes idle{50%{transform:translateY(-6px) rotate(-2deg)}}
+.card:hover .ph svg{animation-play-state:paused;transform:scale(1.1) rotate(-4deg)}
+.ph .soon{position:absolute;left:12px;bottom:12px;font:500 10.5px var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);background:var(--surface);border-radius:6px;padding:3px 7px}
+.ph .tag{position:absolute;right:12px;top:12px;font:700 11.5px var(--f-body);background:var(--fg);color:var(--bg);border-radius:999px;padding:4px 10px}
+.body{padding:14px 16px 16px;display:flex;flex-direction:column;gap:9px;flex:1}
+.card h3{font:800 20px/1.1 var(--f-display);font-stretch:85%}
+.card p{margin:0;font-size:14.5px;color:var(--muted)}
+.spec{font:500 12px var(--f-mono);color:var(--muted)}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opts label{font:600 12px var(--f-body);color:var(--muted);display:flex;flex-direction:column;gap:4px}
+.opts input,.opts select{font:500 14px var(--f-body);color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:8px 10px;width:100%}
+.swatches{display:flex;gap:6px;flex-wrap:wrap}
+.swatches button{border:1px solid var(--line);background:var(--bg);border-radius:999px;padding:4px 10px 4px 6px;font:600 12.5px var(--f-body);cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.swatches button i{width:14px;height:14px;border-radius:50%;border:1px solid rgba(0,0,0,.25)}
+.swatches button[aria-pressed="true"]{border-color:var(--brand);box-shadow:0 0 0 1px var(--brand)}
+.buy{margin-top:auto;display:flex;align-items:end;justify-content:space-between;gap:10px;flex-wrap:wrap;padding-top:6px}
+.price{font:900 26px/1 var(--f-display);font-stretch:80%;font-variant-numeric:tabular-nums}
+.price small{display:block;font:600 11.5px var(--f-body);color:var(--muted);margin-bottom:3px;font-stretch:100%}
+.price s{font:500 13px var(--f-body);color:var(--muted);margin-left:4px}
+.qty{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:999px;overflow:hidden}
+.qty button{border:0;background:transparent;width:32px;height:34px;cursor:pointer;font-size:17px}
+.qty input{width:44px;border:0;text-align:center;font:600 14px var(--f-mono);background:transparent;color:var(--fg);-moz-appearance:textfield}
+.qty input::-webkit-outer-spin-button,.qty input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.add{width:100%;border:0;border-radius:12px;background:var(--brand);color:#fff;font:700 15px var(--f-body);padding:11px;cursor:pointer;transition:transform .2s var(--ease),background .2s}
+.add:hover{transform:translateY(-1px)}
+.add.done{background:var(--wa);color:var(--wa-ink)}
+.card.off{display:none}
+.ph img{position:absolute;inset:7%;width:86%;height:86%;object-fit:contain;transition:transform .5s var(--ease);animation:idle 5s ease-in-out infinite;filter:drop-shadow(0 12px 14px rgba(60,25,10,.22))}
+.card:hover .ph img{animation-play-state:paused;transform:scale(1.08) rotate(-3deg)}
+.line .mini img{position:absolute;inset:4px;width:44px;height:44px;object-fit:contain}
+.card.hide{display:none}
+.ph img.photo{inset:0;width:100%;height:100%;object-fit:cover;animation:none;filter:none}
+.count{font:500 12.5px var(--f-mono);color:var(--muted)}
+.subf{display:flex;gap:8px;flex-wrap:wrap}
+.subf button{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:7px 14px;font:600 14px var(--f-body);cursor:pointer;transition:background .2s,color .2s}
+.subf button[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.morebtn{align-self:center;border:2px solid var(--fg);background:transparent;border-radius:999px;padding:12px 22px;font:700 15px var(--f-body);cursor:pointer}
+.morebtn:hover{background:var(--fg);color:var(--bg)}
+
+.minline{font-size:12.5px;color:var(--brand);font-weight:600}
+
+/* atacado e encomenda */
+.split{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.panel{border-radius:22px;padding:28px max(22px,3vw);display:flex;flex-direction:column;gap:14px;scroll-margin-top:80px}
+.panel.dark{background:var(--night);color:var(--night-fg)}
+.panel.brand{background:var(--brand);color:#fff}
+.panel h2{font-size:clamp(28px,4.4vw,42px);font-weight:900;font-stretch:75%;line-height:1}
+.panel p{margin:0;opacity:.88;max-width:48ch}
+.tiers{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.tiers div{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:12px;padding:10px 12px}
+.tiers b{display:block;font:900 22px var(--f-display);font-stretch:80%;color:var(--brand-2)}
+.tiers span{font-size:12.5px;opacity:.85}
+.steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.steps li{display:grid;grid-template-columns:34px minmax(0,1fr);gap:10px;align-items:start}
+.steps li b{width:30px;height:30px;border-radius:50%;background:#fff;color:var(--brand);display:inline-flex;align-items:center;justify-content:center;font:900 15px var(--f-display)}
+.panel .btn.light{background:#fff;color:#17120f;align-self:flex-start}
+.panel .btn.on-dark{background:var(--brand);color:#fff;align-self:flex-start}
+.chipsrow{display:flex;gap:6px;flex-wrap:wrap}
+.chipsrow span{font-size:13px;border:1px solid rgba(255,255,255,.4);border-radius:999px;padding:3px 10px}
+.faq{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+.faq div{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px 18px}
+.faq h3{font:800 18px var(--f-display);font-stretch:85%;margin-bottom:4px}
+.faq p{margin:0;font-size:14.5px;color:var(--muted)}
+
+footer{background:var(--night);color:var(--night-muted)}
+footer .in{padding-block:28px 96px;display:flex;flex-direction:column;gap:10px;font-size:13px}
+footer p{margin:0;max-width:100ch}
+footer b{color:var(--night-fg)}
+
+/* botão flutuante e carrinho */
+.fab{position:fixed;right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:40;display:inline-flex;align-items:center;gap:10px;border:0;border-radius:999px;background:var(--wa);color:var(--wa-ink);font:700 15px var(--f-body);padding:13px 18px;cursor:pointer;box-shadow:0 12px 28px -10px rgba(0,0,0,.45);transform:translateY(140%);transition:transform .45s var(--ease)}
+.fab.show{transform:none}
+.fab .n{background:rgba(0,0,0,.18);border-radius:999px;padding:0 8px;font:700 13px var(--f-mono)}
+.scrim{position:fixed;inset:0;z-index:50;background:rgba(10,6,4,.5);opacity:0;pointer-events:none;transition:opacity .3s}
+.scrim.open{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;bottom:0;z-index:60;width:min(440px,100%);background:var(--surface);color:var(--fg);display:flex;flex-direction:column;transform:translateX(105%);transition:transform .45s var(--ease);box-shadow:-20px 0 50px -20px rgba(0,0,0,.4);padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);padding-right:env(safe-area-inset-right,0px)}
+.drawer.open{transform:none}
+.dh{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:16px 18px;border-bottom:1px solid var(--line)}
+.dh h2{font-size:26px;font-weight:900;font-stretch:80%}
+.dh small{display:block;font:500 11px var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--brand)}
+.x{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:transparent;cursor:pointer;font-size:18px}
+.db{flex:1;overflow-y:auto;padding:14px 18px;display:flex;flex-direction:column;gap:14px}
+.line{display:grid;grid-template-columns:52px minmax(0,1fr) auto;gap:10px;align-items:start;padding-bottom:12px;border-bottom:1px dashed var(--line)}
+.line .mini{width:52px;height:52px;border-radius:10px;background:repeating-linear-gradient(0deg,var(--layer) 0 4px,var(--layer2) 4px 5px);position:relative}
+.line .mini svg{position:absolute;inset:8px;color:var(--brand)}
+.line h4{margin:0;font:700 15px var(--f-body)}
+.line .meta{font-size:12.5px;color:var(--muted)}
+.line .right{text-align:right;display:flex;flex-direction:column;gap:6px;align-items:end}
+.line .right b{font:700 15px var(--f-mono)}
+.rm{border:0;background:transparent;color:var(--muted);font-size:12.5px;text-decoration:underline;cursor:pointer;padding:0}
+.empty{color:var(--muted);text-align:center;padding:30px 10px}
+.form{display:flex;flex-direction:column;gap:10px}
+.form label{font:600 12.5px var(--f-body);color:var(--muted);display:flex;flex-direction:column;gap:4px}
+.form input,.form select,.form textarea{font:500 14.5px var(--f-body);color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:9px 11px;width:100%}
+.form textarea{resize:vertical;min-height:60px}
+.df{border-top:1px solid var(--line);padding:14px 18px 16px;display:flex;flex-direction:column;gap:10px}
+.total{display:flex;justify-content:space-between;align-items:baseline}
+.total b{font:900 28px var(--f-display);font-stretch:80%;font-variant-numeric:tabular-nums}
+.total span{font-size:13px;color:var(--muted)}
+.send{display:flex;align-items:center;justify-content:center;gap:10px;border-radius:14px;background:var(--wa);color:var(--wa-ink);font:700 16px var(--f-body);text-decoration:none;padding:14px;transition:filter .2s}
+.send[aria-disabled="true"]{opacity:.45;pointer-events:none}
+.warn{font-size:12.5px;color:var(--brand);margin:0}
+.note{font-size:12px;color:var(--muted);margin:0}
+.fly{position:fixed;z-index:70;width:18px;height:18px;border-radius:50%;background:var(--brand);pointer-events:none;transition:transform .65s cubic-bezier(.5,-.3,.6,1),opacity .65s}
+
+@media (max-width:760px){.floaters svg:nth-child(n+4){display:none}.tiers{grid-template-columns:1fr 1fr 1fr}.top nav{display:none}}
+@media (prefers-reduced-motion:reduce){
+  .ticker div,.ph svg,.ph img,.floaters svg,.hero .aura,.scroll i{animation:none}
+  .hero h1 .w{animation:none;opacity:1;transform:none}
+  .card,.card:hover,.ph svg,.btn,.drawer,.fab,.scrim{transition:none!important;transform:none!important}
+  .js .card.pre{opacity:1}
+}
+/* ===== v10: cards limpos ===== */
+.grid{grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:20px}
+.card{border-radius:20px;border:1px solid color-mix(in srgb,var(--line) 70%,transparent);box-shadow:0 1px 2px rgba(23,18,15,.04)}
+.ph{aspect-ratio:1/1;background:radial-gradient(90% 75% at 50% 38%,var(--surface) 0%,var(--layer) 100%)}
+.ph.dark{background:#0d0d0d}
+.ph img{inset:8%;width:84%;height:84%;animation:none;filter:drop-shadow(0 14px 16px rgba(40,20,10,.18))}
+.card:hover .ph img{transform:scale(1.05)}
+.ph img.photo{inset:0;width:100%;height:100%}
+.ph .soon{left:10px;bottom:10px;top:auto;font:500 10.5px var(--f-body);letter-spacing:.01em;text-transform:none;color:#fff;background:rgba(15,10,8,.62);border-radius:999px;padding:3px 9px}
+.ph .tag{right:10px;top:10px;font:600 11px var(--f-body);background:var(--brand);color:#fff;padding:4px 10px}
+.body{padding:14px 16px 16px;gap:6px}
+.card h3{font:600 16.5px/1.3 var(--f-body);font-stretch:100%;letter-spacing:-.005em}
+.spec{font:400 13px var(--f-body);color:var(--muted)}
+.buy{padding-top:10px;align-items:center}
+.price{font:700 21px/1 var(--f-body);font-stretch:100%;letter-spacing:-.01em}
+.price small.un{display:inline;font:500 12px var(--f-body);color:var(--muted);margin-left:2px}
+.price s{font-size:12.5px}
+.qty button{width:30px;height:32px}
+.qty input{width:34px;font:600 14px var(--f-body)}
+.add{border-radius:999px;background:var(--fg);color:var(--bg);font:600 14.5px var(--f-body);padding:10px;margin-top:4px}
+.add:hover{background:var(--brand);color:#fff}
+.swatches button{font:500 12px var(--f-body)}
+.sh h2 small{font:600 12px var(--f-body);letter-spacing:.06em}
+.line .mini{background:var(--layer)}
+/* atacado e brindes */
+.atac{background:var(--night);color:var(--night-fg);border-radius:24px;padding:clamp(20px,3vw,32px);display:flex;flex-direction:column;gap:20px}
+.atac-lead{margin:0;font-size:16px;color:var(--night-muted);max-width:60ch}
+.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+.vt{display:flex;flex-direction:column;gap:4px;text-decoration:none;color:inherit;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:10px 10px 12px;transition:transform .3s var(--ease),border-color .3s}
+.vt:hover{transform:translateY(-4px);border-color:var(--brand)}
+.vimg{aspect-ratio:1/1;border-radius:12px;overflow:hidden;background:radial-gradient(90% 75% at 50% 38%,#fff 0%,#efe7e1 100%);display:block;margin-bottom:6px}
+.vimg img{width:100%;height:100%;object-fit:cover;display:block}
+.vt b{font:600 14.5px/1.25 var(--f-body)}
+.vt small{font:500 12.5px var(--f-body);color:var(--brand-2)}
+.atac-cta{display:flex;gap:10px;flex-wrap:wrap}
+.btn.outline{border-color:rgba(255,255,255,.4);color:#fff}
+.btn{white-space:nowrap}
+.split{grid-template-columns:1fr}
+.panel.brand{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:14px 28px;align-items:center}
+.panel.brand > *{grid-column:1}
+.panel.brand .pimg{grid-column:2;grid-row:1 / span 5;align-self:stretch;width:clamp(140px,22vw,230px);height:100%;min-height:240px;object-fit:cover;border-radius:18px;background:#0d0d0d}
+@media (max-width:640px){.panel.brand{grid-template-columns:1fr}.panel.brand .pimg{display:none}}
+@media (max-width:560px){
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  .body{padding:10px 12px 12px;gap:4px}
+  .card h3{font-size:14.5px}
+  .spec{font-size:12px}
+  .buy{flex-direction:column;align-items:stretch;gap:8px}
+  .price{font-size:18px}
+  .qty{align-self:flex-start}
+  .add{font-size:13.5px;padding:9px}
+  .ph .soon{font-size:9.5px;padding:2px 7px}
+  .vgrid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+/* ===== v12: preto e laranja ===== */
+.hero::before{background:linear-gradient(180deg,rgba(0,0,0,.55) 0%,rgba(0,0,0,.12) 40%,rgba(0,0,0,.9) 100%)}
+.kicker{color:var(--brand-2)}
+.ticker{border-block:0}
+.bar{background:color-mix(in srgb,var(--bg) 96%,transparent)}
+.seg{background:var(--layer);border:1px solid var(--line)}
+.cartbtn{background:var(--brand);color:#fff}
+.cartbtn .n{background:#000;color:#fff}
+.cats a{background:var(--surface);color:var(--fg)}
+main{gap:88px}
+#shelves{gap:88px!important}
+.sh{border-bottom:1px solid var(--line);padding-bottom:14px}
+.sh h2{font-stretch:75%}
+.sh h2 small{color:var(--brand)}
+.grid{gap:18px}
+.card{background:var(--surface);border:1px solid var(--line);box-shadow:none}
+.card:hover{box-shadow:0 24px 50px -24px rgba(255,90,31,.45);border-color:color-mix(in srgb,var(--brand) 55%,var(--line))}
+.ph,.ph.dark{aspect-ratio:1/1;background:radial-gradient(70% 60% at 50% 42%,#26262b 0%,#141416 72%)}
+.ph::after{content:"";position:absolute;left:22%;right:22%;bottom:8%;height:7%;border-radius:50%;background:radial-gradient(closest-side,rgba(0,0,0,.65),transparent);z-index:0}
+.ph img{inset:0;width:100%;height:100%;object-fit:contain;z-index:1;animation:none;filter:drop-shadow(0 10px 14px rgba(0,0,0,.45))}
+.card:hover .ph img{transform:scale(1.04)}
+.ph img.photo{object-fit:cover;filter:none;z-index:2}
+.ph .tag{z-index:3}
+.ph .soon{z-index:3;background:rgba(0,0,0,.55)}
+.body{border-top:1px solid var(--line)}
+.price{color:var(--fg)}
+.add{background:transparent;color:var(--fg);border:1px solid #3a3a40}
+.add:hover{background:var(--brand);border-color:var(--brand);color:#fff}
+.add.done{background:var(--wa);border-color:var(--wa);color:var(--wa-ink)}
+.qty{border-color:#3a3a40}
+.swatches button{background:var(--layer);border-color:var(--line);color:var(--fg)}
+.subf button{background:var(--surface);color:var(--fg)}
+.subf button[aria-pressed="true"]{background:var(--brand);border-color:var(--brand);color:#fff}
+.morebtn{border-color:var(--brand);color:var(--fg)}
+.morebtn:hover{background:var(--brand);color:#fff}
+.atac{background:linear-gradient(160deg,#17171a,#0d0d0f);border:1px solid var(--line)}
+.vt{background:#141416;border-color:var(--line)}
+.vimg{background:radial-gradient(70% 60% at 50% 42%,#2a2a30 0%,#141416 75%)}
+.vimg img{object-fit:contain}
+.btn.outline{border-color:#3a3a40;background:transparent}.btn.outline:hover{border-color:var(--brand)}
+.line .mini{background:var(--layer)}
+.faq div{background:var(--surface)}
+.drawer{background:#111113}
+footer{background:#000;border-top:1px solid var(--line)}
+/* tem uma ideia */
+.idea{position:relative;isolation:isolate;overflow:hidden;scroll-margin-top:80px;border-radius:28px;border:1px solid var(--line);background:radial-gradient(60% 80% at 85% 40%,rgba(255,90,31,.22),transparent 70%),linear-gradient(160deg,#141416,#070708);display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:24px 40px;padding:clamp(26px,4.5vw,56px)}
+.idea::before{content:"";position:absolute;inset:0;z-index:-1;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:32px 32px;-webkit-mask-image:radial-gradient(70% 70% at 70% 40%,#000,transparent);mask-image:radial-gradient(70% 70% at 70% 40%,#000,transparent)}
+.idea-txt{display:flex;flex-direction:column;gap:18px;align-self:center}
+.eyebrow{align-self:flex-start;font:600 12px var(--f-body);letter-spacing:.08em;text-transform:uppercase;color:var(--brand);border:1px solid color-mix(in srgb,var(--brand) 45%,transparent);border-radius:999px;padding:5px 12px}
+.idea h2{font-size:clamp(40px,6.4vw,78px);font-weight:900;font-stretch:72%;line-height:.9;letter-spacing:-.015em}
+.idea h2 em{font-style:normal;color:var(--brand)}
+.idea-txt>p{margin:0;color:var(--muted);font-size:17px;max-width:44ch}
+.isteps{list-style:none;margin:6px 0 0;padding:0;display:grid;gap:10px}
+.isteps li{display:grid;grid-template-columns:48px minmax(0,1fr);gap:14px;align-items:center;background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:16px;padding:12px 16px 12px 12px;transition:border-color .3s,transform .3s var(--ease)}
+.isteps li:hover{border-color:var(--brand);transform:translateX(4px)}
+.isteps i{font:800 15px var(--f-body);font-style:normal;color:#fff;background:var(--brand);width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 20px -8px rgba(255,90,31,.8)}
+.isteps b{display:block;font:700 16px var(--f-body)}
+.isteps span{font-size:14px;color:var(--muted)}
+.idea-cta{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:6px}
+.idea-cta span{font-size:13.5px;color:var(--muted)}
+.idea-art{position:relative;min-height:440px;display:flex;align-items:flex-end;justify-content:center}
+.idea-art .glow{position:absolute;left:50%;bottom:8%;width:80%;aspect-ratio:1;transform:translateX(-50%);border-radius:50%;background:radial-gradient(closest-side,rgba(255,90,31,.55),rgba(255,90,31,.12) 60%,transparent);filter:blur(10px);animation:pulse 5s ease-in-out infinite}
+@keyframes pulse{50%{opacity:.7;transform:translateX(-50%) scale(.94)}}
+.idea-art .ring{position:absolute;left:50%;bottom:4%;width:74%;height:16%;transform:translateX(-50%);border-radius:50%;border:1px solid rgba(255,138,76,.5);box-shadow:0 0 30px rgba(255,90,31,.35)}
+.idea-art .pedestal{position:absolute;left:50%;bottom:6%;width:62%;height:11%;transform:translateX(-50%);border-radius:50%;background:radial-gradient(closest-side,#2a2a30,#0d0d0f);box-shadow:inset 0 2px 0 rgba(255,255,255,.08),0 0 0 1px #2a2a30;z-index:0}
+.idea-art img{position:relative;z-index:1;width:min(100%,420px);height:auto;margin-bottom:6%;filter:drop-shadow(0 20px 30px rgba(0,0,0,.6));animation:floaty 6s ease-in-out infinite}
+@keyframes floaty{50%{transform:translateY(-10px)}}
+.chip{position:absolute;z-index:2;font:600 13px var(--f-body);color:#fff;background:rgba(20,20,22,.9);border:1px solid #33333a;border-radius:999px;padding:7px 13px 7px 11px;display:inline-flex;align-items:center;gap:8px;white-space:nowrap;animation:chipf 7s ease-in-out infinite}
+@keyframes chipf{50%{transform:translateY(-8px)}}
+.chip::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--brand);box-shadow:0 0 10px var(--brand)}
+.chip.c1{left:0;top:14%}.chip.c2{right:0;top:28%;animation-delay:-2s}.chip.c3{left:4%;top:56%;animation-delay:-4s}.chip.c4{right:4%;top:70%;animation-delay:-1s}
+.idea-ex{grid-column:1 / -1;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;border-top:1px solid var(--line);padding-top:24px}
+.idea-ex a{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--fg);background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:16px;padding:8px 14px 8px 8px;transition:border-color .3s,transform .3s var(--ease)}
+.idea-ex a:hover{border-color:var(--brand);transform:translateY(-3px)}
+.idea-ex span{flex:0 0 auto;width:56px;height:56px;border-radius:12px;background:radial-gradient(70% 60% at 50% 42%,#2a2a30,#141416 75%);overflow:hidden}
+.idea-ex img{width:100%;height:100%;object-fit:contain;display:block}
+.idea-ex b{font:600 14.5px/1.25 var(--f-body)}
+@media (max-width:860px){
+  .idea{grid-template-columns:1fr}
+  .idea-art{min-height:320px}
+  .idea-art img{width:min(78%,320px)}
+  .idea-ex{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:420px){.chip{font-size:12px;padding:6px 10px 6px 9px}.idea-ex a{padding:6px 10px 6px 6px}.idea-ex span{width:46px;height:46px}.idea-ex b{font-size:13px}}
+@media (prefers-reduced-motion:reduce){.idea-art img,.idea-art .glow,.chip{animation:none}}
+/* ===== v12b: palco com brilho ===== */
+.ph,.ph.dark{background:radial-gradient(55% 45% at 50% 58%,rgba(255,90,31,.42) 0%,rgba(255,90,31,.12) 45%,transparent 75%),radial-gradient(90% 80% at 50% 30%,#232327 0%,#0f0f11 80%)}
+.ph::before{content:"";position:absolute;left:50%;bottom:7%;width:66%;height:13%;transform:translateX(-50%);border-radius:50%;background:radial-gradient(closest-side,#2c2c32,#121214);box-shadow:inset 0 2px 0 rgba(255,255,255,.07),0 0 0 1px rgba(255,138,76,.45),0 0 22px rgba(255,90,31,.35);z-index:0;transition:box-shadow .4s}
+.ph::after{display:none}
+.ph img{inset:0 0 3% 0;height:97%;transition:transform .5s var(--ease),filter .5s}
+.card:hover .ph img{transform:translateY(-8px) scale(1.07);filter:drop-shadow(0 18px 20px rgba(0,0,0,.55)) drop-shadow(0 0 18px rgba(255,90,31,.35))}
+.card:hover .ph::before{box-shadow:inset 0 2px 0 rgba(255,255,255,.1),0 0 0 1px var(--brand),0 0 40px rgba(255,90,31,.7)}
+.card{position:relative}
+.card::after{content:"Ver e pedir";position:absolute;left:50%;top:calc(50% - 40px);transform:translate(-50%,8px);opacity:0;pointer-events:none;font:700 13px var(--f-body);color:#fff;background:var(--brand);border-radius:999px;padding:7px 14px;box-shadow:0 10px 24px -8px rgba(255,90,31,.9);transition:opacity .3s,transform .3s var(--ease);z-index:4;display:none}
+.ph img.photo~*{z-index:3}
+.ph,.ph.dark{background:radial-gradient(48% 40% at 50% 62%,rgba(255,90,31,.7) 0%,rgba(255,90,31,.22) 50%,transparent 78%),radial-gradient(90% 80% at 50% 25%,#26262b 0%,#0e0e10 80%)}
+.ph .soon{left:10px;top:10px;bottom:auto}
+.card:hover .ph{background:radial-gradient(52% 44% at 50% 60%,rgba(255,90,31,.9) 0%,rgba(255,90,31,.3) 52%,transparent 80%),radial-gradient(90% 80% at 50% 25%,#2a2a30 0%,#0e0e10 80%)}
+/* ===== v13: responsivo ===== */
+img{max-width:100%}
+.idea>*{min-width:0}
+@media (max-width:860px){.idea{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:600px){
+  .bar .in{flex-wrap:nowrap;justify-content:space-between;gap:8px;padding-block:8px}
+  .modehint{display:none}
+  .seg button{padding:7px 14px;font-size:13.5px}
+  .cartbtn{padding:8px 12px 8px 12px;font-size:13.5px}
+  main{gap:64px;padding-block:28px 56px}
+  #shelves{gap:64px!important}
+  .sh h2{font-size:clamp(28px,9vw,40px)}
+  .ph .soon{left:8px;top:8px}
+  .ph .tag{right:8px;top:auto;bottom:8px}
+  .idea{border-radius:22px;padding:24px 18px}
+  .idea h2{font-size:clamp(36px,11vw,52px)}
+  .idea-txt>p{font-size:15.5px}
+  .isteps li{grid-template-columns:40px minmax(0,1fr);gap:12px;padding:10px 12px 10px 10px}
+  .isteps i{width:40px;height:40px;font-size:13px}
+  .idea-cta .btn{width:100%}
+  .idea-art{min-height:300px}
+  .chip.c1{left:0;top:6%}.chip.c2{right:0;top:20%}.chip.c3{left:0;top:52%}.chip.c4{right:0;top:66%}
+  .atac{padding:18px;border-radius:20px}
+  .atac-cta .btn{flex:1 1 auto}
+  .hero h1{font-size:clamp(46px,14vw,80px)}
+}
+@media (max-width:360px){
+  .grid{gap:10px}
+  .body{padding:10px 10px 12px}
+  .card h3{font-size:13.5px}
+  .price{font-size:16.5px}
+  .qty button{width:26px}.qty input{width:28px}
+  .chip{font-size:11px}
+  .seg button{padding:7px 11px}
+}
+@media (min-width:1440px){.in{max-width:1280px}}
+/* ===== v15: faixa NFC ===== */
+.nfc{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:0;border:1px solid var(--line);border-radius:18px;overflow:hidden;background:#0d0d0f}
+.nfc video{width:100%;height:100%;min-height:220px;object-fit:cover;display:block}
+.nfc-txt{display:flex;flex-direction:column;gap:12px;justify-content:center;padding:clamp(18px,3vw,32px)}
+.nfc-txt b{font:900 clamp(28px,4vw,40px)/1 var(--f-display);font-stretch:75%}
+.nfc-txt p{margin:0;color:var(--muted);font-size:15px}
+.nfc-txt .btn{align-self:flex-start}
+@media (max-width:760px){.nfc{grid-template-columns:minmax(0,1fr)}.nfc video{aspect-ratio:16/9;min-height:0}}
+/* ===== v16: mais intuitivo ===== */
+.how{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.hw{display:flex;align-items:center;gap:12px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:12px 14px}
+.hw i{flex:0 0 auto;width:44px;height:44px;border-radius:12px;background:var(--brand);color:#fff;display:flex;align-items:center;justify-content:center}
+.hw svg{width:24px;height:24px}
+.hw b{display:block;font:700 15px var(--f-body)}
+.hw span{font-size:13px;color:var(--muted)}
+.cats{gap:10px;padding-bottom:6px}
+.cats a{display:flex;flex-direction:column;align-items:center;gap:8px;width:104px;border-radius:16px;padding:10px 8px 10px;text-align:center}
+.cats .ct{width:72px;height:72px;border-radius:50%;background:radial-gradient(55% 45% at 50% 60%,rgba(255,90,31,.55),transparent 75%),#1c1c20;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.cats .ct img{width:100%;height:100%;object-fit:contain;transform:scale(1.15)}
+.cats .ct svg{width:60%;height:60%;color:var(--brand)}
+.cats b{font:600 12.5px/1.2 var(--f-body)}
+.cats a:hover .ct{box-shadow:0 0 0 2px var(--brand)}
+.idea{display:flex;flex-direction:column;gap:26px;align-items:stretch}
+.idea-head{display:flex;flex-direction:column;gap:14px;align-items:center;text-align:center}
+.idea-head .eyebrow{align-self:center}
+.idea h2{font-size:clamp(36px,5.6vw,68px)}
+.flow{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:34px;counter-reset:f}
+.flow li{position:relative;display:flex;flex-direction:column;gap:12px;align-items:center;text-align:center}
+.flow li:not(:last-child)::after{content:"";position:absolute;right:-28px;top:42%;width:22px;height:22px;background:var(--brand);-webkit-mask:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 12h12m-5-6 6 6-6 6" fill="none" stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>') center/contain no-repeat;mask:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 12h12m-5-6 6 6-6 6" fill="none" stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>') center/contain no-repeat}
+.fimg{width:100%;aspect-ratio:1/1;border-radius:20px;overflow:hidden;border:1px solid var(--line);background:radial-gradient(55% 45% at 50% 60%,rgba(255,90,31,.45),transparent 75%),#141416;display:flex;align-items:center;justify-content:center}
+.fimg img{width:100%;height:100%;object-fit:cover}
+.fimg.done img{object-fit:contain}
+.fimg.send svg{width:58%;height:auto}
+.flow b{font:700 17px/1.25 var(--f-body);display:flex;align-items:center;gap:8px}
+.flow b i{font-style:normal;width:28px;height:28px;border-radius:50%;background:var(--brand);color:#fff;font:800 14px var(--f-body);display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto}
+.idea-cta{justify-content:center}
+.idea-ex{border-top:1px solid var(--line);padding-top:22px}
+.faq{grid-template-columns:repeat(4,minmax(0,1fr))}
+.faq div{display:flex;flex-direction:column;gap:6px}
+.fi{width:40px;height:40px;border-radius:12px;background:var(--brand-soft);color:var(--brand);display:flex;align-items:center;justify-content:center;margin-bottom:4px}
+.fi svg{width:22px;height:22px}
+@media (max-width:860px){.faq{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:700px){
+  .how{grid-template-columns:minmax(0,1fr);gap:8px}
+  .hw{padding:10px 12px}.hw i{width:38px;height:38px}
+  .flow{grid-template-columns:minmax(0,1fr);gap:30px}
+  .flow li{display:grid;grid-template-columns:120px minmax(0,1fr);text-align:left;gap:14px}
+  .flow li:not(:last-child)::after{right:auto;left:49px;top:auto;bottom:-27px;transform:rotate(90deg)}
+  .flow b{font-size:16px}
+  .cats a{width:88px}.cats .ct{width:62px;height:62px}
+}
+@media (max-width:420px){.faq{grid-template-columns:minmax(0,1fr)}}
+/* ===== v28: prateleira de Natal ===== */
+body{overflow-x:clip}
+#natal{--gold:#d9b25e;--gold2:#f0d48e;--red:#9b1219;position:relative;isolation:isolate;padding-block:clamp(84px,9vw,124px) clamp(56px,7vw,96px)}
+#natal::before{content:"";position:absolute;z-index:-1;inset:0 auto 0 50%;width:100vw;transform:translateX(-50%);background:url(p/natal-top.webp) center 40px/100% auto no-repeat,url(p/natal-bot.webp) center calc(100% - 40px)/100% auto no-repeat,radial-gradient(70% 60% at 50% 45%,#0a2c19,#03160b)}
+@media (min-width:900px){#natal>*{width:min(100%,78vw);margin-inline:auto}#natal .grid{grid-template-columns:repeat(auto-fill,minmax(170px,1fr))}}
+@media (min-width:1300px){#natal>*{width:min(100%,70vw)}}
+@media (max-width:899px){#natal::before{background-size:max(900px,170%) auto,max(700px,130%) auto,auto;background-position:center 40px,left calc(100% - 40px),center}#natal{padding-top:clamp(96px,22vw,150px);padding-bottom:clamp(110px,26vw,170px)}}
+#natal .sh{border-bottom-color:color-mix(in srgb,var(--gold) 55%,transparent)}
+#natal .sh h2{color:#f7eedc}
+#natal .sh h2 small{color:var(--gold2)}
+#natal .sh{flex-direction:column;align-items:flex-start;gap:10px}
+#natal .sh p{color:#efe6d2}
+#natal .card{background:linear-gradient(180deg,#0e2c1b,#07190f);border:1px solid color-mix(in srgb,var(--gold) 80%,transparent);box-shadow:0 18px 40px -24px rgba(0,0,0,.8)}
+#natal .card:hover{border-color:var(--gold2);box-shadow:0 0 0 1px var(--gold),0 20px 44px -18px rgba(217,178,94,.45)}
+#natal .ph,#natal .ph.dark{background:radial-gradient(3px 3px at 14% 22%,#ffe7a3,transparent),radial-gradient(4px 4px at 82% 18%,#ffd977,transparent),radial-gradient(3px 3px at 70% 40%,#fff1c4,transparent),radial-gradient(5px 5px at 24% 48%,rgba(255,214,120,.9),transparent),radial-gradient(3px 3px at 90% 55%,#ffe7a3,transparent),radial-gradient(4px 4px at 8% 66%,#ffd977,transparent),radial-gradient(50% 42% at 50% 60%,rgba(240,200,110,.28),transparent 75%),radial-gradient(90% 85% at 50% 30%,#164a2c 0%,#07210f 85%)}
+#natal .card:hover .ph{background:radial-gradient(3px 3px at 14% 22%,#ffe7a3,transparent),radial-gradient(4px 4px at 82% 18%,#ffd977,transparent),radial-gradient(3px 3px at 70% 40%,#fff1c4,transparent),radial-gradient(5px 5px at 24% 48%,rgba(255,214,120,.9),transparent),radial-gradient(3px 3px at 90% 55%,#ffe7a3,transparent),radial-gradient(4px 4px at 8% 66%,#ffd977,transparent),radial-gradient(52% 44% at 50% 60%,rgba(240,200,110,.5),transparent 78%),radial-gradient(90% 85% at 50% 30%,#1a5232 0%,#07210f 85%)}
+#natal .ph::before{background:radial-gradient(closest-side,#9a6434 0%,#7a4a24 55%,#4d2c14 100%);box-shadow:inset 0 2px 0 rgba(255,230,180,.25),0 0 0 1px rgba(217,178,94,.5),0 10px 18px rgba(0,0,0,.55)}
+#natal .card:hover .ph::before{box-shadow:inset 0 2px 0 rgba(255,230,180,.3),0 0 0 1px var(--gold2),0 0 30px rgba(240,200,110,.5)}
+#natal .card:hover .ph img{filter:drop-shadow(0 18px 20px rgba(0,0,0,.55)) drop-shadow(0 0 16px rgba(240,200,110,.35))}
+#natal .card::after{background:var(--red);box-shadow:0 10px 24px -8px rgba(155,18,25,.9)}
+#natal .price{color:var(--gold2)}
+#natal .body h3{color:#f7eedc}
+#natal .qty{border-color:color-mix(in srgb,var(--gold) 45%,transparent)}
+#natal .add{background:var(--red);color:#fff;border:0;font-weight:700}
+#natal .add:hover{background:#b8171f}
+#natal .tag{background:var(--red);color:#fff}
+/* ===== v31: sob encomenda didático ===== */
+.ix{gap:34px;padding:clamp(28px,5vw,64px) clamp(18px,4vw,56px)}
+.ix-head{display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px}
+.ix-head .eyebrow{align-self:center}
+.ix-head h2{font-size:clamp(36px,5.8vw,70px)}
+.ix-head p{margin:0;color:#c9c9d1;font-size:clamp(15.5px,1.6vw,18px);max-width:46ch}
+.ix-steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(18px,3vw,36px)}
+.ix-step{display:flex;flex-direction:column;align-items:center;text-align:center;min-width:0}
+.ix-vis{position:relative;width:100%;aspect-ratio:1/1;border-radius:22px;overflow:hidden;border:1px solid var(--line);background:radial-gradient(55% 48% at 50% 62%,rgba(255,90,31,.42),rgba(255,90,31,.08) 55%,transparent 78%),linear-gradient(180deg,#17171a,#0d0d0f);transition:transform .4s var(--ease),border-color .4s,box-shadow .4s}
+.ix-step:hover .ix-vis{transform:translateY(-6px);border-color:color-mix(in srgb,var(--brand) 70%,transparent);box-shadow:0 24px 50px -24px rgba(255,90,31,.6)}
+.ix-v1{display:flex;align-items:center;justify-content:center}
+.ix-phone{width:62%;height:auto;filter:drop-shadow(0 20px 30px rgba(0,0,0,.6))}
+.ix-v2 img{width:100%;height:100%;object-fit:cover;display:block}
+.ix-v2::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(10,10,11,.75))}
+.ix-chip{position:absolute;z-index:1;left:12px;bottom:12px;display:inline-flex;align-items:center;gap:7px;font:700 12.5px var(--f-body);color:#fff;background:rgba(10,10,11,.72);border:1px solid rgba(255,138,76,.55);border-radius:999px;padding:6px 11px 6px 8px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.ix-chip svg{width:16px;height:16px;color:var(--brand-2)}
+.ix-v3{display:flex;align-items:flex-end;justify-content:center}
+.ix-v3 img{position:relative;z-index:1;height:84%;width:auto;max-width:90%;object-fit:contain;margin-bottom:6%;filter:drop-shadow(0 18px 24px rgba(0,0,0,.6))}
+.ix-ped{position:absolute;left:50%;bottom:6%;width:62%;height:12%;transform:translateX(-50%);border-radius:50%;background:radial-gradient(closest-side,#2c2c32,#121214);box-shadow:inset 0 2px 0 rgba(255,255,255,.07),0 0 0 1px rgba(255,138,76,.45),0 0 26px rgba(255,90,31,.4)}
+.ix-spark{position:absolute;z-index:2;width:14px;height:14px;background:var(--brand-2);-webkit-mask:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0l3 9 9 3-9 3-3 9-3-9-9-3 9-3z"/></svg>') center/contain no-repeat;mask:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0l3 9 9 3-9 3-3 9-3-9-9-3 9-3z"/></svg>') center/contain no-repeat;animation:ixspark 2.8s ease-in-out infinite}
+.ix-spark.s1{left:20%;top:18%}.ix-spark.s2{right:18%;top:30%;width:10px;height:10px;animation-delay:.9s}.ix-spark.s3{right:26%;top:12%;width:8px;height:8px;animation-delay:1.7s}
+@keyframes ixspark{0%,100%{opacity:.15;transform:scale(.6)}50%{opacity:1;transform:scale(1)}}
+.ix-num{position:relative;width:100%;display:flex;justify-content:center;margin:-22px 0 12px;z-index:1}
+.ix-num span{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:var(--brand);color:#fff;font:900 19px var(--f-display);box-shadow:0 0 0 6px var(--bg),0 8px 22px -6px rgba(255,90,31,.9)}
+.ix-step:not(:last-child) .ix-num::after{content:"";position:absolute;z-index:-1;top:50%;left:calc(50% + 30px);width:calc(100% + clamp(18px,3vw,36px) - 60px);height:2px;background:repeating-linear-gradient(90deg,var(--brand) 0 8px,transparent 8px 16px);background-size:32px 2px;animation:ixdash 1.2s linear infinite;opacity:.8}
+@keyframes ixdash{to{background-position:32px 0}}
+.ix-step h3{font:800 clamp(18px,1.8vw,22px)/1.2 var(--f-body);margin:0 0 6px;color:var(--fg)}
+.ix-step p{margin:0;color:var(--muted);font-size:15px;line-height:1.45;max-width:28ch}
+.ix-cta{display:flex;flex-direction:column;align-items:center;gap:10px}
+.ix-btn{font-size:17px;padding:16px 30px;gap:10px;box-shadow:0 14px 34px -12px rgba(255,90,31,.85)}
+.ix-btn svg{width:22px;height:22px}
+.ix-cta small{font-size:13.5px;color:var(--muted)}
+@media (max-width:760px){
+  .ix-steps{grid-template-columns:minmax(0,1fr);gap:22px}
+  .ix-step{display:grid;grid-template-columns:118px minmax(0,1fr);grid-template-rows:auto auto 1fr;column-gap:16px;text-align:left;align-items:start;position:relative}
+  .ix-vis{grid-row:1 / 4;border-radius:18px}
+  .ix-num{grid-column:2;justify-content:flex-start;margin:4px 0 8px}
+  .ix-num span{width:34px;height:34px;font-size:16px;box-shadow:0 8px 18px -6px rgba(255,90,31,.9)}
+  .ix-step:not(:last-child) .ix-num::after{display:none}
+  .ix-step:not(:last-child)::after{content:"";position:absolute;left:58px;top:calc(118px + 4px);height:14px;width:2px;background:repeating-linear-gradient(180deg,var(--brand) 0 4px,transparent 4px 8px)}
+  .ix-step h3{grid-column:2;font-size:17px}
+  .ix-step p{grid-column:2;font-size:14.5px}
+  .ix-chip{display:none}
+  .ix-btn{width:100%}
+}
+@media (prefers-reduced-motion:reduce){.ix-spark,.ix-step .ix-num::after{animation:none}}
+/* Natal sem borda seca */
+#natal::before{-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 130px,#000 calc(100% - 130px),transparent 100%);mask-image:linear-gradient(180deg,transparent 0,#000 130px,#000 calc(100% - 130px),transparent 100%);width:calc(100vw - var(--sbw,0px))}
+#natal{margin-block:-40px;padding-block:clamp(130px,12vw,170px) clamp(110px,10vw,150px)}
+@media (max-width:899px){#natal{padding-top:clamp(140px,34vw,190px);padding-bottom:clamp(140px,34vw,200px)}}
+/* v32: sem quadriculado */
+.idea::before{display:none}
+.ix{background:radial-gradient(50% 60% at 12% 90%,rgba(255,90,31,.14),transparent 70%),radial-gradient(60% 80% at 88% 25%,rgba(255,90,31,.2),transparent 70%),linear-gradient(160deg,#141416,#070708)}
+/* ===== v33: movimento premium ===== */
+.ix{--mx:50%;--my:30%}
+.ix::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(420px circle at var(--mx) var(--my),rgba(255,90,31,.16),transparent 60%);transition:opacity .4s}
+.ix-steps{perspective:1100px}
+.ix-vis{transform-style:preserve-3d;will-change:transform}
+.ix-step .ix-vis{transition:transform .5s var(--ease),border-color .5s,box-shadow .5s,opacity .8s,filter .8s}
+.mo .ix-step:not(.on) .ix-vis{opacity:.45;filter:saturate(.4) brightness(.7);transform:translateY(18px) scale(.97)}
+.mo .ix-step:not(.on) h3,.mo .ix-step:not(.on) p{opacity:.4}
+.ix-step h3,.ix-step p{transition:opacity .7s}
+.ix-step.on .ix-vis{border-color:color-mix(in srgb,var(--brand) 55%,var(--line));box-shadow:0 30px 60px -30px rgba(255,90,31,.55)}
+.ix-num span{transition:background .5s,transform .6s cubic-bezier(.3,1.6,.5,1),box-shadow .5s,color .5s}
+.mo .ix-step:not(.on) .ix-num span{background:#26262b;color:#8a8a93;box-shadow:0 0 0 6px var(--bg);transform:scale(.85)}
+.ix-step.on .ix-num span{animation:ixpop .7s cubic-bezier(.3,1.6,.5,1)}
+@keyframes ixpop{0%{transform:scale(.6)}100%{transform:scale(1)}}
+.ix-step:not(:last-child) .ix-num::after{background:linear-gradient(90deg,var(--brand) 0 var(--fill,100%),transparent var(--fill,100%)),repeating-linear-gradient(90deg,rgba(255,90,31,.35) 0 8px,transparent 8px 16px);animation:none;opacity:1;box-shadow:0 0 12px rgba(255,90,31,.5)}
+/* passo 1: conversa */
+.ix-phone g{transform-box:fill-box;transform-origin:100% 100%;transition:opacity .5s,transform .6s cubic-bezier(.3,1.4,.5,1)}
+.ix-phone .ix-b3{transform-origin:0 100%}
+.mo .ix-step:not(.on) .ix-phone g{opacity:0;transform:translateY(14px) scale(.85)}
+.ix-step.on .ix-phone .ix-b1{transition-delay:.15s}.ix-step.on .ix-phone .ix-b2{transition-delay:.75s}.ix-step.on .ix-phone .ix-b3{transition-delay:1.35s}
+.ix-b3 circle{animation:ixdot 1.2s ease-in-out infinite}.ix-b3 circle:nth-child(3){animation-delay:.15s}.ix-b3 circle:nth-child(4){animation-delay:.3s}
+@keyframes ixdot{0%,60%,100%{transform:translateY(0);opacity:.6}30%{transform:translateY(-3px);opacity:1}}
+.ix-phone{transition:transform .9s var(--ease)}
+.ix-step.on .ix-phone{animation:ixfloat 6s ease-in-out 1.6s infinite}
+@keyframes ixfloat{0%,100%{transform:translateY(0) rotate(-1.5deg)}50%{transform:translateY(-8px) rotate(1.5deg)}}
+/* passo 2: impressão camada por camada */
+.ix-v2 .ix-ghost{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(1) brightness(.35) contrast(1.1);opacity:.9}
+.ix-v2 .ix-build{position:relative;clip-path:inset(calc(100% - var(--build,100%)) 0 0 0);-webkit-clip-path:inset(calc(100% - var(--build,100%)) 0 0 0)}
+.ix-scan{position:absolute;left:0;right:0;z-index:2;height:2px;bottom:var(--build,100%);background:linear-gradient(90deg,transparent,#ffb08a 20%,#fff 50%,#ffb08a 80%,transparent);box-shadow:0 0 18px 4px rgba(255,90,31,.8),0 0 60px 10px rgba(255,90,31,.35);opacity:var(--scan,0);transition:opacity .4s}
+.ix-pct{position:absolute;z-index:2;right:12px;top:12px;font:800 13px var(--f-mono);color:#fff;background:rgba(10,10,11,.7);border:1px solid rgba(255,138,76,.5);border-radius:999px;padding:5px 10px;opacity:var(--scan,0);transition:opacity .4s}
+.ix-pct b{font-weight:800;color:var(--brand-2)}
+.ix-v2::after{z-index:1}
+/* passo 3: peça surgindo */
+.ix-v3 img{transition:transform 1.1s cubic-bezier(.2,1.3,.4,1),opacity .8s,filter 1s}
+.mo .ix-step:not(.on) .ix-v3 img{transform:translateY(40px) scale(.86);opacity:0;filter:blur(6px) drop-shadow(0 18px 24px rgba(0,0,0,.6))}
+.ix-step.on .ix-v3 img{animation:ixrise 5s ease-in-out 1.2s infinite}
+@keyframes ixrise{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.ix-ring{position:absolute;left:50%;bottom:4%;width:78%;height:18%;transform:translateX(-50%);border-radius:50%;border:1px solid rgba(255,138,76,.0);z-index:0}
+.ix-step.on .ix-ring{animation:ixring 2.6s ease-out .6s infinite}
+@keyframes ixring{0%{border-color:rgba(255,138,76,.9);transform:translateX(-50%) scale(.7);opacity:1}100%{border-color:rgba(255,138,76,0);transform:translateX(-50%) scale(1.35);opacity:0}}
+.ix-step.on .ix-ped{animation:ixped 2.6s ease-in-out infinite}
+@keyframes ixped{0%,100%{box-shadow:inset 0 2px 0 rgba(255,255,255,.07),0 0 0 1px rgba(255,138,76,.45),0 0 26px rgba(255,90,31,.4)}50%{box-shadow:inset 0 2px 0 rgba(255,255,255,.1),0 0 0 1px rgba(255,138,76,.9),0 0 50px rgba(255,90,31,.75)}}
+/* títulos que se revelam */
+.wd{display:inline-block;overflow:hidden;vertical-align:top;padding:0 .02em .12em;margin:0 -.02em -.12em}
+.wd>span{display:inline-block;transform:translateY(110%) rotate(4deg);transform-origin:0 100%;transition:transform 1s cubic-bezier(.2,.85,.25,1);transition-delay:calc(var(--i,0) * 70ms)}
+.rv-on .wd>span{transform:none}
+.mo .sh{border-bottom-color:transparent;position:relative}
+.mo .sh::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;background:linear-gradient(90deg,var(--brand),var(--line) 45%);transform:scaleX(0);transform-origin:left;transition:transform 1.4s cubic-bezier(.2,.85,.25,1) .2s}
+.mo #natal .sh::after{background:linear-gradient(90deg,var(--gold2),color-mix(in srgb,var(--gold) 40%,transparent) 50%)}
+.mo .sh.rv-on::after{transform:scaleX(1)}
+.mo .ix-head p,.mo .sh p,.mo .ix-cta{opacity:0;transform:translateY(14px);transition:opacity .9s .35s,transform .9s cubic-bezier(.2,.85,.25,1) .35s}
+.mo .rv-on p,.mo .ix-cta.rv-on{opacity:1;transform:none}
+/* cards em 3D */
+@media (hover:hover) and (pointer:fine){
+  .grid{perspective:1200px}
+  .card.tilt{transition:transform .15s linear,box-shadow .35s,border-color .3s}
+  .card .glare{position:absolute;inset:0;z-index:4;pointer-events:none;border-radius:inherit;background:radial-gradient(320px circle at var(--gx,50%) var(--gy,0%),rgba(255,255,255,.09),transparent 55%);opacity:0;transition:opacity .3s}
+  .card.tilt .glare{opacity:1}
+}
+/* luz que segue o cursor e barra de progresso */
+.cglow{position:fixed;left:0;top:0;width:520px;height:520px;margin:-260px 0 0 -260px;border-radius:50%;pointer-events:none;z-index:1;background:radial-gradient(closest-side,rgba(255,90,31,.10),transparent);opacity:0;transition:opacity .5s;will-change:transform}
+.cglow.on{opacity:1}
+.sprog{position:fixed;left:0;top:0;right:0;height:3px;z-index:60;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,var(--brand),var(--brand-2));box-shadow:0 0 12px rgba(255,90,31,.7);pointer-events:none}
+.btn.primary,.cartbtn{will-change:transform}
+.hero .hcenter{will-change:transform,opacity}
+#shelves>.shelf:not(#natal){content-visibility:auto;contain-intrinsic-size:auto 1100px}
+.cv-off #shelves>.shelf:not(#natal){content-visibility:visible}
+/* ---------- categorias em destaque ---------- */
+.catsec{display:flex;flex-direction:column;gap:20px;margin-block:10px 34px}
+.cats{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:14px;overflow:visible;padding:0}
+.cats a{width:auto;padding:0;border:0;background:none;gap:10px;border-radius:22px}
+.cats a[hidden]{display:none}
+.cats .ct{width:100%;height:auto;aspect-ratio:1;border-radius:22px;border:1px solid var(--line);background:radial-gradient(70% 55% at 50% 64%,rgba(255,90,31,.5),transparent 78%),#17171b;transition:transform .35s var(--ease),border-color .3s,box-shadow .3s}
+.cats .ct img{transform:none;object-fit:contain;padding:8%}
+.cats .ct img.photo{object-fit:cover;padding:0}
+.cats b{font:800 15px/1.15 var(--f-body);letter-spacing:-.005em}
+.cats a:hover .ct,.cats a:focus-visible .ct{transform:translateY(-6px);border-color:var(--brand);box-shadow:0 14px 30px rgba(255,90,31,.28)}
+.cats a:hover b{color:var(--brand)}
+@media (max-width:1100px){.cats{grid-template-columns:repeat(5,minmax(0,1fr))}}
+@media (max-width:760px){.cats{grid-template-columns:none;grid-template-rows:repeat(2,auto);grid-auto-flow:column;grid-auto-columns:104px;gap:12px;overflow-x:auto;scrollbar-width:none;padding-bottom:6px;scroll-snap-type:x proximity}.cats a{scroll-snap-align:start}.cats b{font-size:13px}.cats .ct{border-radius:18px}}
+.shelf .morebtn{margin-top:22px;align-self:center}
+
+/* produto com mais de uma foto */
+.ph.gal .gal-tr{position:absolute;inset:0;display:flex;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain;z-index:2}
+.ph.gal .gal-tr::-webkit-scrollbar{display:none}
+.ph.gal .gal-tr video{position:relative;flex:0 0 100%;width:100%;height:100%;object-fit:cover;scroll-snap-align:start;scroll-snap-stop:always;display:block;background:#111}
+.ph.gal .gal-tr img{position:relative;inset:auto;flex:0 0 100%;width:100%;height:100%;object-fit:cover;scroll-snap-align:start;scroll-snap-stop:always;transform:none!important;animation:none;filter:none}
+.gal-nav{position:absolute;top:50%;z-index:4;width:36px;height:36px;margin-top:-18px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(12,12,13,.72);color:#fff;font:400 24px/1 var(--f-body);display:grid;place-items:center;padding:0 0 3px;cursor:pointer;opacity:0;transition:opacity .25s,transform .25s}
+.gal-nav.prev{left:10px}.gal-nav.next{right:10px}
+.gal-nav[hidden]{display:none}
+.ph.gal .tag,.ph.gal .soon{z-index:5}
+.ph.gal:hover .gal-nav,.gal-nav:focus-visible{opacity:1}
+.gal-nav:hover{transform:scale(1.08);background:var(--brand)}
+@media (hover:none){.gal-nav{display:none}}
+.gal-dots{position:absolute;left:0;right:0;bottom:12px;z-index:4;display:flex;justify-content:center;gap:6px;pointer-events:none}
+.gal-dots i{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.55);box-shadow:0 0 0 1px rgba(0,0,0,.25);transition:width .3s,background .3s}
+.gal-dots i.on{width:20px;border-radius:4px;background:var(--brand)}
+@media (prefers-reduced-motion:reduce){.cglow,.sprog{display:none}.wd>span{transform:none!important;transition:none}}
+/* ===== v34: janelinha do produto + topo na rolagem ===== */
+.hero .aura{animation:none}
+.card .ph,.card h3{cursor:pointer}
+html.pm-open{overflow:hidden}
+.pm{border:0;padding:0;margin:auto;background:transparent;color:var(--fg);width:min(980px,calc(100% - 32px));max-width:none;max-height:calc(100dvh - 32px);overflow:visible}
+.pm::backdrop{background:rgba(5,5,6,.74);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.pm[open]::backdrop{animation:pmfade .35s ease}
+@keyframes pmfade{from{opacity:0}}
+.pm-in{position:relative;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);background:linear-gradient(180deg,#17171a,#0f0f11);border:1px solid var(--line);border-radius:26px;overflow:hidden;box-shadow:0 50px 140px -40px rgba(255,90,31,.55),0 0 0 1px rgba(255,138,76,.12);max-height:calc(100dvh - 32px)}
+.pm[open] .pm-in{animation:pmin .55s cubic-bezier(.2,.9,.25,1.15)}
+@keyframes pmin{from{opacity:0;transform:translateY(30px) scale(.96)}}
+.pm-ph{position:relative;aspect-ratio:auto;min-height:100%;border-radius:0}
+.pm-ph img{animation:none!important}
+.pm-ph .tag{display:none}
+.pm[open] .pm-ph img:not(.photo){animation:pmimg .9s cubic-bezier(.2,.9,.25,1.1) both!important}
+@keyframes pmimg{from{opacity:0;transform:translateY(30px) scale(.9) rotate(-4deg)}}
+.pm-body{display:flex;flex-direction:column;gap:14px;padding:30px 30px 26px;overflow:auto;min-width:0}
+.pm-tag{align-self:flex-start;font:700 11.5px var(--f-body);letter-spacing:.08em;text-transform:uppercase;color:var(--brand-2);border:1px solid rgba(255,138,76,.45);border-radius:999px;padding:5px 11px}
+.pm-tag:empty{display:none}
+.pm-n{font-size:clamp(28px,3.4vw,42px);font-weight:900;font-stretch:76%;line-height:.95;letter-spacing:-.01em;padding-right:40px}
+.pm-t{margin:0;color:#d4d4da;font-size:16px;line-height:1.5}
+.pm-b{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px}
+.pm-b li{display:flex;gap:10px;align-items:flex-start;font-size:14.5px;color:#c5c5cc;line-height:1.4;opacity:0;transform:translateX(-10px);animation:pmli .5s cubic-bezier(.2,.9,.25,1) forwards}
+.pm-b li::before{content:"";flex:0 0 20px;height:20px;border-radius:50%;background:var(--brand-soft) url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 12.5l4 4 8-9" fill="none" stroke="%23ff8a4c" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>') center/14px no-repeat;border:1px solid rgba(255,138,76,.35)}
+@keyframes pmli{to{opacity:1;transform:none}}
+.pm-c{margin:0;font-size:13.5px;color:var(--muted)}
+.pm-c:empty{display:none}
+.pm-c b{color:var(--fg);font-weight:600}
+.pm-opts .opts{margin:0}
+.pm-foot{margin-top:auto;display:flex;flex-direction:column;gap:10px;padding-top:14px;border-top:1px solid var(--line)}
+.pm-buy{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.pm-buy .price{font-size:28px}
+.pm-add{width:100%;border:0;border-radius:999px;background:var(--brand);color:#fff;font:700 16px var(--f-body);padding:15px;cursor:pointer;box-shadow:0 14px 34px -14px rgba(255,90,31,.9);transition:transform .2s,background .2s}
+.pm-add:hover{background:#ff6a33;transform:translateY(-2px)}
+.pm-x{position:absolute;z-index:5;top:14px;right:14px;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:rgba(10,10,11,.75);color:#fff;font-size:16px;cursor:pointer;display:grid;place-items:center;transition:transform .3s,border-color .3s}
+.pm-x:hover{transform:rotate(90deg);border-color:var(--brand)}
+.pm.natal .pm-in{background:linear-gradient(180deg,#0e2c1b,#07190f);border-color:rgba(217,178,94,.6);box-shadow:0 50px 140px -40px rgba(217,178,94,.4)}
+.pm.natal .pm-ph{background:radial-gradient(50% 42% at 50% 60%,rgba(240,200,110,.28),transparent 75%),radial-gradient(90% 85% at 50% 30%,#164a2c 0%,#07210f 85%)}
+.pm.natal .pm-ph::before{background:radial-gradient(closest-side,#9a6434 0%,#7a4a24 55%,#4d2c14 100%)}
+.pm.natal .pm-add{background:#9b1219;box-shadow:0 14px 34px -14px rgba(155,18,25,.9)}
+.pm.natal .pm-buy .price{color:#f0d48e}
+@media (max-width:760px){
+  .pm{width:100%;margin:auto 0 0;max-height:94dvh}
+  .pm-in{grid-template-columns:minmax(0,1fr);border-radius:24px 24px 0 0;max-height:94dvh;overflow:auto}
+  .pm[open] .pm-in{animation:pmup .5s cubic-bezier(.2,.9,.25,1)}
+  @keyframes pmup{from{transform:translateY(60%)}}
+  .pm-ph{aspect-ratio:4/3;min-height:0}
+  .pm-body{padding:22px 18px calc(20px + env(safe-area-inset-bottom,0px));overflow:visible}
+  .pm-n{font-size:30px}
+}
+@media (prefers-reduced-motion:reduce){.pm[open] .pm-in,.pm-b li,.pm[open] .pm-ph img{animation:none!important;opacity:1;transform:none}}
+</style>
+
+<header class="hero" id="topo">
+  <div class="aura"></div>
+  <canvas id="bgv" class="hv" aria-hidden="true" hidden></canvas>
+  <div class="floaters" id="floaters" aria-hidden="true"></div>
+  <div class="in">
+    <div class="top">
+      <a class="brand" href="#topo"><img src="logo.jpg" alt="Logo TrapForma">TrapForma</a>
+      <nav aria-label="Seções"><a href="#catalogo">Catálogo</a><a href="#brindes">Atacado</a><a href="#encomenda">Sob encomenda</a></nav>
+    </div>
+    <div class="hcenter">
+      <span class="kicker">Impressão 3D sob medida</span>
+      <h1><span class="w">Ideias</span> <span class="w" style="animation-delay:.12s">que</span><br><em class="w" style="animation-delay:.28s">ganham</em> <em class="w" style="animation-delay:.42s">forma.</em></h1>
+      <div class="ctas"><a class="btn primary" href="#catalogo">Ver catálogo</a><a class="btn ghost" href="#brindes">Comprar no atacado</a></div>
+    </div>
+    <div class="scroll"><i></i>Role para ver as peças</div>
+  </div>
+</header>
+
+<div class="ticker" aria-hidden="true"><div id="tick"></div></div>
+
+<div class="bar"><div class="in">
+  <div class="seg" role="group" aria-label="Tipo de compra"><i id="segpill"></i><button type="button" id="m-varejo" data-mode="varejo" aria-pressed="true">Varejo</button><button type="button" id="m-atacado" data-mode="atacado" aria-pressed="false">Atacado</button></div>
+  <div class="modehint" id="modehint"></div>
+  <button class="cartbtn" type="button" id="cartbtn" aria-label="Abrir pedido">Meu pedido <span class="n" id="cartn">0</span></button>
+</div></div>
+
+<main class="in" id="catalogo">
+  <section class="how" aria-label="Como comprar">
+    <div class="hw"><i><svg viewBox="0 0 24 24"><path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L21 8H6.2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="10" cy="20" r="1.5" fill="currentColor"/><circle cx="17" cy="20" r="1.5" fill="currentColor"/></svg></i><div><b>1. Escolha</b><span>Toque em Adicionar</span></div></div>
+    <div class="hw"><i><svg viewBox="0 0 24 24"><path d="M4 7h11M4 7l3-3M4 7l3 3M20 17H9m11 0-3-3m3 3-3 3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></i><div><b>2. Varejo ou atacado</b><span>Atacado: 10+ peças, mais barato</span></div></div>
+    <div class="hw"><i><svg viewBox="0 0 24 24"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 19z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9 10.5c.5 2 2 3.5 4.5 4.5l1.2-1.2 1.8.8-.4 1.6c-3.6.2-7.5-3.4-7.8-7.2l1.6-.5.9 1.7z" fill="currentColor"/></svg></i><div><b>3. Envie no WhatsApp</b><span>A mensagem já vai pronta</span></div></div>
+  </section>
+  <section class="catsec" aria-label="Categorias"><div class="sh"><h2><small>Escolha por categoria</small>O que você procura?</h2></div><nav class="cats" id="cats" aria-label="Categorias"></nav></section>
+  <div id="shelves" style="display:flex;flex-direction:column;gap:64px"></div>
+
+  <section class="idea ix" id="encomenda">
+    <div class="ix-head">
+      <span class="eyebrow">Sob encomenda</span>
+      <h2>Sua ideia ganha forma <em>em 3D.</em></h2>
+      <p>Envie uma foto ou conte sua ideia. A gente modela e imprime sua peça personalizada.</p>
+    </div>
+    <ol class="ix-steps">
+      <li class="ix-step"><div class="ix-vis ix-v1"><svg class="ix-phone" viewBox="0 0 200 300" aria-hidden="true">
+<rect x="34" y="8" width="132" height="284" rx="24" fill="#18181b" stroke="#3a3a40" stroke-width="2"/>
+<rect x="42" y="20" width="116" height="260" rx="16" fill="#0b141a"/>
+<rect x="42" y="20" width="116" height="40" rx="16" fill="#1f2c34"/><rect x="42" y="44" width="116" height="16" fill="#1f2c34"/>
+<circle cx="62" cy="40" r="10" fill="#ff5a1f"/><path d="M57 35h10v3h-3.5v8h-3v-8H57z" fill="#fff"/>
+<rect x="78" y="34" width="46" height="6" rx="3" fill="#e9edef"/><rect x="78" y="44" width="28" height="4" rx="2" fill="#25d366"/>
+<g class="ix-b1"><rect x="74" y="74" width="76" height="92" rx="10" fill="#005c4b"/>
+<rect x="79" y="79" width="66" height="66" rx="7" fill="#e9e2d6"/>
+<circle cx="112" cy="103" r="12" fill="none" stroke="#6b5f52" stroke-width="2.5"/><path d="M92 141c2-14 11-21 20-21s18 7 20 21" fill="none" stroke="#6b5f52" stroke-width="2.5" stroke-linecap="round"/>
+<path d="M106 101h2m6 0h2M107 108q5 4 10 0" stroke="#6b5f52" stroke-width="2" stroke-linecap="round" fill="none"/>
+<rect x="80" y="151" width="40" height="5" rx="2.5" fill="#9fd9c9"/><path d="M133 154l3 3 6-6" stroke="#53bdeb" stroke-width="2" fill="none" stroke-linecap="round"/></g>
+<g class="ix-b2"><rect x="62" y="176" width="88" height="30" rx="10" fill="#005c4b"/><rect x="70" y="184" width="62" height="5" rx="2.5" fill="#e9edef"/><rect x="70" y="194" width="40" height="5" rx="2.5" fill="#e9edef"/></g>
+<g class="ix-b3"><rect x="50" y="216" width="70" height="26" rx="10" fill="#202c33"/><circle cx="64" cy="229" r="3" fill="#8696a0"/><circle cx="75" cy="229" r="3" fill="#8696a0"/><circle cx="86" cy="229" r="3" fill="#8696a0"/></g>
+<rect x="50" y="254" width="74" height="18" rx="9" fill="#202c33"/><circle cx="140" cy="263" r="11" fill="#25d366"/><path d="M135 263l10-5-3 5 3 5z" fill="#0b141a"/>
+</svg></div><div class="ix-num"><span>1</span></div><h3>Envie sua referência</h3><p>Uma foto, um desenho ou a ideia que você tem em mente.</p></li>
+      <li class="ix-step"><div class="ix-vis ix-v2"><img class="ix-ghost" loading="lazy" src="p/i-imprimindo.webp" alt=""><img class="ix-build" loading="lazy" src="p/i-imprimindo.webp" alt="Peça sendo impressa na impressora 3D"><i class="ix-scan"></i><span class="ix-pct"><b>0</b>%</span><span class="ix-chip"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l9 5v10l-9 5-9-5V7z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M3 7l9 5 9-5M12 12v10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>Modelagem 3D</span></div><div class="ix-num"><span>2</span></div><h3>A gente cria sua peça</h3><p>Da modelagem à impressão em 3D.</p></li>
+      <li class="ix-step"><div class="ix-vis ix-v3"><i class="ix-ring"></i><i class="ix-ped"></i><img loading="lazy" src="p/caricatura.webp" alt="Caricatura 3D pronta"><b class="ix-spark s1"></b><b class="ix-spark s2"></b><b class="ix-spark s3"></b></div><div class="ix-num"><span>3</span></div><h3>Receba sua criação</h3><p>Uma peça feita especialmente para você.</p></li>
+    </ol>
+    <div class="ix-cta"><a class="btn primary ix-btn" id="customwa" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2c0 1.3.9 2.5 1 2.7.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></svg>Contar minha ideia</a><small>Pelo WhatsApp · Orçamento sem compromisso</small></div>
+    <div class="idea-ex">
+      <a href="#saude"><span><img loading="lazy" src="p/s-jaleco.webp" alt=""></span><b>Com o seu nome</b></a>
+      <a href="#brindes"><span><img loading="lazy" src="p/b-chaveiro-logo2.webp" alt=""></span><b>Com a sua logo</b></a>
+      <a href="#futebol"><span><img loading="lazy" src="p/c-palmeiras.webp" alt=""></span><b>Do seu time</b></a>
+      <a href="#natal"><span><img loading="lazy" src="p/n-rena.webp" alt=""></span><b>Para a sua festa</b></a>
+    </div>
+  </section>
+
+  <section class="shelf" id="duvidas">
+    <div class="sh"><h2><small>Rapidinho</small>Dúvidas</h2></div>
+    <div class="faq">
+      <div><span class="fi"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7v5l3 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span><h3>Prazo</h3><p>Até 3 dias úteis. Personalizado e atacado: 5 a 10.</p></div>
+      <div><span class="fi"><svg viewBox="0 0 24 24"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="7" cy="18" r="2" fill="currentColor"/><circle cx="17" cy="18" r="2" fill="currentColor"/></svg></span><h3>Entrega</h3><p>Na região ou Correios para todo o Brasil.</p></div>
+      <div><span class="fi"><svg viewBox="0 0 24 24"><path d="M12 3l3 3-3 3-3-3zM6 9l3 3-3 3-3-3zM18 9l3 3-3 3-3-3zM12 15l3 3-3 3-3-3z" fill="currentColor"/></svg></span><h3>Pagamento</h3><p>Pix, combinado no WhatsApp.</p></div>
+      <div><span class="fi"><svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span><h3>Atacado</h3><p>A partir de 10 peças, com preço menor.</p></div>
+    </div>
+  </section>
+</main>
+
+<footer><div class="in">
+  <p><b>TrapForma</b> · impressão 3D · Instagram <a href="https://www.instagram.com/trapforma/" target="_blank" rel="noopener">@trapforma</a></p>
+  <p id="creditos"></p>
+</div></footer>
+
+<button class="fab" type="button" id="fab">Ver pedido <span class="n" id="fabn">0</span></button>
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" aria-label="Meu pedido" aria-hidden="true">
+  <div class="dh"><div><small id="dmode">Varejo</small><h2>Meu pedido</h2></div><button class="x" type="button" id="close" aria-label="Fechar">✕</button></div>
+  <div class="db">
+    <div id="lines"></div>
+    <div class="form" id="form">
+      <label for="f-nome">Seu nome<input id="f-nome" autocomplete="name" placeholder="Como podemos te chamar?"></label>
+      <label for="f-empresa" id="l-empresa" hidden>Empresa ou loja (opcional)<input id="f-empresa" placeholder="Nome da empresa"></label>
+      <label for="f-cidade">Cidade<input id="f-cidade" autocomplete="address-level2" placeholder="Sua cidade"></label>
+      <label for="f-entrega">Como quer receber<select id="f-entrega"><option>Entrega no meu endereço</option><option>Vou retirar</option><option>Envio pelos Correios</option></select></label>
+      <label for="f-obs">Observações<textarea id="f-obs" placeholder="Data que precisa, cores, ideia de embalagem..."></textarea></label>
+    </div>
+  </div>
+  <div class="df">
+    <div class="total"><span>Total estimado<br><span id="totnote">frete à parte</span></span><b id="total">R$ 0,00</b></div>
+    <p class="warn" id="warn" hidden></p>
+    <a class="send" id="send" href="#" target="_blank" rel="noopener" aria-disabled="true">Enviar no WhatsApp</a>
+    <p class="note">Nada é cobrado aqui. A gente confirma tudo no WhatsApp.</p>
+  </div>
+</aside>
+
+<script>
+/* ===== CONFIGURAÇÃO: troque aqui ===== */
+const WHATSAPP = "";            // número com DDI e DDD, só dígitos. Ex.: "5587999999999". Vazio = a pessoa escolhe o contato.
+const MIN_ATACADO = 10;         // mínimo por peça no atacado
+const HERO_FRAMES = {path:"hf/", n:45};    // quadros do giro do topo (hf/01.webp ... hf/45.webp)
+/* ===================================== */
+
+document.documentElement.classList.add("js");
+const ICONS = {
+  snake:'<path d="M8 62c10-22 22-22 30 0s20 22 30 0 18-18 24-10" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round"/><circle cx="90" cy="51" r="3" fill="currentColor"/>',
+  lizard:'<ellipse cx="50" cy="50" rx="24" ry="11" fill="currentColor"/><circle cx="80" cy="47" r="9" fill="currentColor"/><path d="M27 52Q10 56 6 70M38 41l-8-14M60 41l8-14M38 59l-8 14M60 59l8 14" stroke="currentColor" stroke-width="6" fill="none" stroke-linecap="round"/>',
+  axolotl:'<circle cx="50" cy="52" r="24" fill="currentColor"/><path d="M26 40l-14-8M26 48l-16 0M26 56l-14 8M74 40l14-8M74 48l16 0M74 56l14 8" stroke="currentColor" stroke-width="6" stroke-linecap="round"/><circle cx="41" cy="50" r="3.5" fill="var(--surface)"/><circle cx="59" cy="50" r="3.5" fill="var(--surface)"/>',
+  dragon:'<path d="M14 70c18 0 22-28 40-28s16 22 34 14" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round"/><path d="M44 42L30 12l26 22zM60 42l20-26-6 30z" fill="currentColor"/><circle cx="88" cy="55" r="7" fill="currentColor"/>',
+  spike:'<path d="M10 66c20 0 26-20 44-20s20 18 36 12" fill="none" stroke="currentColor" stroke-width="10" stroke-linecap="round"/><path d="M28 54l4-16 8 12zM44 46l6-16 6 16zM62 48l8-14 2 16z" fill="currentColor"/>',
+  octopus:'<path d="M26 52a24 24 0 0 1 48 0z" fill="currentColor"/><path d="M30 52c0 14-8 16-8 24M42 52c0 14-4 18-2 26M58 52c0 14 4 18 2 26M70 52c0 14 8 16 8 24" stroke="currentColor" stroke-width="6" fill="none" stroke-linecap="round"/>',
+  rex:'<path d="M20 80V56l8-20h30l10-14h18v18l-12 4v14l-14 8v14h-8V68H36v12z" fill="currentColor"/><circle cx="78" cy="30" r="3" fill="var(--surface)"/>',
+  tag:'<rect x="14" y="30" width="72" height="40" rx="12" fill="currentColor"/><circle cx="26" cy="50" r="5" fill="var(--surface)"/><path d="M40 50h36" stroke="var(--surface)" stroke-width="7" stroke-linecap="round"/>',
+  paw:'<ellipse cx="50" cy="62" rx="18" ry="15" fill="currentColor"/><circle cx="28" cy="40" r="8" fill="currentColor"/><circle cx="42" cy="28" r="8" fill="currentColor"/><circle cx="58" cy="28" r="8" fill="currentColor"/><circle cx="72" cy="40" r="8" fill="currentColor"/>',
+  qr:'<rect x="18" y="14" width="64" height="72" rx="8" fill="currentColor"/><path d="M28 26h14v14H28zM58 26h14v14H58zM28 56h14v14H28zM50 50h6v6h-6zM62 58h8v8h-8zM50 64h6v8h-6z" fill="var(--surface)"/>',
+  cake:'<rect x="18" y="52" width="64" height="26" rx="4" fill="currentColor"/><path d="M26 52V40h48v12" fill="currentColor"/><path d="M50 40V24" stroke="currentColor" stroke-width="5"/><circle cx="50" cy="20" r="5" fill="currentColor"/>',
+  ornament:'<circle cx="50" cy="58" r="28" fill="currentColor"/><rect x="42" y="22" width="16" height="10" rx="2" fill="currentColor"/><path d="M50 22c-6-12 6-12 0 0" stroke="currentColor" stroke-width="4" fill="none"/><path d="M26 54h48" stroke="var(--surface)" stroke-width="4"/>',
+  star:'<path d="M50 10l11 27 29 2-22 18 7 28-25-15-25 15 7-28-22-18 29-2z" fill="currentColor"/>',
+  spiral:'<path d="M50 12L22 84h56z" fill="currentColor"/><path d="M42 34l16 6M36 50l28 8M30 66l38 10" stroke="var(--surface)" stroke-width="5" stroke-linecap="round"/>',
+  dumpling:'<path d="M14 66a36 30 0 0 1 72 0z" fill="currentColor"/><path d="M34 44l4 10M50 38v12M66 44l-4 10" stroke="var(--surface)" stroke-width="4" stroke-linecap="round"/>',
+  bust:'<circle cx="50" cy="36" r="20" fill="currentColor"/><path d="M14 90c0-22 16-32 36-32s36 10 36 32z" fill="currentColor"/><circle cx="43" cy="34" r="3" fill="var(--surface)"/><circle cx="57" cy="34" r="3" fill="var(--surface)"/><path d="M43 44q7 6 14 0" stroke="var(--surface)" stroke-width="3" fill="none" stroke-linecap="round"/>',
+  logo:'<rect x="12" y="28" width="76" height="44" rx="12" fill="currentColor"/><circle cx="24" cy="50" r="5" fill="var(--surface)"/><rect x="40" y="38" width="34" height="24" rx="5" fill="none" stroke="var(--surface)" stroke-width="4"/>'
+};
+/* Filamentos que você tem agora. Comprou cor nova? Acrescente aqui: ["Nome","#cor"] */
+const MEUS_FILAMENTOS = [["Preto","#1b1b1b"],["Branco","#f4f4f4"],["Azul","#2f6fd6"],["Verde","#2fa04e"],["Marrom","#7a4a2a"],["Laranja","#f07a1a"]];
+const COLORS = [...MEUS_FILAMENTOS, ["Outra cor","conic-gradient(#f2431e,#f5c400,#2bb673,#2f7de1,#9b51e0,#f2431e)"]];
+const CORES_BICHO = {"b-canguru-articulado": "caramelo, marrom, creme e preto", "b-estrela-do-mar-flexivel": "rosa, pink, branco e preto", "b-gatinho-das-sombras-flexivel": "preto, amarelo e lilás", "b-macaquinho-articulado": "marrom, bege, branco e preto"};
+const NOME_BICHO = {"b-capivara-flexivel":"Capivara fantasminha","b-gatinho-das-sombras-flexivel":"Gatinho preto"};
+const EM_PE = ["b-macaquinho-articulado","b-estrela-do-mar-flexivel"];
+const BICHOS = [{"id": "b-abelha-articulada", "n": "Abelha articulada", "g": "repteis", "img": "p/abelha-articulada.webp", "v": 14.9, "a": 8.9, "parts": 1, "grams": 4}, {"id": "b-articulating-axolotl", "n": "Axolote articulado", "g": "mar", "img": "p/articulating-axolotl.webp", "v": 14.9, "a": 8.9, "parts": 1, "grams": 9}, {"id": "b-filhote-de-bagre-articulado", "n": "Bagre filhote", "g": "mar", "img": "p/filhote-de-bagre-articulado.webp", "v": 14.9, "a": 8.9, "parts": 1, "grams": 10}, {"id": "b-pssaro-colibri-flexivel", "n": "Beija-flor flexível", "g": "selvagens", "img": "p/pssaro-colibri-flexivel.webp", "v": 19.9, "a": 11.9, "parts": 1, "grams": 12}, {"id": "b-bicho-preguia-flexivel", "n": "Bicho-preguiça flexível", "g": "selvagens", "img": "p/bicho-preguia-flexivel.webp", "v": 19.9, "a": 11.9, "parts": 1, "grams": 20}, {"id": "b-bison-articulated", "n": "Bisão articulado", "g": "selvagens", "img": "p/bison-articulated.webp", "v": 19.9, "a": 11.9, "parts": 1, "grams": 16}, {"id": "b-cacatua-flexivel", "n": "Cacatua flexível", "g": "selvagens", "img": "p/cacatua-flexivel.webp", "v": 19.9, "a": 11.9, "parts": 1, "grams": 12}, {"id": "b-cachorrinho-articulado", "n": "Cachorrinho articulado", "g": "pets", "img": "p/cachorrinho-articulado.webp", "v": 19.9, "a": 11.9, "parts": 1, "grams": 18}, {"id": "b-canguru-articulado", "n": "Canguru articulado", "g": "selvagens", "img": "p/canguru-articulado.webp", "v": 14.9, "a": 8.9, "parts": 2, "grams": 9}, {"id": "b-capivara-flexivel", "n": "Capivara flexível", "g": "pets", "img": "p/capivara-flexivel.webp", "v": 39.9, "a": 23.9, "parts": 4, "grams": 49}, {"id": "b-spider-skull-flexi", "n": "Caveira-aranha flexível", "g": "repteis", "img": "p/spider-skull-flexi.webp", "v": 14.9, "a": 8.9, "parts": 2, "grams": 4}, {"id": "b-cervo-articulado", "n": "Cervo articulado", "g": "selvagens", "img": "p/cervo-articulado.webp", "v": 24.9, "a": 14.9, "parts": 1, "grams": 21}, {"id": "b-coelho-articulado", "n": "Coelho articulado", "g": "pets", "img": "p/coelho-articulado.webp", "v": 14.9, "a": 8.9, "parts": 1, "grams": 8}, {"id": "b-coruja-articulada", "n": "Coruja articulada", "g": "selvagens", "img": "p/coruja-articulada.webp", "v": 19.9, "a": 11.9, "parts": 1, "grams": 14}, {"id": "b-dino-bebe-articulado", "n": "Dino bebê", "g": "repteis", "img": "p/dino-bebe-articulado.webp", "v": 24.9, "a": 14.9, "parts": 2, "grams": 27}, {"id": "b-elefante-articulado", "n": "Elefante articulado", "g": "selvagens", "img": "p/elefante-articulado.webp", "v": 19.9, "a": 11.9, "parts": 2, "grams": 19}, {"id": "b-elefante-flexivel", "n": "Elefante flexível", "g": "selvagens", "img": "p/elefante-flexivel.webp", "v": 39.9, "a": 23.9, "parts": 1, "grams": 51}, {"id": "b-esquilo-flexivel", "n": "Esquilo flexível", "g": "selvagens", "img": "p/esquilo-flexivel.webp", "v": 19.9, "a": 11.9, "parts": 1, "grams": 14}, {"id": "b-esquilo-flexivel-2", "n": "Esquilo flexível 2", "g": "selvagens", "img": "p/esquilo-flexivel-2.webp", "v": 19.9, "a": 11.9, "parts": 1, "grams": 11}, {"id": "b-estrela-do-mar-flexivel", "n": "Estrela-do-mar", "g": "mar", "img": "p/estrela-do-mar-flexivel.webp", "v": 19.9, "a": 11.9, "parts": 2, "grams": 16}, {"id": "b-flamingo-flexivel", "n": "Flamingo flexível", "g": "selvagens", "img": "p/flamingo-flexivel.webp", "v": 29.9, "a": 17.9, "parts": 1, "grams": 38}, {"id": "b-gato-flexivel", "n": "Gatinho abraço", "g": "pets", "img": "p/gato-flexivel.webp", "v": 19.9, "a": 11.9, "parts": 1, "grams": 11}, {"id": "b-gatinho-das-sombras-flexivel", "n": "Gatinho flexível", "g": "pets", "img": "p/gatinho-das-sombras-flexivel.webp", "v": 14.9, "a": 8.9, "parts": 4, "grams": 6}, {"id": "b-girafa-flexivel", "n": "Girafa flexível", "g": "selvagens", "img": "p/girafa-flexivel.webp", "v": 19.9, "a": 11.9, "parts": 1, "grams": 13}, {"id": "b-golden-retrivier-articulado", "n": "Golden Retriever articulado", "g": "pets", "img": "p/golden-retrivier-articulado.webp", "v": 19.9, "a": 11.9, "parts": 1, "grams": 14}, {"id": "b-golfinho-flexivel", "n": "Golfinho flexível", "g": "mar", "img": "p/golfinho-flexivel.webp", "v": 19.9, "a": 11.9, "parts": 1, "grams": 11}, {"id": "b-guaxinim-flexivel", "n": "Guaxinim flexível", "g": "selvagens", "img": "p/guaxinim-flexivel.webp", "v": 24.9, "a": 14.9, "parts": 1, "grams": 26}, {"id": "b-bebe-hipopotamo-articulado", "n": "Hipopótamo bebê", "g": "selvagens", "img": "p/bebe-hipopotamo-articulado.webp", "v": 39.9, "a": 23.9, "parts": 1, "grams": 47}, {"id": "b-iguana-flexivel", "n": "Iguana flexível", "g": "repteis", "img": "p/iguana-flexivel.webp", "v": 14.9, "a": 8.9, "parts": 4, "grams": 7}, {"id": "b-lagartixa-articulada", "n": "Lagartixa articulada", "g": "repteis", "img": "p/lagartixa-articulada.webp", "v": 19.9, "a": 11.9, "parts": 1, "grams": 14}, {"id": "b-lagartixa-de-crista-articulada", "n": "Lagartixa-de-crista articulada", "g": "repteis", "img": "p/lagartixa-de-crista-articulada.webp", "v": 19.9, "a": 11.9, "parts": 1, "grams": 15}, {"id": "b-largato-articulado", "n": "Lagarto articulado", "g": "repteis", "img": "p/largato-articulado.webp", "v": 19.9, "a": 11.9, "parts": 1, "grams": 18}, {"id": "b-louva-deus-articulado", "n": "Louva-Deus articulado", "g": "repteis", "img": "p/louva-deus-articulado.webp", "v": 19.9, "a": 11.9, "parts": 1, "grams": 11}, {"id": "b-macaco-bebe-articulado", "n": "Macaco bebê", "g": "selvagens", "img": "p/macaco-bebe-articulado.webp", "v": 14.9, "a": 8.9, "parts": 1, "grams": 8}, {"id": "b-macaquinho-articulado", "n": "Macaquinho articulado", "g": "selvagens", "img": "p/macaquinho-articulado.webp", "v": 19.9, "a": 11.9, "parts": 3, "grams": 12}, {"id": "b-mini-capivara-flexivel", "n": "Mini Capivara flexível", "g": "pets", "img": "p/mini-capivara-flexivel.webp", "v": 19.9, "a": 11.9, "parts": 1, "grams": 17}, {"id": "b-mini-ratinho-flexivel", "n": "Mini Ratinho flexível", "g": "pets", "img": "p/mini-ratinho-flexivel.webp", "v": 19.9, "a": 11.9, "parts": 1, "grams": 14}, {"id": "b-morcego-articulado", "n": "Morcego articulado", "g": "selvagens", "img": "p/morcego-articulado.webp", "v": 14.9, "a": 8.9, "parts": 1, "grams": 7}, {"id": "b-panda-vermelho", "n": "Panda-vermelho articulado", "g": "selvagens", "img": "p/panda-vermelho.webp", "v": 14.9, "a": 8.9, "parts": 1, "grams": 8}, {"id": "b-papagaio-flexivel", "n": "Papagaio flexível", "g": "selvagens", "img": "p/papagaio-flexivel.webp", "v": 29.9, "a": 17.9, "parts": 1, "grams": 43}, {"id": "b-peixe-koi-articulado", "n": "Peixe carpa koi", "g": "mar", "img": "p/peixe-koi-articulado.webp", "v": 19.9, "a": 11.9, "parts": 1, "grams": 11}, {"id": "b-dog-poodle", "n": "Poodle", "g": "pets", "img": "p/dog-poodle.webp", "v": 19.9, "a": 11.9, "parts": 1, "grams": 14}, {"id": "b-porquinho-flexivel", "n": "Porquinho flexível", "g": "pets", "img": "p/porquinho-flexivel.webp", "v": 14.9, "a": 8.9, "parts": 1, "grams": 6}, {"id": "b-pterodctilo-bebe-articulado", "n": "Pterodáctilo bebê", "g": "repteis", "img": "p/pterodctilo-bebe-articulado.webp", "v": 14.9, "a": 8.9, "parts": 1, "grams": 6}, {"id": "b-baby-rato-articulado", "n": "Ratinho bebê", "g": "pets", "img": "p/baby-rato-articulado.webp", "v": 14.9, "a": 8.9, "parts": 1, "grams": 5}, {"id": "b-baby-rino", "n": "Rinoceronte bebê", "g": "selvagens", "img": "p/baby-rino.webp", "v": 24.9, "a": 14.9, "parts": 3, "grams": 29}, {"id": "b-dog-salsicha-2", "n": "Salsicha flexível", "g": "pets", "img": "p/dog-salsicha-2.webp", "v": 19.9, "a": 11.9, "parts": 1, "grams": 16}, {"id": "b-baby-frog", "n": "Sapinho", "g": "repteis", "img": "p/baby-frog.webp", "v": 14.9, "a": 8.9, "parts": 1, "grams": 6}, {"id": "b-tartaruga-articulada", "n": "Tartaruga articulada", "g": "selvagens", "img": "p/tartaruga-articulada.webp", "v": 24.9, "a": 14.9, "parts": 1, "grams": 26}, {"id": "b-tigre-articulado", "n": "Tigre articulado", "g": "selvagens", "img": "p/tigre-articulado.webp", "v": 24.9, "a": 14.9, "parts": 1, "grams": 21}, {"id": "b-tubaro-martelo-articulado", "n": "Tubarão Martelo articulado", "g": "mar", "img": "p/tubaro-martelo-articulado.webp", "v": 19.9, "a": 11.9, "parts": 1, "grams": 14}, {"id": "b-tubaro-branco", "n": "Tubarão-branco", "g": "mar", "img": "p/tubaro-branco.webp", "v": 19.9, "a": 11.9, "parts": 1, "grams": 18}, {"id": "b-tubarozinho-fofo-articulado", "n": "Tubarãozinho fofo", "g": "mar", "img": "p/tubarozinho-fofo-articulado.webp", "v": 19.9, "a": 11.9, "parts": 1, "grams": 12}].filter(b => CORES_BICHO[b.id]).map(b => ({...b, n: NOME_BICHO[b.id] || b.n, img:`p/m-${b.id.slice(2)}${EM_PE.includes(b.id)?"2":""}.webp`, i:"lizard", tag:"Montado", cores: CORES_BICHO[b.id]}));
+const SHELVES = [
+ {id:"bichinhos", k:"Pronta entrega", t:"Bichinhos articulados", d:"Saem prontos da impressora, já se mexendo.", sub:true, items:[
+  {id:"z-tubarao", g:"mar", n:"Tubarãozinho articulado", i:"lizard", img:"p/z-tubarao.webp", photo:true, cores:"azul-claro e preto", v:14.90, a:8.90, tag:"Novo"},
+  {id:"z-martelo", g:"mar", n:"Tubarão-martelo articulado", i:"lizard", img:"p/z-martelo.webp", photo:true, cores:"cinza e preto", v:14.90, a:8.90, tag:"Novo"},
+  {id:"z-coelho", g:"pets", n:"Coelhinho de crochê", i:"lizard", img:"p/z-coelho.webp", photo:true, cores:"branco, preto e rosa", v:19.90, a:11.90, tag:"Novo"},
+  {id:"z-camaleao", g:"repteis", n:"Camaleão olhudo", i:"lizard", img:"p/z-camaleao.webp", photo:true, s:"10 cm · escolha a cor", v:19.90, a:11.90, tag:"Novo"},
+  ...BICHOS
+ ]},
+ {id:"animes", k:"Montados e coloridos", t:"Animes", d:"Cada parte impressa na cor original e montada à mão.", tabs:[["pokemon","Pokémon"],["dbz","Dragon Ball"],["onepiece","One Piece"]], items:[
+  {g:"pokemon", id:"pk-charmander", n:"Charmander", i:"bust", img:"p/pk-charmander.webp", cores:"laranja, creme, vermelho, amarelo e azul", v:89.90, a:69.90, tag:"Colorido"},
+  {g:"pokemon", id:"pk-squirtle", n:"Squirtle", i:"bust", img:"p/f-squirtle.webp", photo:true, fit:true, real:true, cores:"azul, creme, marrom e branco", v:89.90, a:69.90, tag:"Colorido"},
+  {g:"pokemon", id:"pk-bulbasaur", n:"Bulbasaur", i:"bust", img:"p/f-bulbasaur.webp", photo:true, fit:true, real:true, cores:"verde-água, verde, vermelho e branco", v:99.90, a:79.90, tag:"Colorido"},
+  {g:"pokemon", id:"pk-charizard", n:"Charizard de asas abertas", i:"dragon", img:"p/f-charizard.webp", photo:true, fit:true, real:true, cores:"laranja, creme, azul-petróleo e chama", v:129.90, a:99.90, tag:"Destaque"},
+  {g:"onepiece", id:"a-luffy", n:"Luffy Gear 5 em chamas", i:"bust", img:"p/a-luffy.webp", photo:true, cover:true, cores:"branco", v:89.90, a:69.90, tag:"Novo"},
+  {g:"dbz", id:"a-goku", fit:true, n:"Goku Super Saiyajin 3", i:"bust", img:"p/a-goku.webp", photo:true, cores:"amarelo, laranja, azul e tom de pele", v:169.90, a:129.90, tag:"Destaque"}
+ ]},
+ {id:"futebol", k:"Para a torcida", t:"Futebol", d:"Mascotes bombadões e chaveiros do seu time.", items:[
+  {id:"m-santos", fit:true, n:"Baleia do Santos", i:"bust", img:"p/m-santos.webp", photo:true, cores:"branco, preto, azul e dourado", v:159.90, a:124.90, tag:"Futebol"},
+  {id:"m-palmeiras", fit:true, n:"Porco do Palmeiras", i:"bust", img:"p/m-palmeiras.webp", photo:true, cores:"verde, branco, tom de pele e preto", v:159.90, a:124.90, tag:"Futebol"},
+  {id:"m-flamengo", fit:true, n:"Urubu do Flamengo", i:"bust", img:"p/m-flamengo.webp", photo:true, cores:"branco, preto, laranja e vermelho", v:159.90, a:124.90, tag:"Futebol"},
+  {id:"m-corinthians", n:"Gavião do Corinthians", i:"bust", img:"p/m-corinthians.webp", photo:true, cores:"branco, preto, cinza, amarelo e vermelho", v:159.90, a:124.90, tag:"Novo"},
+  {id:"c-palmeiras", n:"Chaveiro Palmeiras", i:"tag", img:"p/c-palmeiras.webp", photo:true, cores:"verde e branco", v:14.90, a:7.90, tag:"Novo"},
+  {id:"c-corinthians", n:"Chaveiro Corinthians", i:"tag", img:"p/c-corinthians.webp", photo:true, cores:"vermelho, preto e branco", v:14.90, a:7.90, tag:"Novo"},
+  {id:"c-saopaulo", n:"Chaveiro São Paulo", i:"tag", img:"p/c-saopaulo.webp", photo:true, cores:"branco, preto e vermelho", v:14.90, a:7.90, tag:"Novo"},
+  {id:"c-santos", n:"Chaveiro Santos", i:"tag", img:"p/c-santos.webp", photo:true, cores:"preto e branco", v:14.90, a:7.90, tag:"Novo"}
+ ]},
+ {id:"desenhos", k:"Desenhos, filmes e ícones", t:"Personagens", items:[
+  {id:"x-hogwarts", n:"Castelo de Hogwarts", i:"tag", img:"p/x-hogwarts.webp", photo:true, cores:"branco", v:99.90, a:79.90, tag:"Destaque"},
+  {id:"x-einstein", n:"Einstein colecionável", i:"bust", img:"p/x-einstein.webp", photo:true, cores:"cinza, bege, marrom e branco", v:129.90, a:99.90, tag:"Novo"},
+  {id:"d-trono", n:"Dragão sobre o trono de espadas", i:"dragon", img:"p/d-trono1.webp", imgs:["p/d-trono1.webp","p/d-trono2.webp","p/d-trono3.webp"], photo:true, real:true, cover:true, cores:"preto", v:259.90, a:189.90, tag:"Destaque"},
+  {id:"d-venom", n:"Venom cabeçudo", i:"bust", img:"p/d-venom.webp", photo:true, real:true, cores:"preto e branco", v:79.90, a:59.90, tag:"Novo"},
+  {id:"d-batman", n:"Batman cabeçudo", i:"bust", img:"p/d-batman.webp", photo:true, cover:true, cores:"preto, bege e branco", v:79.90, a:59.90, tag:"Novo"},
+  {id:"d-aranha", cover:true, n:"Homem-Aranha Noir", i:"bust", img:"p/d-aranha.webp", photo:true, real:true, cores:"preto, cinza e bege", v:79.90, a:59.90, tag:"Novo"}
+ ]},
+ {id:"jogos", k:"Para gamers", t:"Jogos", d:"Mapas e peças para quem vive jogando.", items:[
+  {id:"j-atlas", n:"Suporte de controle Atlas", i:"tag", img:"p/j-atlas.webp", photo:true, cover:true, d:"Um titã segurando o seu controle. Serve para PlayStation e Xbox.", cores:"branco", v:139.90, a:99.90, tag:"Novo"},
+  {id:"j-revolver", n:"Revólver gótico de cosplay", i:"tag", img:"p/j-revolver.webp", photo:true, cover:true, d:"Réplica decorativa para cosplay e coleção.", cores:"preto", v:199.90, a:149.90, tag:"Novo"},
+  {id:"j-busto", n:"Busto do assassino encapuzado", i:"bust", img:"p/j-busto.webp", photo:true, cover:true, cores:"branco", v:39.90, a:29.90, tag:"Novo"},
+  {id:"j-faca", n:"Faca tática de treino", i:"tag", img:"p/j-faca.webp", photo:true, cover:true, d:"Réplica decorativa de plástico, para cosplay e coleção.", cores:"preto", v:34.90, a:24.90, tag:"Novo"},
+  {id:"j-dust2", n:"Mapa Dust II em relevo", i:"tag", img:"p/j-dust2.webp", photo:true, d:"O mapa clássico em 3D, para pendurar ou deixar na mesa.", cores:"bege e verde-oliva", v:119.90, a:89.90, tag:"Novo"}
+ ]},
+ {id:"saude", k:"Para o consultório", t:"Médico e dentista", d:"Presentes e organizadores para quem cuida da saúde.", items:[
+  {id:"s-jaleco", n:"Porta-canetas jaleco com nome", i:"tag", img:"p/s-jaleco.webp", photo:true, d:"Com o nome e a especialidade em relevo.", cores:"branco e preto", v:59.90, a:44.90, ask:"Nome e especialidade", tag:"Personalizado"},
+  {id:"s-dente", n:"Porta-cartões de dentista", i:"tag", img:"p/s-dente.webp", photo:true, d:"Dente, escova e instrumentos, com espaço para cartões de visita.", cores:"branco", v:69.90, a:52.90},
+  {id:"chav-joelho", n:"Chaveiro Anatômico – Articulação do Joelho", i:"tag", img:"p/joelho.webp", photo:true, d:"Presente certeiro para fisioterapeutas, ortopedistas e estudantes.", cores:"branco osso", v:24.90, a:14.90, tag:"Chaveiro"}
+ ]},
+ {id:"esporte", k:"Para atletas", t:"Esporte", d:"Para quem vive o esporte.", items:[
+  {id:"e-senna", n:"Busto Ayrton Senna", i:"bust", img:"p/e-senna.webp", photo:true, real:true, dark:true, s:"cerca de 10 cm", cores:"branco", v:99.90, a:79.90, tag:"Destaque"},
+  {id:"e-medalhas", n:"Porta-medalhas hexagonal", i:"tag", img:"p/e-medalhas.webp", photo:true, d:"Cada hexágono guarda uma medalha e encaixa no outro. Monte a colmeia do seu jeito.", cores:"preto", v:34.90, a:24.90, ask:"Quantas peças e esporte"},
+  {id:"c-kettlebell", n:"Chaveiro kettlebell com nome", i:"tag", img:"p/c-kettlebell2.webp", photo:true, cover:true, d:"As cores podem mudar da foto.", v:19.90, a:11.90, ask:"Nome no chaveiro", tag:"Personalizado"},
+  {id:"e-suporte-medalhas", n:"Suporte de medalhas do seu esporte", i:"tag", img:"p/e-suporte-medalhas2.webp", photo:true, cover:true, cores:"branco", v:59.90, a:44.90, ask:"Qual esporte", tag:"Novo"},
+  {id:"e-porta-anel-kettlebell", n:"Porta-anel kettlebell", i:"tag", img:"p/e-porta-anel-kettlebell2.webp", photo:true, cover:true, d:"Tampa de rosca. Guarda anel e corrente.", v:24.90, a:14.90, tag:"Novo"}
+ ]},
+ {id:"personalizados", k:"Com o seu nome", t:"Personalizados", d:"Nome, cor ou o seu pet. Você escreve aqui e já vai na mensagem.", items:[
+  {id:"caricatura", n:"Caricatura 3D da sua foto", i:"bust", img:"p/caricatura.webp", photo:true, fit:true, dark:true, real:true, d:"Você manda a foto e a gente cria o bonequinho.", v:149.90, a:119.90, ask:"Para quem é", tag:"Sob encomenda"},
+  {id:"chaveiro-nome", n:"Chaveiro com nome", i:"tag", img:"p/p-chaveiro-nome.webp", photo:true, d:"Seu nome em relevo, na cor que escolher.", v:14.90, a:6.90, ask:"Nome no chaveiro", c:["Customisable Nametag","Ryno_man","CC0"]},
+  {id:"b-selo", n:"Carimbo com a sua logo", i:"logo", img:"p/p-carimbo.webp", photo:true, cover:true, d:"Selo de fabricante com a sua marca. A logo você manda no WhatsApp.", v:59.90, a:44.90, ask:"Nome da marca", tag:"Personalizado"},
+  {id:"p-lapis", n:"Ponteira de lápis com nome", i:"tag", img:"p/p-lapis.webp", photo:true, v:9.90, a:5.90, ask:"Nome", tag:"Novo"},
+  {id:"pix", n:"Plaquinha Pix com QR Code", i:"qr", img:"p/p-pix.webp", photo:true, cover:true, d:"Para o balcão, com a sua logo e o QR do Pix.", v:39.90, a:27.90, ask:"Nome da loja", c:["Customizable Pix Sign BRAZIL","Th3D.br","CC0"]}
+ ]},
+ {id:"natal", k:"Natal 2026", t:"Enfeites de Natal", d:"Bonequinhos de crochê, porta-panetone e enfeites com foto.", items:[
+  {id:"n-rena", n:"Rena de crochê", i:"ornament", img:"p/n-rena.webp", photo:true, d:"Textura de crochê, mas é impressa em 3D.", cores:"caramelo, marrom, preto e vermelho", v:39.90, a:27.90, tag:"Natal"},
+  {id:"n-urso", n:"Ursinho polar de Natal", i:"ornament", img:"p/n-urso.webp", photo:true, d:"Com gorro de Papai Noel.", cores:"branco, vermelho e preto", v:39.90, a:27.90, tag:"Natal"},
+  {id:"n-gengibre", n:"Biscoitinho de gengibre", i:"ornament", img:"p/n-gengibre.webp", photo:true, d:"O boneco de biscoito mais fofo da árvore.", cores:"caramelo, branco, preto e laranja", v:39.90, a:27.90, tag:"Natal"},
+  {id:"n-poodle", n:"Poodle de Natal", i:"ornament", img:"p/n-poodle.webp", photo:true, d:"Com gorro de Papai Noel.", cores:"caramelo, vermelho, branco e preto", v:39.90, a:27.90, tag:"Natal"},
+  {id:"porta-panetone", n:"Porta-panetone Papai Noel", i:"ornament", img:"p/panetone.webp", photo:true, cores:"vermelho, branco, preto e amarelo", v:89.90, a:69.90, tag:"Natal"}
+ ]},
+ {id:"religioso", k:"Fé em casa", t:"Religioso", d:"Imagens e presépios para o lar e para presentear.", items:[
+  {id:"r-nossa-senhora", n:"Nossa Senhora porta-terço", i:"tag", img:"p/c-porta-terco.webp", photo:true, cover:true, d:"Guarda o terço com carinho e enfeita o cantinho de oração.", cores:"branco", v:59.90, a:44.90, tag:"Novo"},
+  {id:"r-presepio", n:"Presépio completo com arco", i:"ornament", img:"p/r-presepio1.webp", photo:true, cover:true, cores:"branco", v:129.90, a:99.90, tag:"Novo"},
+  {id:"r-presepio-estrela", n:"Presépio com estrela de Belém", i:"ornament", img:"p/r-presepio2.webp", photo:true, cover:true, cores:"branco", v:64.90, a:49.90, tag:"Novo"},
+  {id:"r-sagrada", n:"Sagrada Família minimalista", i:"ornament", img:"p/r-sagrada.webp", photo:true, cover:true, cores:"branco", v:29.90, a:22.90, tag:"Novo"},
+  {id:"r-cristo", n:"Cristo em relevo", i:"bust", img:"p/r-cristo1.webp", imgs:["p/r-cristo1.webp","p/r-cristo2.webp"], photo:true, cover:true, cores:"branco", v:99.90, a:74.90, tag:"Novo"}
+ ]},
+ {id:"cases", k:"Para os seus fones", t:"Cases para fones", d:"Capas impressas em 3D para o estojo dos AirPods.", items:[
+  {id:"a-capa-aranha", n:"Capa de AirPods do Homem-Aranha", i:"tag", img:"p/d-capa-aranha1.webp", imgs:["p/d-capa-aranha1.webp","p/d-capa-aranha2.webp"], photo:true, cover:true, d:"Para AirPods Pro 1, 2 e 3.", cores:"vermelho, preto e branco", v:59.90, a:44.90, tag:"Novo"},
+  {id:"k-furada", n:"Case AirPods Pro furada", i:"tag", img:"p/k-furada1.webp", imgs:["p/k-furada1.webp","p/k-furada2.webp","p/k-furada3.webp"], photo:true, cover:true, d:"Para AirPods Pro 1, 2 e 3.", cores:"as cores do seu filamento", v:44.90, a:34.90, tag:"Novo"},
+  {id:"k-lisa", n:"Case AirPods Pro lisa", i:"tag", img:"p/k-lisa1.webp", imgs:["p/k-lisa1.webp","p/k-lisa2.webp"], photo:true, cover:true, d:"Para AirPods Pro 1, 2 e 3.", cores:"as cores do seu filamento", v:39.90, a:29.90, tag:"Novo"},
+  {id:"k-presilha", n:"Presilha para case de AirPods", i:"tag", img:"p/k-presilha.webp", photo:true, cover:true, d:"Prende o estojo dos AirPods onde você precisar.", cores:"preto", v:14.90, a:8.90, tag:"Novo"}
+ ]},
+ {id:"casa", k:"Para a sua casa", t:"Casa e decoração", d:"Peças úteis que também enfeitam.", items:[
+  {id:"c-cacto", n:"Suporte cacto para fone e relógio", i:"tag", img:"p/c-cacto1.webp", imgs:["p/c-cacto1.webp","p/c-cacto2.webp"], photo:true, cover:true, d:"Pendura o fone, encaixa o relógio e a base guarda o resto.", cores:"verde e bege", v:159.90, a:119.90, tag:"Novo"}
+ ]},
+ {id:"fidgets", k:"Para as mãos inquietas", t:"Fidgets", d:"Gira, clica, desliza. Difícil largar.", items:[
+  {id:"estrela", n:"Estrela fidget", i:"star", img:"p/f-estrela.webp", photo:true, cover:true, d:"Gira e se transforma na mão.", v:19.90, a:11.90, c:["Amazing star fidget","Big-D-SyneS","CC BY-SA"]},
+  {id:"cone", n:"Cone espiral", i:"spiral", img:"p/f-cone.webp", photo:true, d:"Uma espiral que sobe e desce sem parar.", v:24.90, a:14.90, c:["Spiral Cone Fidget","rangido","CC BY"]},
+  {id:"f-laranja", n:"Laranja sensorial", i:"star", img:"p/f-laranja1.webp", imgs:["p/f-laranja1.webp","p/f-laranja2.webp"], photo:true, cover:true, cores:"laranja, branco e verde", d:"Abre ao meio e os gomos saem um a um.", v:69.90, a:49.90, tag:"Novo"},
+  {id:"f-bastao", n:"Bastão giratório de esqueletos", i:"star", img:"p/f-bastao1.webp", imgs:["p/f-bastao1.webp","p/f-bastao2.webp","p/f-bastao.mp4"], poster:"p/f-bastao-poster.webp", photo:true, cover:true, cores:"branco, preto, azul e laranja", d:"Gire o bastão e os esqueletos voam.", v:59.90, a:44.90, tag:"Novo"},
+  {id:"clicker", n:"Clicker de bolinho", i:"dumpling", img:"p/f-dumpling.webp", photo:true, d:"Aperta e faz clique.", v:14.90, a:7.90, c:["Squishy Dumpling Fidget Clickers","Ada & K 3DA","CC BY-ND"]}
+ ]},
+ {id:"brindes", k:"Para empresas, festas e eventos", t:"Atacado e brindes", vitrine:true, items:[
+  {id:"chaveiro-logo", n:"Chaveiro com a sua logo", i:"logo", img:"p/b-chaveiro-logo2.webp", photo:true, cover:true, d:"Na cor da sua marca. A logo você manda no WhatsApp.", v:6.00, consulta:true, min:15, ask:"Nome da empresa"},
+  {id:"b-placa-google", n:"Placa de avaliação Google com NFC", i:"tag", img:"p/b-placa-google2.webp", imgs:["p/b-placa-google2.webp","p/b-placa-google.webp"], photo:true, cover:true, cores:"azul ou branco, com o G colorido", v:49.90, a:34.90, ask:"Link do Google da sua empresa", tag:"Novo"},
+  {id:"b-microfone", n:"Canopla de microfone com logo", i:"logo", img:"p/b-microfone.webp", photo:true, d:"Para entrevistas, eventos e podcasts.", v:59.90, a:44.90, ask:"Nome da empresa", tag:"Personalizado"}
+ ]}
+];
+// Produtos guardados (não aparecem no site). Ids da página ADM.
+const OCULTOS = ["b-microfone","c-kettlebell","porta-panetone","k-furada","k-lisa","k-presilha","r-cristo"];
+SHELVES.forEach(s => s.items = s.items.filter(i => !OCULTOS.includes(i.id)));
+for (let k = SHELVES.length - 1; k >= 0; k--) if (!SHELVES[k].items.length) SHELVES.splice(k, 1);
+const ORDEM = ["natal","brindes","futebol","esporte","animes","desenhos","saude","religioso","cases","casa","jogos","personalizados","fidgets","bichinhos"];
+SHELVES.sort((a, b) => ORDEM.indexOf(a.id) - ORDEM.indexOf(b.id));
+// o que aparece na primeira fileira de cada prateleira: o mais bonito e com mais chance de vender
+const PRIORIDADE = ["j-atlas","j-revolver","j-busto","j-faca","n-rena","n-urso","n-gengibre","n-poodle",
+  "b-placa-google","chaveiro-logo",
+  "m-flamengo","m-corinthians","m-palmeiras","m-santos",
+  "e-senna","e-suporte-medalhas","e-medalhas","e-porta-anel-kettlebell",
+  "pk-charizard","pk-squirtle","pk-bulbasaur","pk-charmander",
+  "d-batman","d-trono","d-venom","d-aranha","x-hogwarts","x-einstein",
+  "caricatura","pix","chaveiro-nome","b-selo","p-lapis",
+  "r-presepio-estrela","r-presepio","r-nossa-senhora","r-sagrada",
+  "f-bastao","f-laranja","estrela","cone","clicker",
+  "z-camaleao","b-macaquinho-articulado","b-gatinho-das-sombras-flexivel","z-tubarao"];
+const rank = i => { const k = PRIORIDADE.indexOf(i.id); return k < 0 ? 999 : k; };
+SHELVES.forEach(sh => sh.items.sort((a, b) => rank(a) - rank(b)));
+const VITRINE = [["p/b-chaveiro-logo2.webp","Chaveiros com sua logo","brindes"],["p/n-rena.webp","Lembrancinhas de Natal","natal"],["p/z-tubarao.webp","Lembrancinhas de festa","bichinhos"],["p/s-jaleco.webp","Presentes para clínicas","saude"],["p/e-medalhas.webp","Porta-medalhas para eventos","esporte"],["p/f-squirtle.webp","Bonecos para coleção","animes"]];
+VITRINE.splice(0, VITRINE.length, ...VITRINE.filter(v => SHELVES.some(s => s.id === v[2])));
+const ALL = SHELVES.flatMap(s => s.items.map(i => ({...i, shelf:s.id, onlyA:!!s.onlyA})));
+const byId = Object.fromEntries(ALL.map(i => [i.id, i]));
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const brl = n => "R$ " + n.toFixed(2).replace(".", ",").replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+const svg = k => `<svg viewBox="0 0 100 100" aria-hidden="true">${ICONS[k]}</svg>`;
+const store = {get(k, d){ try{ const v = localStorage.getItem(k); return v ? JSON.parse(v) : d }catch(_){ return d } }, set(k, v){ try{ localStorage.setItem(k, JSON.stringify(v)) }catch(_){} }};
+
+let mode = store.get("tf_mode", "varejo");
+let cart = store.get("tf_cart", []);          // [{key,id,qty,cor,obs}]
+const minFor = i => mode === "atacado" ? (i.min || MIN_ATACADO) : 1;
+function unit(i, q){
+  if (i.tiers){ let p = i.tiers[0][1]; for (const [m, v] of i.tiers) if (q >= m) p = v; return p; }
+  if (i.consulta) return i.v;
+  return mode === "atacado" ? i.a : i.v;
+}
+cart = cart.filter(l => byId[l.id] && !(mode === "atacado" && byId[l.id].consulta));
+
+/* ---------- catálogo ---------- */
+$("tick").innerHTML = (Array(2).fill(["Bichinhos articulados","Animes","Mascotes de futebol","Jogos","Médico e dentista","Porta-medalhas","Chaveiros com nome","Enfeites de Natal","Porta-panetone","Brindes para empresas","Fidgets","Topo de bolo","Peças sob encomenda","Varejo e atacado"].map(t => `<span>${t}</span>`).join(""))).join("");
+function galHTML(i){
+  return `<div class="gal-tr">${i.imgs.map((src, k) => /\.mp4$/.test(src) ? `<video class="photo" src="${src}"${i.poster ? ` poster="${i.poster}"` : ""} muted loop playsinline preload="none" aria-label="Vídeo: ${esc(i.n)}"></video>` : `<img loading="lazy" class="photo" src="${src}" alt="${esc(i.n)}${k ? " (foto " + (k + 1) + ")" : ""}">`).join("")}</div>`
+    + `<button class="gal-nav prev" type="button" aria-label="Foto anterior" hidden>‹</button><button class="gal-nav next" type="button" aria-label="Próxima foto">›</button>`
+    + `<span class="gal-dots">${i.imgs.map((_, k) => `<i${k ? "" : ' class="on"'}></i>`).join("")}</span>`;
+}
+const CAPA = {esporte:"e-suporte-medalhas", bichinhos:"z-tubarao"};  // foto de cada bloco de categoria, quando não é a primeira peça
+$("cats").innerHTML = SHELVES.map(s => { const f = s.items.find(i => i.id === CAPA[s.id] && i.img) || s.items.find(i => i.img); return `<a href="#${s.id}" data-shelf="${s.id}"><span class="ct">${f ? `<img loading="lazy"${f.cover ? ' class="photo"' : ""} src="${f.img}" alt="">` : svg(s.items[0].i)}</span><b>${esc(s.t)}</b></a>`; }).join("");
+const TAGS_OK = ["Destaque","Novo","Sob encomenda","Personalizado"];
+function vitrineHTML(){
+  const from = id => { const sh = SHELVES.find(x => x.id === id); return Math.min(...sh.items.filter(i => !i.consulta).map(i => i.tiers ? i.tiers[i.tiers.length-1][1] : i.a)); };
+  return `<div class="atac"><p class="atac-lead">A partir de ${MIN_ATACADO} unidades por peça, com preço de atacado. Ideal para empresas, festas, clínicas e eventos.</p>
+  <div class="vgrid">${VITRINE.map(([img, t, id]) => `<a class="vt" href="#${id}" data-goatac="${id}"><span class="vimg"><img loading="lazy" src="${img}" alt=""></span><b>${esc(t)}</b><small>${id === "brindes" ? "a partir de 15 unidades" : `a partir de ${brl(from(id))}/un`}</small></a>`).join("")}</div>
+  <div class="nfc"><video src="nfc.mp4" muted loop playsinline autoplay preload="metadata" aria-hidden="true"></video><div class="nfc-txt"><span class="eyebrow">Feito aqui</span><b>Da impressora para a sua mão.</b><p>Chaveiros, enfeites, bonecos e peças sob medida, impressos camada por camada.</p><a class="btn primary orcwa2" href="#" target="_blank" rel="noopener">Pedir orçamento</a></div></div>
+  <div class="atac-cta"><button class="btn primary" type="button" data-goatac="">Ver preços de atacado</button><a class="btn outline" id="orcwa" href="#" target="_blank" rel="noopener">Pedir orçamento</a></div></div>`;
+}
+const SUBS = [["","Todos"],["pets","Pets"],["selvagens","Bichos da mata"],["mar","Do mar"],["repteis","Répteis, dinos e insetos"]];
+$("shelves").innerHTML = SHELVES.map(s => `<section class="shelf" id="${s.id}" data-shelf="${s.id}">
+  <div class="sh"><h2><small>${esc(s.k)}</small>${esc(s.t)}</h2>${s.id === "natal" ? `<p>Pequenos detalhes para um Natal especial.</p>` : ""}</div>${s.vitrine ? vitrineHTML() : ""}
+  ${s.tabs ? `<div class="subf tabs" role="group" aria-label="Escolher anime">${s.tabs.map(([k, l], n) => `<button type="button" data-tab="${k}" aria-pressed="${n === 0}">${l}</button>`).join("")}</div>` : ""}
+  ${s.sub ? `<div class="subf" role="group" aria-label="Filtrar bichinhos">${SUBS.map(([k, l], n) => `<button type="button" data-sub="${k}" aria-pressed="${n === 0}">${l}</button>`).join("")}</div>` : ""}
+  <div class="grid">${s.items.map(i => `<article class="card pre" data-id="${i.id}" data-g="${i.g || ""}">
+    <div class="ph${i.dark ? " dark" : ""}${i.imgs ? " gal" : ""}">${i.imgs ? galHTML(i) : i.img ? `<img loading="lazy"${i.cover ? ' class="photo"' : ""} src="${i.img}" alt="${esc(i.n)}">` : svg(i.i)}${i.photo && !i.real ? `<span class="soon">Foto ilustrativa</span>` : ""}${TAGS_OK.includes(i.tag) ? `<span class="tag">${esc(i.tag)}</span>` : ""}</div>
+    <div class="body">
+      <h3>${esc(i.n)}</h3>${i.s ? `<span class="spec">${esc(i.s)}</span>` : ""}
+      <div class="opts">
+        ${i.cores ? "" : `<div class="swatches" role="group" aria-label="Cor">${COLORS.map(([c, bg], k) => `<button type="button" data-cor="${c}" aria-pressed="${k === 0}"><i style="background:${bg}"></i>${c}</button>`).join("")}</div>`}
+        ${i.ask ? `<label for="ask-${i.id}">${esc(i.ask)}<input id="ask-${i.id}" maxlength="60" placeholder="Escreva aqui"></label>` : ""}
+      </div>
+      <div class="buy"><span class="price" data-price></span>
+        <span class="qty"><button type="button" data-step="-1" aria-label="Menos">−</button><input id="q-${i.id}" type="number" inputmode="numeric" min="1" value="1" aria-label="Quantidade"><button type="button" data-step="1" aria-label="Mais">+</button></span></div>
+      <span class="minline" data-min hidden></span>
+      <button class="add" type="button" data-add>Adicionar</button>
+    </div></article>`).join("")}</div><button class="morebtn" type="button" data-more hidden></button></section>`).join("");
+
+/* ---------- no máximo 4 ou 5 peças por prateleira, com "Ver mais" ---------- */
+const shelfSt = {};
+const lim0 = sec => (sec.id === "natal" && innerWidth >= 900) ? 5 : 4;
+function applyShelf(sec){
+  const st = shelfSt[sec.id] || (shelfSt[sec.id] = {lim: lim0(sec), tab: null, sub: ""});
+  const cards = [...sec.querySelectorAll(".card")];
+  const ok = cards.filter(c => (!st.tab || c.dataset.g === st.tab) && (!st.sub || c.dataset.g === st.sub));
+  const lim = ok.length <= st.lim + 1 ? ok.length : st.lim;
+  cards.forEach(c => c.classList.add("hide"));
+  ok.forEach((c, k) => c.classList.toggle("hide", k >= lim));
+  const btn = sec.querySelector("[data-more]"), rest = ok.length - lim;
+  btn.hidden = rest <= 0;
+  btn.textContent = `Ver mais ${rest} ${sec.id === "bichinhos" ? (rest === 1 ? "bichinho" : "bichinhos") : (rest === 1 ? "peça" : "peças")}`;
+}
+const unPre = sec => sec.querySelectorAll(".card.pre").forEach(c => c.classList.remove("pre"));
+document.addEventListener("click", e => {
+  const m = e.target.closest("[data-more]");
+  if (m){ const sec = m.closest(".shelf"); shelfSt[sec.id].lim += 8; applyShelf(sec); unPre(sec); return; }
+  const t = e.target.closest(".subf button[data-tab]");
+  if (t){ const sec = t.closest(".shelf"); t.parentElement.querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", b === t)); const st = shelfSt[sec.id]; st.tab = t.dataset.tab; st.lim = lim0(sec); applyShelf(sec); unPre(sec); return; }
+  const f = e.target.closest(".subf button[data-sub]");
+  if (f){ const sec = f.closest(".shelf"), st = shelfSt[sec.id]; st.sub = f.dataset.sub; st.lim = lim0(sec); f.parentElement.querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", b === f)); applyShelf(sec); unPre(sec); }
+});
+document.querySelectorAll(".shelf[data-shelf]").forEach(sec => { const tb = sec.querySelector(".subf.tabs button"); shelfSt[sec.id] = {lim: lim0(sec), tab: tb ? tb.dataset.tab : null, sub: ""}; applyShelf(sec); });
+
+function paintPrices(){
+  document.querySelectorAll(".card").forEach(card => {
+    const i = byId[card.dataset.id], q = $("q-" + i.id), min = minFor(i);
+    if (+q.value < min) q.value = min;
+    q.min = min;
+    const p = unit(i, +q.value), pe = card.querySelector("[data-price]"), ml = card.querySelector("[data-min]");
+    const ad = card.querySelector("[data-add]"), cons = i.consulta && mode === "atacado";
+    if (i.consulta){ ad.textContent = cons ? "Pedir orçamento" : "Adicionar"; ad.toggleAttribute("data-consulta", cons); }
+    if (cons) pe.innerHTML = `Sob consulta<small class="un">pelo peso</small>`;
+    else if (i.consulta) pe.innerHTML = `${brl(p)}<small class="un">/un</small>`;
+    else if (i.tiers) pe.innerHTML = `${brl(p)}<small class="un">/un</small>`;
+    else if (mode === "atacado") pe.innerHTML = `${brl(p)}<s>${brl(i.v)}</s>`;
+    else pe.innerHTML = brl(p);
+    ml.hidden = mode !== "atacado"; ml.textContent = `Mínimo ${min} unidades`;
+  });
+  document.querySelectorAll(".shelf[data-shelf]").forEach(s => { const sh = SHELVES.find(x => x.id === s.dataset.shelf); if (sh?.onlyA) s.hidden = mode !== "atacado"; });
+  document.querySelectorAll(".cats a").forEach(a => { const sh = SHELVES.find(x => x.id === a.dataset.shelf); a.hidden = !!sh.onlyA && mode !== "atacado"; });
+}
+function setMode(m){
+  mode = m; store.set("tf_mode", m);
+  document.querySelectorAll(".seg button").forEach(b => b.setAttribute("aria-pressed", b.dataset.mode === m));
+  const on = document.querySelector(`.seg button[data-mode="${m}"]`), pill = $("segpill");
+  pill.style.width = on.offsetWidth + "px"; pill.style.transform = `translateX(${on.offsetLeft - 4}px)`;
+  $("modehint").innerHTML = m === "atacado" ? `<b>Atacado:</b> a partir de ${MIN_ATACADO} unidades por peça, preço menor.` : `<b>Varejo:</b> compre a partir de 1 unidade.`;
+  if (m === "atacado"){ cart = cart.filter(l => !byId[l.id].consulta); store.set("tf_cart", cart); }
+  cart.forEach(l => { const mn = minFor(byId[l.id]); if (l.qty < mn) l.qty = mn; });
+  paintPrices(); renderCart();
+}
+
+/* ---------- interações dos cards ---------- */
+document.addEventListener("click", e => {
+  const sw = e.target.closest(".swatches button");
+  if (sw){ sw.parentElement.querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", b === sw)); return; }
+  const st = e.target.closest("[data-step]");
+  if (st){ const q = st.parentElement.querySelector("input"), i = byId[st.closest(".card").dataset.id]; const step = mode === "atacado" ? 5 : 1; q.value = Math.max(minFor(i), (+q.value || 0) + (+st.dataset.step) * step); paintPrices(); return; }
+  const add = e.target.closest("[data-add]");
+  if (add){
+    const card = add.closest(".card"), i = byId[card.dataset.id];
+    if (add.hasAttribute("data-consulta")){ const q = Math.max(minFor(i), parseInt($("q-" + i.id).value) || 1), emp = i.ask ? $("ask-" + i.id).value.trim() : ""; window.open(waLink(`Olá, TrapForma! Quero orçamento de ${q} chaveiros com a minha logo${emp ? " (" + emp + ")" : ""}.`), "_blank", "noopener"); return; }
+    const qty = Math.max(minFor(i), parseInt($("q-" + i.id).value) || 1);
+    const cor = card.querySelector('.swatches button[aria-pressed="true"]')?.dataset.cor || (i.cores ? "cores originais" : "Preto");
+    const obs = i.ask ? $("ask-" + i.id).value.trim() : "";
+    const key = [i.id, cor, obs].join("|"), ex = cart.find(l => l.key === key);
+    if (ex) ex.qty += qty; else cart.push({key, id:i.id, qty, cor, obs});
+    store.set("tf_cart", cart); renderCart(); flyTo(add);
+    add.textContent = "✓ Adicionado"; add.classList.add("done");
+    setTimeout(() => { add.textContent = "Adicionar"; add.classList.remove("done"); paintPrices(); }, 1400);
+  }
+});
+document.addEventListener("change", e => { if (e.target.matches(".qty input")) paintPrices(); });
+document.querySelectorAll(".seg button").forEach(b => b.addEventListener("click", () => setMode(b.dataset.mode)));
+document.addEventListener("click", e => { const g = e.target.closest("[data-goatac]"); if (!g) return; e.preventDefault(); setMode("atacado"); document.getElementById(g.dataset.goatac || "brindes").scrollIntoView({behavior:"smooth"}); });
+
+function flyTo(from){
+  const target = $("fab").classList.contains("show") ? $("fab") : $("cartbtn");
+  const a = from.getBoundingClientRect(), b = target.getBoundingClientRect();
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches){ bumpCart(); return; }
+  const d = document.createElement("div"); d.className = "fly"; d.style.left = (a.left + a.width / 2 - 9) + "px"; d.style.top = (a.top + a.height / 2 - 9) + "px";
+  document.body.appendChild(d);
+  requestAnimationFrame(() => { d.style.transform = `translate(${b.left + b.width / 2 - a.left - a.width / 2}px,${b.top + b.height / 2 - a.top - a.height / 2}px) scale(.5)`; d.style.opacity = ".2"; });
+  setTimeout(() => { d.remove(); bumpCart(); }, 650);
+}
+function bumpCart(){ ["cartbtn","fab"].forEach(id => { const el = $(id); el.classList.remove("bump"); void el.offsetWidth; el.classList.add("bump"); }); }
+
+/* ---------- carrinho ---------- */
+function totals(){ return cart.reduce((s, l) => s + unit(byId[l.id], l.qty) * l.qty, 0); }
+function renderCart(){
+  const n = cart.reduce((s, l) => s + l.qty, 0);
+  $("cartn").textContent = n; $("fabn").textContent = n;
+  $("fab").classList.toggle("show", n > 0);
+  $("dmode").textContent = mode === "atacado" ? "Atacado" : "Varejo";
+  $("l-empresa").hidden = mode !== "atacado";
+  $("lines").innerHTML = cart.length ? cart.map(l => { const i = byId[l.id], u = unit(i, l.qty); return `<div class="line" data-key="${esc(l.key)}">
+    <div class="mini">${i.img ? `<img src="${i.img}" alt="">` : svg(i.i)}</div>
+    <div><h4>${esc(i.n)}</h4><div class="meta">${esc(l.cor)}${l.obs ? " · " + esc(l.obs) : ""}<br>${brl(u)} cada</div></div>
+    <div class="right"><b>${brl(u * l.qty)}</b><span class="qty"><button type="button" data-cstep="-1" aria-label="Menos">−</button><input type="number" value="${l.qty}" aria-label="Quantidade" data-cqty><button type="button" data-cstep="1" aria-label="Mais">+</button></span><button class="rm" type="button" data-rm>Remover</button></div>
+  </div>`; }).join("") : `<div class="empty">Seu pedido está vazio.<br>Escolha as peças no catálogo e toque em <b>Adicionar ao pedido</b>.</div>`;
+  $("total").textContent = brl(totals());
+  const short = mode === "atacado" ? cart.filter(l => l.qty < minFor(byId[l.id])) : [];
+  $("warn").hidden = !short.length; $("warn").textContent = short.length ? "Algumas peças estão abaixo do mínimo do atacado." : "";
+  updateLink();
+}
+function message(){
+  const nome = $("f-nome").value.trim(), emp = $("f-empresa").value.trim();
+  const L = [`Olá, TrapForma! Quero fazer um pedido (${mode === "atacado" ? "ATACADO" : "VAREJO"}).`, ""];
+  if (nome) L.push(`Nome: ${nome}`);
+  if (mode === "atacado" && emp) L.push(`Empresa: ${emp}`);
+  L.push(`Cidade: ${$("f-cidade").value}`, `Receber: ${$("f-entrega").value}`, "", "Itens:");
+  cart.forEach(l => { const i = byId[l.id], u = unit(i, l.qty); L.push(`• ${l.qty}x ${i.n} (${l.cor}) = ${brl(u * l.qty)}`); if (l.obs) L.push(`   ${i.ask}: ${l.obs}`); });
+  L.push("", `Total estimado: ${brl(totals())} (sem frete)`);
+  const obs = $("f-obs").value.trim(); if (obs) L.push(`Observações: ${obs}`);
+  L.push("", "Pedido montado no site da TrapForma.");
+  return L.join("\n");
+}
+const waLink = text => `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(text)}`;
+function updateLink(){
+  const s = $("send"), ok = cart.length > 0;
+  s.setAttribute("aria-disabled", !ok); s.href = ok ? waLink(message()) : "#";
+}
+["f-nome","f-empresa","f-cidade","f-entrega","f-obs"].forEach(id => $(id).addEventListener("input", updateLink));
+$("lines").addEventListener("click", e => {
+  const line = e.target.closest(".line"); if (!line) return;
+  const l = cart.find(x => x.key === line.dataset.key);
+  if (e.target.closest("[data-rm]")) cart = cart.filter(x => x !== l);
+  else if (e.target.closest("[data-cstep]")){ const step = mode === "atacado" ? 5 : 1; l.qty = Math.max(minFor(byId[l.id]), l.qty + (+e.target.closest("[data-cstep]").dataset.cstep) * step); }
+  else return;
+  store.set("tf_cart", cart); renderCart();
+});
+$("lines").addEventListener("change", e => {
+  if (!e.target.matches("[data-cqty]")) return;
+  const l = cart.find(x => x.key === e.target.closest(".line").dataset.key);
+  l.qty = Math.max(minFor(byId[l.id]), parseInt(e.target.value) || 1); store.set("tf_cart", cart); renderCart();
+});
+function openCart(o){ $("drawer").classList.toggle("open", o); $("scrim").classList.toggle("open", o); $("drawer").setAttribute("aria-hidden", !o); if (o) $("close").focus(); }
+$("cartbtn").addEventListener("click", () => openCart(true));
+$("fab").addEventListener("click", () => openCart(true));
+$("close").addEventListener("click", () => openCart(false));
+$("scrim").addEventListener("click", () => openCart(false));
+document.addEventListener("keydown", e => { if (e.key === "Escape") openCart(false); });
+document.querySelectorAll(".orcwa2").forEach(a => a.href = waLink("Olá, TrapForma! Quero um orçamento: "));
+$("customwa").href = waLink("Olá, TrapForma! Tenho uma ideia de peça sob encomenda: ");
+const setSbw = () => document.documentElement.style.setProperty("--sbw", (innerWidth - document.documentElement.clientWidth) + "px"); setSbw(); addEventListener("resize", setSbw);
+$("orcwa").href = waLink("Olá, TrapForma! Quero um orçamento de atacado/brindes: ");
+
+/* ---------- créditos ---------- */
+$("creditos").innerHTML = "<b>Créditos dos modelos.</b> " + ALL.filter(i => i.c).map(i => `${esc(i.n)}: "${esc(i.c[0])}" de ${esc(i.c[1])} (${esc(i.c[2])})`).join("; ") + ". Impressos pela TrapForma.";
+
+/* ---------- cards entrando ---------- */
+const io = "IntersectionObserver" in window ? new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting){ const el = en.target; setTimeout(() => el.classList.remove("pre"), (+el.dataset.d || 0)); io.unobserve(el); } }), {rootMargin:"0px 0px -40px 0px"}) : null;
+document.querySelectorAll(".card").forEach((c, k) => { c.dataset.d = (k % 4) * 70; if (io) io.observe(c); else c.classList.remove("pre"); });
+setTimeout(() => document.querySelectorAll(".card.pre").forEach(c => { if (c.getBoundingClientRect().top < innerHeight) c.classList.remove("pre"); }), 1200);
+
+/* ---------- galeria de fotos do produto ---------- */
+document.addEventListener("click", e => {
+  const b = e.target.closest(".gal-nav"); if (!b) return;
+  e.preventDefault(); e.stopPropagation();
+  const tr = b.parentElement.querySelector(".gal-tr");
+  tr.scrollBy({left: (b.classList.contains("next") ? 1 : -1) * tr.clientWidth, behavior: "smooth"});
+}, true);
+document.addEventListener("scroll", e => {
+  const tr = e.target; if (!tr.classList || !tr.classList.contains("gal-tr")) return;
+  const n = tr.children.length, k = Math.round(tr.scrollLeft / Math.max(1, tr.clientWidth)), ph = tr.parentElement;
+  ph.querySelectorAll(".gal-dots i").forEach((d, j) => d.classList.toggle("on", j === k));
+  ph.querySelector(".gal-nav.prev").hidden = k === 0; ph.querySelector(".gal-nav.next").hidden = k >= n - 1;
+  [...tr.children].forEach((m, j) => { if (m.tagName !== "VIDEO") return; if (j === k && !m.closest("[hidden]")) { m.play?.().catch(() => {}); vio && vio.observe(m); } else m.pause(); });
+}, true);
+// vídeo da galeria só baixa quando a pessoa chega nele e pausa fora da tela
+const vio = "IntersectionObserver" in window ? new IntersectionObserver(es => es.forEach(en => { if (!en.isIntersecting) en.target.pause(); else if (Math.round(en.target.parentElement.scrollLeft / Math.max(1, en.target.parentElement.clientWidth)) === [...en.target.parentElement.children].indexOf(en.target)) en.target.play?.().catch(() => {}); }), {threshold:.4}) : null;
+
+/* ---------- saltos para seções: desenha tudo antes de rolar ---------- */
+const cvOff = () => document.documentElement.classList.add("cv-off");
+if (location.hash) cvOff();
+document.addEventListener("click", e => {
+  const a = e.target.closest('a[href^="#"], [data-goatac]'); if (!a) return;
+  cvOff(); void document.body.offsetHeight;
+  const id = a.matches("[data-goatac]") ? null : a.getAttribute("href").slice(1), t = id && document.getElementById(id);
+  if (!t || e.defaultPrevented) return;
+  e.preventDefault(); history.replaceState(null, "", "#" + id);
+  t.scrollIntoView({behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start"});
+}, true);
+
+/* ---------- topo: vídeo e peças flutuando ---------- */
+(function(){
+  const cv = $("bgv");
+  if (HERO_FRAMES){
+    const fr = window.heroFrames = [], ctx = cv.getContext("2d");
+    let cur = -1, want = 0;
+    const fit = () => { const r = cv.getBoundingClientRect(), d = Math.min(devicePixelRatio || 1, 1.5); cv.width = Math.max(1, Math.round(r.width * d)); cv.height = Math.max(1, Math.round(r.height * d)); cur = -1; draw(want); };
+    const draw = window.heroDraw = i => { want = i; let k = i; while (k > 0 && !(fr[k] && fr[k].ok)) k--; const im = fr[k]; if (!im || !im.ok || k === cur) return; cur = k;
+      const W = cv.width, H = cv.height, s = Math.max(W / im.naturalWidth, H / im.naturalHeight), w = im.naturalWidth * s, h = im.naturalHeight * s;
+      ctx.clearRect(0, 0, W, H); ctx.drawImage(im, (W - w) / 2, (H - h) / 2, w, h); };
+    const get = i => { const im = new Image(); im.decoding = "async"; im.onload = () => { im.ok = true; if (i <= want) { cur = -1; draw(want); } }; im.src = HERO_FRAMES.path + String(i + 1).padStart(2, "0") + ".webp"; fr[i] = im; };
+    cv.hidden = false; get(0); fit(); addEventListener("resize", fit);
+    const rest = () => { for (let i = 1; i < HERO_FRAMES.n; i++) get(i); };
+    if (document.readyState === "complete") setTimeout(rest, 200); else addEventListener("load", () => setTimeout(rest, 200));
+  }
+  const f = [["dragon",8,22,0],["star",82,18,1.2],["octopus",88,62,2.1],["snake",6,70,.6],["ornament",70,82,3],["tag",48,12,1.8]];
+  $("floaters").innerHTML = f.map(([k, x, y, d]) => `<svg viewBox="0 0 100 100" style="left:${x}%;top:${y}%;animation-delay:-${d}s">${ICONS[k]}</svg>`).join("");
+  if (HERO_FRAMES) $("floaters").hidden = true;
+})();
+
+setMode(mode);
+
+/* ---------- movimento premium ---------- */
+(() => {
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const fine = matchMedia("(hover: hover) and (pointer: fine)").matches;
+  const root = document.documentElement;
+  const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+  // títulos: quebra em palavras
+  const split = el => {
+    let i = 0;
+    const walk = n => [...n.childNodes].forEach(c => {
+      if (c.nodeType === 3){
+        const parts = c.textContent.split(/(\s+)/), f = document.createDocumentFragment();
+        parts.forEach(t => { if (!t) return; if (/^\s+$/.test(t)) f.append(t); else { const o = document.createElement("span"), w = document.createElement("span"); o.className = "wd"; w.textContent = t; w.style.setProperty("--i", i++); o.append(w); f.append(o); } });
+        c.replaceWith(f);
+      } else if (c.nodeType === 1 && c.tagName !== "SMALL" && c.tagName !== "BR") walk(c);
+    });
+    walk(el);
+  };
+  const heads = [...document.querySelectorAll(".sh h2, .ix-head h2, .nfc-txt b, .atac-lead")].filter(h => !h.closest(".hero"));
+  if (reduce){ return; }
+  root.classList.add("mo");
+  heads.forEach(h => { if (!h.matches(".atac-lead")) split(h); });
+  const revealEls = [...document.querySelectorAll(".sh, .ix-head, .ix-cta, .nfc-txt")];
+  const rio = new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting){ en.target.classList.add("rv-on"); en.target.querySelectorAll("h2,b").forEach(x => x.classList.add("rv-on")); rio.unobserve(en.target); } }), {rootMargin:"0px 0px -12% 0px"});
+  revealEls.forEach(e => rio.observe(e));
+  document.querySelectorAll(".sh h2, .ix-head h2, .nfc-txt b").forEach(h => rio.observe(h));
+
+  // "Sua ideia ganha forma": história pela rolagem
+  const ix = document.querySelector(".ix"), steps = ix ? [...ix.querySelectorAll(".ix-step")] : [], wrap = ix && ix.querySelector(".ix-steps");
+  const v2 = ix && ix.querySelector(".ix-v2"), pct = v2 && v2.querySelector(".ix-pct b");
+  const TH = [0.02, 0.36, 0.70];
+  let build = 0, buildT = 0;
+  function story(){
+    if (!wrap) return;
+    const r = wrap.getBoundingClientRect(), vh = innerHeight;
+    const mobile = innerWidth <= 760;
+    const p = clamp((vh * 0.82 - r.top) / (r.height + vh * (mobile ? 0.05 : 0.25)), 0, 1);
+    steps.forEach((st, k) => {
+      const on = p >= TH[k] && (k < 2 || build > 0.95);
+      if (st._on !== on){ st._on = on; st.classList.toggle("on", on); }
+      const nx = TH[k + 1] ?? 1, f = (clamp((p - TH[k]) / (nx - TH[k]), 0, 1) * 100).toFixed(1) + "%";
+      if (st._f !== f){ st._f = f; st.style.setProperty("--fill", f); }
+    });
+    buildT = p >= TH[1] ? clamp((p - TH[1]) / (TH[2] - TH[1] - 0.03), 0, 1) : 0;
+  }
+  let lastB = -1;
+  function buildTick(){
+    if (!v2) return;
+    build += (buildT - build) * 0.08;
+    if (Math.abs(buildT - build) < 0.001) build = buildT;
+    if (build === lastB) return; lastB = build;
+    const b = build * 100;
+    v2.style.setProperty("--build", b.toFixed(2) + "%");
+    v2.style.setProperty("--scan", build > 0.01 && build < 0.995 ? 1 : 0);
+    if (pct) pct.textContent = Math.round(b);
+  }
+  if (ix && fine){
+    ix.addEventListener("pointermove", e => { const r = ix.getBoundingClientRect(); ix.style.setProperty("--mx", (e.clientX - r.left) + "px"); ix.style.setProperty("--my", (e.clientY - r.top) + "px"); });
+    ix.querySelectorAll(".ix-vis").forEach(v => {
+      v.addEventListener("pointermove", e => { const r = v.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5; v.style.transform = `perspective(900px) rotateY(${x * 12}deg) rotateX(${-y * 12}deg) translateY(-6px)`; });
+      v.addEventListener("pointerleave", () => { v.style.transform = ""; });
+    });
+  }
+
+  // cards com efeito 3D
+  if (fine){
+    document.querySelectorAll(".card").forEach(c => {
+      const g = document.createElement("i"); g.className = "glare"; c.append(g);
+      c.addEventListener("pointermove", e => {
+        if (e.target.closest("input,button,textarea,select")) return;
+        const r = c.getBoundingClientRect(), x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+        c.classList.add("tilt");
+        c.style.transform = `perspective(1000px) rotateY(${(x - .5) * 9}deg) rotateX(${(.5 - y) * 9}deg) translateY(-6px)`;
+        c.style.setProperty("--gx", x * 100 + "%"); c.style.setProperty("--gy", y * 100 + "%");
+      });
+      c.addEventListener("pointerleave", () => { c.classList.remove("tilt"); c.style.transform = ""; });
+    });
+    // botões magnéticos
+    document.querySelectorAll(".btn.primary, .cartbtn, .ix-btn").forEach(b => {
+      b.addEventListener("pointermove", e => { const r = b.getBoundingClientRect(), x = e.clientX - r.left - r.width / 2, y = e.clientY - r.top - r.height / 2; b.style.transform = `translate(${x * .25}px, ${y * .35}px)`; });
+      b.addEventListener("pointerleave", () => { b.style.transform = ""; });
+    });
+    // luz que segue o cursor
+    const gl = document.createElement("div"); gl.className = "cglow"; document.body.append(gl);
+    let tx = innerWidth / 2, ty = innerHeight / 2, cx = tx, cy = ty;
+    let gRun = false;
+    const gLoop = () => { cx += (tx - cx) * .12; cy += (ty - cy) * .12; gl.style.transform = `translate3d(${cx.toFixed(1)}px, ${cy.toFixed(1)}px, 0)`;
+      if (Math.abs(tx - cx) + Math.abs(ty - cy) > .5) requestAnimationFrame(gLoop); else gRun = false; };
+    addEventListener("pointermove", e => { tx = e.clientX; ty = e.clientY; gl.classList.add("on"); if (!gRun){ gRun = true; requestAnimationFrame(gLoop); } }, {passive:true});
+    document.addEventListener("pointerleave", () => gl.classList.remove("on"));
+  }
+
+  // topo com parallax, barra de progresso e ticker que reage à rolagem
+  const pr = document.createElement("div"); pr.className = "sprog"; document.body.append(pr);
+  const hc = document.querySelector(".hero .hcenter"), hv = document.getElementById("bgv"), hero = document.querySelector(".hero"), tk = document.querySelector(".ticker");
+  let lastY = -1, vel = 0, vt = 0, hh = hero ? hero.offsetHeight : 0, running = false, heroOn = true, ixOn = false, lastIdx = -1;
+  const au = hero && hero.querySelector(".aura"), NF = HERO_FRAMES ? HERO_FRAMES.n : 0;
+  addEventListener("resize", () => { hh = hero ? hero.offsetHeight : 0; kick(); });
+  if ("IntersectionObserver" in window){
+    if (hero) new IntersectionObserver(es => { heroOn = es[0].isIntersecting; kick(); }).observe(hero);
+    if (wrap) new IntersectionObserver(es => { ixOn = es[0].isIntersecting; kick(); }, {rootMargin:"200px 0px"}).observe(wrap);
+  } else ixOn = true;
+  function frame(){
+    const y = scrollY, H = document.documentElement.scrollHeight - innerHeight;
+    if (ixOn) story();
+    const dy = lastY < 0 ? 0 : y - lastY; lastY = y;
+    vel += (dy - vel) * .15; if (Math.abs(vel) < .05) vel = 0;
+    pr.style.transform = `scaleX(${H > 0 ? (y / H).toFixed(4) : 0})`;
+    let busy = dy !== 0 || vel !== 0;
+    if (hero && heroOn){ const k = clamp(y / hh, 0, 1);
+      if (hc){ hc.style.transform = `translate3d(0, ${(y * .28).toFixed(1)}px, 0)`; hc.style.opacity = (1 - k * 1.25).toFixed(3); }
+      if (hv){ hv.style.transform = `scale(${(1 + k * .12).toFixed(4)})`;
+        if (NF){ const tgt = clamp(y / (hh * .9), 0, 1) * (NF - 1); vt += (tgt - vt) * .2; if (Math.abs(tgt - vt) < .02) vt = tgt; else busy = true;
+          const idx = Math.round(vt); if (idx !== lastIdx){ lastIdx = idx; window.heroDraw && heroDraw(idx); } }
+      }
+      if (au) au.style.transform = `translate3d(${k * 6}%, ${-k * 4}%, 0) rotate(${k * 10}deg) scale(${1 + k * .1})`;
+    }
+    if (tk) tk.style.transform = `skewX(${clamp(-vel * .25, -8, 8).toFixed(2)}deg)`;
+    if (ixOn){ buildTick(); if (build !== buildT) busy = true; }
+    if (busy) requestAnimationFrame(frame); else running = false;
+  }
+  function kick(){ if (!running){ running = true; requestAnimationFrame(frame); } }
+  addEventListener("scroll", kick, {passive:true});
+  kick();
+})();
+
+/* ---------- janelinha do produto ---------- */
+const DESC = {"n-rena": ["Enfeite de Natal com textura de crochê, mas feito em impressão 3D. Fica lindo na árvore, na mesa da ceia ou como lembrancinha.", ["Cada cor é impressa separada e montada à mão", "Não desfia nem amassa como crochê de verdade", "Ótimo para amigo secreto e lembrancinha"]], "n-urso": ["Ursinho polar com gorro de Papai Noel e textura de crochê, feito em impressão 3D.", ["Cada cor é impressa separada e montada à mão", "Decora árvore, mesa ou estante", "Ótimo para amigo secreto e lembrancinha"]], "n-gengibre": ["O clássico biscoitinho de gengibre do Natal, com textura de crochê e botões vermelhos.", ["Cada cor é impressa separada e montada à mão", "Decora árvore, mesa ou estante", "Ótimo para amigo secreto e lembrancinha"]], "n-poodle": ["Poodle fofinho com gorro de Papai Noel e textura de crochê, feito em impressão 3D.", ["Cada cor é impressa separada e montada à mão", "Presente certo para quem ama cachorro", "Ótimo para amigo secreto e lembrancinha"]], "porta-panetone": ["Porta-panetone do Papai Noel para deixar a mesa da ceia mais bonita.", ["Você coloca o panetone dentro e serve na mesa", "Cada cor é impressa separada e montada à mão", "Pode ser usado todo Natal"]], "chaveiro-logo": ["Chaveiro com a logo da sua empresa em relevo. Brinde barato, útil e que o cliente carrega todo dia.", ["Você manda a logo pelo WhatsApp", "A gente adapta a logo para o 3D e imprime na cor da sua marca", "No atacado, a partir de 15 unidades, o preço é calculado pelo peso"]], "b-placa-google": ["Placa de balcão para o cliente avaliar a sua empresa no Google sem precisar procurar.", ["Tem um chip NFC dentro: o cliente encosta o celular e abre a sua página de avaliação", "Você manda o link do Google da empresa e a gente grava no chip", "Mais avaliações, mais gente encontrando você"]], "b-microfone": ["Canopla com a logo da sua empresa para encaixar no microfone. Sua marca aparece em toda entrevista, evento ou podcast.", ["Encaixa no cabo do microfone", "Logo da empresa em destaque", "Você manda a logo pelo WhatsApp"]], "m-santos": ["A Baleia do Santos em versão bombada, para o torcedor colecionar ou decorar o cantinho do time.", ["Cada cor é impressa separada e montada à mão", "Presente certo para santista", "Peça de coleção, não é brinquedo"]], "m-palmeiras": ["O Porco do Palmeiras em versão bombada, para o torcedor colecionar ou decorar o cantinho do time.", ["Cada cor é impressa separada e montada à mão", "Presente certo para palmeirense", "Peça de coleção, não é brinquedo"]], "m-flamengo": ["O Urubu do Flamengo em versão bombada, para o torcedor colecionar ou decorar o cantinho do time.", ["Cada cor é impressa separada e montada à mão", "Presente certo para flamenguista", "Peça de coleção, não é brinquedo"]], "m-corinthians": ["O Gavião do Corinthians em versão bombada, com base, para o torcedor colecionar ou decorar o cantinho do time.", ["Cada cor é impressa separada e montada à mão", "Presente certo para corintiano", "Peça de coleção, não é brinquedo"]], "c-palmeiras": ["Chaveiro com o escudo do Palmeiras em relevo.", ["Leve, cabe no bolso", "Vem com argola de metal", "Bom para lembrancinha e brinde de torcida"]], "c-corinthians": ["Chaveiro com o escudo do Corinthians em relevo.", ["Leve, cabe no bolso", "Vem com argola de metal", "Bom para lembrancinha e brinde de torcida"]], "c-saopaulo": ["Chaveiro com o escudo do São Paulo em relevo.", ["Leve, cabe no bolso", "Vem com argola de metal", "Bom para lembrancinha e brinde de torcida"]], "c-santos": ["Chaveiro com o escudo do Santos em relevo.", ["Leve, cabe no bolso", "Vem com argola de metal", "Bom para lembrancinha e brinde de torcida"]], "e-senna": ["Busto em homenagem ao Ayrton Senna, todo em branco, para estante, escritório ou presente para fã de Fórmula 1.", ["Peça única, sem montagem", "Acabamento fosco", "Cerca de 10 cm"]], "e-medalhas": ["Porta-medalhas em hexágonos: cada peça guarda uma medalha e encaixa na outra, formando uma colmeia na parede.", ["Cada hexágono segura uma medalha", "Os hexágonos se encaixam um no outro", "Compre quantos quiser e monte do seu jeito"]], "e-suporte-medalhas": ["Suporte de parede para pendurar medalhas, com a silhueta do seu esporte em destaque.", ["Você escolhe o esporte: natação, ginástica, esgrima, basquete e outros", "Cada gancho segura a fita de uma medalha", "Fica preso na parede"]], "e-porta-anel-kettlebell": ["Mini kettlebell que abre: a parte de cima é uma tampa de rosca e por dentro guarda anel, brinco ou corrente.", ["Tampa de rosca, fecha bem", "Presente diferente para quem treina", "Guarda joias pequenas"]], "c-kettlebell": ["Chaveiro em formato de kettlebell com o seu nome. Para quem vive na academia.", ["Você escolhe o nome", "As cores podem mudar da foto", "Vem com argola de metal"]], "pk-charmander": ["Charmander colorido, nas cores do personagem, para colecionar ou decorar.", ["Cada cor é impressa separada e montada à mão", "Peça de coleção, não é brinquedo", "Bom presente para fã de Pokémon"]], "pk-squirtle": ["Squirtle colorido, nas cores do personagem, para colecionar ou decorar.", ["Cada cor é impressa separada e montada à mão", "Peça de coleção, não é brinquedo", "Bom presente para fã de Pokémon"]], "pk-bulbasaur": ["Bulbasaur colorido, nas cores do personagem, para colecionar ou decorar.", ["Cada cor é impressa separada e montada à mão", "Peça de coleção, não é brinquedo", "Bom presente para fã de Pokémon"]], "pk-charizard": ["Charizard de asas abertas, colorido e cheio de detalhe. Um dos destaques da coleção.", ["Cada cor é impressa separada e montada à mão", "Asas abertas, chama na cauda", "Peça de coleção, não é brinquedo"]], "a-goku": ["Goku na transformação Super Saiyajin 3, com o cabelo longo dourado. Peça grande de coleção.", ["Cada cor é impressa separada e montada à mão", "Muitos detalhes no cabelo e na roupa", "Peça de coleção, não é brinquedo"]], "x-hogwarts": ["Castelo de Hogwarts em branco, cheio de torres e detalhes, para fã de Harry Potter decorar a estante.", ["Peça de decoração cheia de detalhe", "Impressão longa, quase 10 horas", "Acabamento fosco em branco"]], "x-einstein": ["Einstein colecionável, com o cabelo bagunçado de sempre. Ótimo para professor, estudante ou escritório.", ["Cada cor é impressa separada e montada à mão", "As cores podem variar um pouco da foto", "Peça de coleção, não é brinquedo"]], "d-venom": ["Venom em versão cabeçuda e divertida, em preto e branco.", ["Duas cores montadas à mão", "Bom para mesa, estante ou presente", "Peça de coleção, não é brinquedo"]], "d-aranha": ["Homem-Aranha Noir, a versão sombria e detetive do herói.", ["Cada cor é impressa separada e montada à mão", "Bom para mesa, estante ou presente", "Peça de coleção, não é brinquedo"]], "s-jaleco": ["Porta-canetas em forma de jaleco, com o nome e a especialidade do profissional em relevo.", ["Você manda o nome e a especialidade", "Fica na mesa do consultório", "Presente certo para formatura e Dia do Médico"]], "s-dente": ["Porta-cartões de dentista com dente, escova e instrumentos. Fica na recepção e segura os cartões de visita.", ["Espaço para cartões de visita", "Decora a mesa do consultório", "Presente certo para dentista"]], "chav-joelho": ["Chaveiro com a articulação do joelho em detalhe anatômico.", ["Presente certo para fisioterapeuta, ortopedista e estudante", "Vem com argola de metal", "Leve, cabe no bolso"]], "j-dust2": ["O mapa Dust II do Counter-Strike em relevo, para pendurar na parede ou deixar na mesa do setup.", ["O mapa clássico em 3D", "Duas cores, bege e verde-oliva", "Presente certo para quem joga CS"]], "caricatura": ["Você manda uma foto e a gente cria um bonequinho 3D inspirado na pessoa. Presente único, que ninguém mais tem.", ["Mande uma foto de frente, de corpo inteiro se tiver", "A gente modela e imprime a peça", "Feito sob encomenda: prazo de 5 a 10 dias"]], "chaveiro-nome": ["Chaveiro com o nome que você quiser, em relevo, na cor que escolher.", ["Você escolhe o nome e a cor", "Vem com argola de metal", "Bom para lembrancinha e presente"]], "p-lapis": ["Ponteira que encaixa na ponta do lápis, com o nome da criança. Ninguém mais perde o lápis na escola.", ["Você escolhe o nome", "Encaixa no lápis comum", "Ótimo para volta às aulas e lembrancinha"]], "pix": ["Plaquinha de balcão com o QR Code do seu Pix. O cliente aponta a câmera e paga na hora.", ["Você manda o QR Code ou a chave Pix", "Pode ter o nome ou a logo da loja", "Fica em pé no balcão"]], "estrela": ["Fidget em forma de estrela que gira e muda de forma na mão. Para quem não consegue ficar parado.", ["Gira e se transforma", "Sem pilha, sem barulho", "Bom para escritório, escola e viagem"]], "cone": ["Espiral que sobe e desce quando você passa a mão. Difícil de largar.", ["Movimento hipnotizante", "Sem pilha, sem barulho", "Bom para escritório, escola e viagem"]], "clicker": ["Bolinho que faz clique quando você aperta. Para quem vive apertando a caneta.", ["Clique gostoso de apertar", "Cabe no bolso", "Bom para escritório, escola e viagem"]], "z-tubarao": ["Tubarãozinho articulado: o corpo é feito em gomos que se mexem de um lado para o outro.", ["Sai pronto da impressora, já se mexendo", "Não precisa montar", "Ótimo para lembrancinha de festa"]], "z-martelo": ["Tubarão-martelo articulado, com o corpo em gomos que balançam.", ["Sai pronto da impressora, já se mexendo", "Não precisa montar", "Ótimo para lembrancinha de festa"]], "z-coelho": ["Coelhinho com textura de crochê, feito em impressão 3D.", ["Cada cor é impressa separada e montada à mão", "Fofo para decorar ou presentear", "Ótimo para lembrancinha de festa e Páscoa"]], "z-camaleao": ["Camaleão olhudo e articulado, com o corpo que se mexe. Você escolhe a cor.", ["Sai pronto da impressora, já se mexendo", "Você escolhe a cor", "Ótimo para lembrancinha de festa"]], "b-canguru-articulado": ["Canguru articulado que se mexe nas juntas.", ["Sai pronto da impressora, já se mexendo", "Cores montadas à mão", "Ótimo para lembrancinha de festa"]], "b-estrela-do-mar-flexivel": ["Estrela-do-mar flexível: os braços dobram e balançam.", ["Sai pronta da impressora, já se mexendo", "Cores montadas à mão", "Ótimo para lembrancinha de festa"]], "b-gatinho-das-sombras-flexivel": ["Gatinho preto flexível, de olhos amarelos, com o corpo que se mexe.", ["Sai pronto da impressora, já se mexendo", "Cores montadas à mão", "Ótimo para lembrancinha de festa"]], "b-macaquinho-articulado": ["Macaquinho articulado que se mexe nos braços, pernas e cauda.", ["Sai pronto da impressora, já se mexendo", "Cores montadas à mão", "Ótimo para lembrancinha de festa"]], "a-luffy": ["Luffy no Gear 5, cercado de chamas, numa peça de coleção cheia de detalhes. Fica linda na estante, na mesa ou no setup.", ["Impresso em uma peça só, em branco", "Acabamento feito à mão", "Presente certeiro para fã de One Piece"]], "a-capa-aranha": ["Capa para AirPods no rosto do Homem-Aranha, com os olhos em relevo. Protege o estojo e chama atenção.", ["Serve nos AirPods Pro 1, 2 e 3", "Abre e fecha normalmente, sem tirar a capa", "Vermelho, preto e branco, montada à mão"]], "d-batman": ["Batman cabeçudo com capa esvoaçante e rosto pintado. Pequeno, cheio de atitude e ótimo para a mesa.", ["Cada cor impressa separada e montada à mão", "Detalhes da armadura em relevo", "Presente para fã de herói"]], "b-selo": ["Carimbo com a logo da sua marca para marcar embalagens, sacolas e cartões. A gente monta o carimbo a partir da sua logo.", ["Você manda a logo pelo WhatsApp", "Ótimo para marcar papel kraft e etiquetas", "Feito sob medida para a sua marca"]], "c-cacto": ["Suporte em forma de cacto que organiza fone, relógio e o que mais estiver solto na mesa.", ["Braço para pendurar o fone", "Encaixe para o relógio", "Base em bandeja para fones, chaves e anéis"]], "r-nossa-senhora": ["Nossa Senhora estilizada com bandeja na base para guardar o terço. Um presente bonito para quem tem fé.", ["Guarda o terço sempre à mão", "Fica linda no quarto ou no cantinho de oração", "Ótima para presentear mães e avós"]], "f-laranja": ["Uma laranja que abre ao meio e os gomos saem um a um, presos entre si. Dá vontade de abrir e fechar sem parar.", ["Brinquedo sensorial para as mãos", "Os gomos saem e voltam para dentro", "Diverte crianças e adultos"]], "f-bastao": ["Gire o bastão e os esqueletos articulados voam em volta dele. Divertido de mexer e ótimo para o Halloween.", ["Esqueletos totalmente articulados", "Gira solto no bastão", "Veja o vídeo na galeria"]], "k-furada": ["Case para o estojo dos AirPods Pro com furinhos em espiral. Protege e deixa o estojo com cara única.", ["Serve nos AirPods Pro 1, 2 e 3", "Abre e fecha normalmente", "Na cor que você escolher"]], "k-lisa": ["Case lisa e resistente para o estojo dos AirPods Pro, de acabamento limpo.", ["Serve nos AirPods Pro 1, 2 e 3", "Cantos arredondados que protegem de quedas", "Na cor que você escolher"]], "k-presilha": ["Presilha que prende o estojo dos AirPods, para levar sempre junto.", ["Simples e discreta", "Encaixa no estojo sem cola", "Impressa em preto"]], "r-presepio": ["Presépio completo sob um arco, com os três reis magos, José, Maria, o menino na manjedoura e os animais. Uma peça de destaque para o Natal.", ["Muitos detalhes, de cima a baixo", "Impresso em branco, com cara de porcelana", "Peça central para a mesa do Natal"]], "r-presepio-estrela": ["Presépio delicado com José, Maria e o menino sob um arco, com a estrela de Belém no topo.", ["Estrela de Belém sobre o arco", "Base redonda para a mesa ou estante", "Presente que vale o ano todo"]], "r-sagrada": ["Sagrada Família em linhas simples e modernas, que combina com qualquer cantinho da casa.", ["Visual minimalista e delicado", "Cabe em prateleira e mesa de cabeceira", "Ótima para presentear"]], "r-cristo": ["Rosto de Cristo com a coroa de espinhos em alto relevo, com base para ficar em pé.", ["Relevo com muitos detalhes", "Fica em pé na mesa ou estante", "Para quem tem fé e gosta de arte sacra"]], "j-atlas": ["Um titã de joelhos segurando o seu controle nos ombros. Guarda o controle com estilo e enfeita a mesa ou o setup.", ["Serve para controle de PlayStation e de Xbox", "Base firme para o controle não cair", "Peça de decoração para gamer"]], "j-revolver": ["Revólver de fantasia com detalhes góticos, impresso em partes e montado à mão. Feito para cosplay, coleção e decoração.", ["Réplica decorativa de plástico, não é arma de verdade", "Muitos detalhes em relevo", "Para cosplay, estante e fotos"]], "j-busto": ["Busto de um assassino encapuzado, de braços cruzados, com capuz e armadura cheios de detalhes. Boa peça de estante para gamer.", ["Capuz e armadura em relevo", "Fica bem na estante ou na mesa do setup", "Impresso em branco"]], "j-faca": ["Faca tática com cabo vazado, de plástico, feita para treino, cosplay e coleção. Não corta.", ["Réplica decorativa de plástico, não corta", "Cabo vazado com cordão", "Para cosplay, vitrine e fotos"]], "d-trono": ["Um dragão de asas abertas sobre um trono feito de espadas, numa base de pedra. Peça de coleção e muito difícil de imprimir.", ["Centenas de espadas em relevo no trono", "Dragão com asas abertas e escamas detalhadas", "Peça de destaque para estante ou mesa"]]};
+(() => {
+  const pm = document.createElement("dialog");
+  pm.className = "pm"; pm.setAttribute("aria-label", "Detalhes do produto");
+  pm.innerHTML = `<div class="pm-in"><button class="pm-x" type="button" aria-label="Fechar">✕</button><div class="pm-ph ph"></div><div class="pm-body"><span class="pm-tag"></span><h3 class="pm-n"></h3><p class="pm-t"></p><ul class="pm-b"></ul><p class="pm-c"></p><div class="pm-opts"></div><div class="pm-foot"><div class="pm-buy"><span class="price pm-price"></span><span class="qty"><button type="button" data-ms="-1" aria-label="Menos">−</button><input class="pm-q" type="number" inputmode="numeric" min="1" aria-label="Quantidade"><button type="button" data-ms="1" aria-label="Mais">+</button></span></div><span class="minline pm-min" hidden></span><button class="pm-add" type="button">Adicionar ao pedido</button></div></div></div>`;
+  document.body.append(pm);
+  const q$ = s => pm.querySelector(s);
+  let card = null, opts = null;
+  const sync = () => {
+    if (!card) return;
+    const i = byId[card.dataset.id];
+    q$(".pm-price").innerHTML = card.querySelector("[data-price]").innerHTML;
+    q$(".pm-q").value = $("q-" + i.id).value;
+    const ml = card.querySelector("[data-min]"); q$(".pm-min").hidden = ml.hidden; q$(".pm-min").textContent = ml.textContent;
+    const ad = card.querySelector("[data-add]"); q$(".pm-add").textContent = ad.hasAttribute("data-consulta") ? "Pedir orçamento no WhatsApp" : "Adicionar ao pedido";
+  };
+  const restore = () => { if (card && opts){ card.querySelector(".body").insertBefore(opts, card.querySelector(".buy")); } opts = null; };
+  function openP(c){
+    restore(); card = c;
+    const i = byId[c.dataset.id], d = DESC[i.id] || [i.d || "", []];
+    pm.classList.toggle("natal", i.shelf === "natal");
+    const ph = q$(".pm-ph"), cph = c.querySelector(".ph");
+    ph.className = "pm-ph " + cph.className; ph.innerHTML = cph.innerHTML;
+    c.querySelectorAll("video").forEach(v => v.pause());
+    const gtr = ph.querySelector(".gal-tr"); if (gtr){ gtr.scrollLeft = 0; gtr.dispatchEvent(new Event("scroll")); }
+    q$(".pm-tag").textContent = TAGS_OK.includes(i.tag) ? i.tag : "";
+    q$(".pm-n").textContent = i.n;
+    q$(".pm-t").textContent = d[0];
+    q$(".pm-b").innerHTML = (d[1] || []).map((t, k) => `<li style="animation-delay:${.15 + k * .08}s">${esc(t)}</li>`).join("");
+    q$(".pm-c").innerHTML = i.cores ? `<b>Cores:</b> ${esc(i.cores)}` : "";
+    opts = c.querySelector(".opts");
+    if (opts && opts.children.length){ q$(".pm-opts").append(opts); } else opts = null;
+    sync();
+    document.documentElement.classList.add("pm-open");
+    pm.showModal(); q$(".pm-x").focus({preventScroll:true});
+  }
+  pm.addEventListener("close", () => { restore(); card = null; document.documentElement.classList.remove("pm-open"); });
+  pm.addEventListener("click", e => {
+    if (e.target === pm || e.target.closest(".pm-x")) return pm.close();
+    const st = e.target.closest("[data-ms]");
+    if (st && card){ const i = byId[card.dataset.id], q = $("q-" + i.id), step = mode === "atacado" ? 5 : 1; q.value = Math.max(minFor(i), (+q.value || 0) + (+st.dataset.ms) * step); paintPrices(); sync(); return; }
+    if (e.target.closest(".pm-add") && card){ const c = card; restore(); c.querySelector("[data-add]").click(); pm.close(); }
+  });
+  q$(".pm-q").addEventListener("change", e => { if (!card) return; $("q-" + card.dataset.id).value = e.target.value; paintPrices(); sync(); });
+  document.addEventListener("click", e => {
+    const c = e.target.closest(".card"); if (!c || pm.contains(c)) return;
+    if (e.target.closest("button, input, label, textarea, select, a, .swatches, .qty, .opts")) return;
+    if (!e.target.closest(".ph, h3, .spec")) return;
+    openP(c);
+  });
+  document.querySelectorAll(".card .ph").forEach(ph => { ph.tabIndex = 0; ph.setAttribute("role", "button"); ph.setAttribute("aria-label", "Ver detalhes: " + byId[ph.closest(".card").dataset.id].n); });
+  document.addEventListener("keydown", e => { if ((e.key === "Enter" || e.key === " ") && e.target.matches?.(".card .ph")){ e.preventDefault(); openP(e.target.closest(".card")); } });
+})();
+</script>
+
+</body></html>
