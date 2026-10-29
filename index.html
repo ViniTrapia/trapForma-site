@@ -1206,7 +1206,7 @@ const SHELVES = [
  ]},
  {id:"natal", k:"Natal 2026", t:"Enfeites de Natal", d:"Bonequinhos de crochê, porta-panetone e enfeites com foto.", items:[
   {id:"n-combo", fit:true, n:"Combo de Natal com bandeja", i:"ornament", img:"p/n-combo1.webp", imgs:["p/n-combo1.webp","p/n-combo2.webp"], photo:true, d:"Três bonequinhos de crochê numa bandeja canelada.", cores:"branco, vermelho, caramelo e a cor da bandeja", ask:"Biscoito ou poodle? Bandeja bege ou verde?", v:119.90, a:85.90, tag:"Destaque"},
-  {id:"n-rena-canelada", n:"Rena canelada", i:"ornament", img:"p/n-rena-canelada.webp", photo:true, d:"Rena estilizada em gomos, para enfeitar a mesa ou a estante. Vendida por unidade.", tam:[{t:"13,5 cm", v:24.90, a:18.90},{t:"17,5 cm", v:31.90, a:23.90}], v:24.90, a:18.90, tag:"Novo"},
+  {id:"n-rena-canelada", n:"Rena canelada", i:"ornament", img:"p/n-rena-canelada.webp", photo:true, un:true, s:"Preço por unidade (a foto mostra 3 renas)", d:"Rena estilizada em gomos, para enfeitar a mesa ou a estante. Vendida por unidade.", tam:[{t:"13,5 cm", v:24.90, a:18.90},{t:"17,5 cm", v:31.90, a:23.90}], v:24.90, a:18.90, tag:"Novo"},
   {id:"n-rena", n:"Rena de crochê", i:"ornament", img:"p/n-rena.webp", photo:true, d:"Textura de crochê, mas é impressa em 3D.", cores:"caramelo, marrom, preto e vermelho", v:39.90, a:22.90, tag:"Natal"},
   {id:"n-urso", n:"Ursinho polar de Natal", i:"ornament", img:"p/n-urso.webp", photo:true, d:"Com gorro de Papai Noel.", cores:"branco, vermelho e preto", v:39.90, a:21.90, tag:"Natal"},
   {id:"n-noel", n:"Papai Noel de crochê", i:"ornament", img:"p/n-papai-noel.webp", photo:true, d:"Com gorro, cinto e botas, todo em textura de crochê.", cores:"vermelho, branco, preto e cor de pele", v:59.90, a:42.90, tag:"Natal"},
@@ -1387,9 +1387,9 @@ function paintPrices(){
     if (cons) pe.innerHTML = i.consulta ? `Sob consulta<small class="un">pelo peso</small>` : `Sob consulta<small class="un">no atacado</small>`;
     else if (i.consulta) pe.innerHTML = `${brl(p)}<small class="un">/un</small>`;
     else if (i.tiers) pe.innerHTML = `${brl(p)}<small class="un">/un</small>`;
-    else if (mode === "atacado") pe.innerHTML = `${brl(p)}<s>${brl(vv)}</s>`;
+    else if (mode === "atacado") pe.innerHTML = `${brl(p)}${i.un ? `<small class="un">/un</small>` : ""}<s>${brl(vv)}</s>`;
     else if (i.pv) pe.innerHTML = `${brl(p)}<s>${brl(i.v)}</s>`;
-    else pe.innerHTML = brl(p);
+    else pe.innerHTML = brl(p) + (i.un ? `<small class="un">/un</small>` : "");
     ml.hidden = mode !== "atacado"; ml.textContent = `Mínimo ${min} unidades`;
   });
   document.querySelectorAll(".shelf[data-shelf]").forEach(s => { const sh = SHELVES.find(x => x.id === s.dataset.shelf); if (sh?.onlyA) s.hidden = mode !== "atacado"; });
