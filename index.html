@@ -1303,7 +1303,7 @@ SHELVES.forEach(s => s.items.forEach(i => { if (NOMES[i.id]) i.n = NOMES[i.id]; 
 const ATAC_CONSULTA = ["c-kettlebell"];
 SHELVES.forEach(s => s.items.forEach(i => { if (ATAC_CONSULTA.includes(i.id)) i.ac = true; }));
 const acon = i => i.consulta || i.ac;
-const PROMO = {ativa:true, nome:"Promoção de inauguração", itens:{"a-luffy":69.9,"chav-joelho":20,"e-suporte-medalhas":null,"r-nossa-senhora":49.9}};
+const PROMO = {ativa:true, nome:"Promoção de inauguração", itens:{"caricatura":119.99,"a-luffy":69.9,"chav-joelho":20,"e-suporte-medalhas":null,"r-nossa-senhora":49.9}};
 if (PROMO.ativa && Object.keys(PROMO.itens).length){
   const sobem = [];
   SHELVES.forEach(s => s.items = s.items.filter(i => { if (!(i.id in PROMO.itens)) return true; const p = PROMO.itens[i.id]; if (p && !i.consulta && !i.tiers) i.pv = p; i.tag = "Inauguração"; i.g = ""; sobem.push(i); return false; }));
