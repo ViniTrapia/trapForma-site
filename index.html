@@ -479,7 +479,7 @@ img{max-width:100%}
 body{overflow-x:clip}
 #natal{--gold:#d9b25e;--gold2:#f0d48e;--red:#9b1219;position:relative;isolation:isolate;padding-block:clamp(84px,9vw,124px) clamp(56px,7vw,96px)}
 #natal::before{content:"";position:absolute;z-index:-1;inset:0 auto 0 50%;width:100vw;transform:translateX(-50%);background:url(p/natal-top.webp) center 40px/100% auto no-repeat,url(p/natal-bot.webp) center calc(100% - 40px)/100% auto no-repeat,radial-gradient(70% 60% at 50% 45%,#0a2c19,#03160b)}
-@media (min-width:900px){#natal>*{width:min(100%,78vw);margin-inline:auto}#natal .grid{grid-template-columns:repeat(auto-fill,minmax(170px,1fr))}}
+@media (min-width:900px){#natal>*{width:min(100%,78vw);margin-inline:auto}#natal .grid{grid-template-columns:repeat(auto-fill,minmax(230px,1fr))}#natal>.grid{width:100%}}
 @media (min-width:1300px){#natal>*{width:min(100%,70vw)}}
 @media (max-width:899px){#natal::before{background-size:max(900px,170%) auto,max(700px,130%) auto,auto;background-position:center 40px,left calc(100% - 40px),center}#natal{padding-top:clamp(96px,22vw,150px);padding-bottom:clamp(110px,26vw,170px)}}
 #natal .sh{border-bottom-color:color-mix(in srgb,var(--gold) 55%,transparent)}
@@ -923,7 +923,6 @@ footer .in { font-size:12px; font-weight:400; line-height:1.65; }
 .nfc-txt b > span { display:inline-block; }
 .nfc-txt b { max-width:9.6em; }
 .mo .sh::after,.mo #natal .sh::after{display:none}
-@media (min-width:1100px){.shelf[data-n="5"]:not(#natal) .grid{grid-template-columns:repeat(5,minmax(0,1fr))}}
 @media (min-width:1300px){#natal>*{width:min(100%,84vw)}}
 .nfc-txt p { line-height:1.7; }
 .nfc-txt .btn { margin-top:3px; }
@@ -1305,7 +1304,7 @@ if (PROMO.ativa && Object.keys(PROMO.itens).length){
   if (sobem.length) SHELVES.unshift({id:"promocao", k:"Por tempo limitado", t:PROMO.nome, items:sobem});
 }
 for (let k = SHELVES.length - 1; k >= 0; k--) if (!SHELVES[k].items.length) SHELVES.splice(k, 1);
-const ORDEM = ["promocao","natal","brindes","futebol","esporte","animes","desenhos","saude","religioso","cases","casa","pet","jogos","personalizados","fidgets","bichinhos"];
+const ORDEM = ["promocao","natal","brindes","religioso","futebol","casa","desenhos","animes","esporte","saude","cases","pet","jogos","personalizados","fidgets","bichinhos"];
 SHELVES.sort((a, b) => ORDEM.indexOf(a.id) - ORDEM.indexOf(b.id));
 // o que aparece na primeira fileira de cada prateleira: o mais bonito e com mais chance de vender
 const PRIORIDADE = ["n-combo","j-atlas","j-suporte-bola","j-logo-gta","j-revolver","j-dust2","j-busto","j-faca","n-noel","n-rena-canelada","n-rena","n-urso","n-neve","n-gengibre","n-poodle",
@@ -1383,14 +1382,20 @@ $("shelves").innerHTML = SHELVES.map(s => `<section class="shelf" id="${s.id}" d
       <button class="add" type="button" data-add>Adicionar</button>
     </div></article>`).join("")}</div><button class="morebtn" type="button" data-more hidden></button></section>`).join("");
 
-/* ---------- no máximo 4 ou 5 peças por prateleira, com "Ver mais" ---------- */
+/* ---------- uma fileira cheia por prateleira (conforme a largura), com "Ver mais" ---------- */
 const shelfSt = {};
-const lim0 = sec => (sec.id === "natal" && innerWidth >= 900) ? 5 : 4;
+function colsOf(sec){
+  const g = sec.querySelector(".grid");
+  const n = g && g.offsetWidth ? getComputedStyle(g).gridTemplateColumns.split(" ").filter(Boolean).length : 0;
+  return n || (innerWidth <= 560 ? 2 : 4);
+}
+const perRow = sec => { const c = colsOf(sec); return c <= 2 ? c * 2 : c; };
+const lim0 = sec => perRow(sec);
 function applyShelf(sec){
   const st = shelfSt[sec.id] || (shelfSt[sec.id] = {lim: lim0(sec), tab: null, sub: ""});
   const cards = [...sec.querySelectorAll(".card")];
   const ok = cards.filter(c => (!st.tab || c.dataset.g === st.tab) && (!st.sub || c.dataset.g === st.sub));
-  const lim = ok.length <= st.lim + 1 ? ok.length : st.lim;
+  const lim = ok.length <= st.lim ? ok.length : st.lim;
   cards.forEach(c => c.classList.add("hide"));
   ok.forEach((c, k) => c.classList.toggle("hide", k >= lim));
   sec.dataset.n = lim;
@@ -1401,13 +1406,16 @@ function applyShelf(sec){
 const unPre = sec => sec.querySelectorAll(".card.pre").forEach(c => c.classList.remove("pre"));
 document.addEventListener("click", e => {
   const m = e.target.closest("[data-more]");
-  if (m){ const sec = m.closest(".shelf"); shelfSt[sec.id].lim += 8; applyShelf(sec); unPre(sec); return; }
+  if (m){ const sec = m.closest(".shelf"); shelfSt[sec.id].lim += perRow(sec) * 2; shelfSt[sec.id].open = true; applyShelf(sec); unPre(sec); return; }
   const t = e.target.closest(".subf button[data-tab]");
-  if (t){ const sec = t.closest(".shelf"); t.parentElement.querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", b === t)); const st = shelfSt[sec.id]; st.tab = t.dataset.tab; sec.dataset.tema = t.dataset.tab; st.lim = lim0(sec); applyShelf(sec); unPre(sec); return; }
+  if (t){ const sec = t.closest(".shelf"); t.parentElement.querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", b === t)); const st = shelfSt[sec.id]; st.tab = t.dataset.tab; sec.dataset.tema = t.dataset.tab; st.lim = lim0(sec); st.open = false; applyShelf(sec); unPre(sec); return; }
   const f = e.target.closest(".subf button[data-sub]");
-  if (f){ const sec = f.closest(".shelf"), st = shelfSt[sec.id]; st.sub = f.dataset.sub; st.lim = lim0(sec); f.parentElement.querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", b === f)); applyShelf(sec); unPre(sec); }
+  if (f){ const sec = f.closest(".shelf"), st = shelfSt[sec.id]; st.sub = f.dataset.sub; st.lim = lim0(sec); st.open = false; f.parentElement.querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", b === f)); applyShelf(sec); unPre(sec); }
 });
 document.querySelectorAll(".shelf[data-shelf]").forEach(sec => { const tb = sec.querySelector(".subf.tabs button"); shelfSt[sec.id] = {lim: lim0(sec), tab: tb ? tb.dataset.tab : null, sub: ""}; applyShelf(sec); });
+let rzT, rzW = innerWidth;
+addEventListener("resize", () => { clearTimeout(rzT); rzT = setTimeout(() => { if (innerWidth === rzW) return; rzW = innerWidth;
+  document.querySelectorAll(".shelf[data-shelf]").forEach(sec => { const st = shelfSt[sec.id]; if (st && !st.open){ st.lim = lim0(sec); applyShelf(sec); } }); }, 150); });
 
 function paintPrices(){
   document.querySelectorAll(".card").forEach(card => {
@@ -1429,14 +1437,31 @@ function paintPrices(){
   document.querySelectorAll(".cats a").forEach(a => { const sh = SHELVES.find(x => x.id === a.dataset.shelf); a.hidden = !!sh.onlyA && mode !== "atacado"; });
 }
 function setMode(m){
-  mode = m; store.set("tf_mode", m);
+  const prev = mode; mode = m; store.set("tf_mode", m);
   document.querySelectorAll(".seg button").forEach(b => b.setAttribute("aria-pressed", b.dataset.mode === m));
   const on = document.querySelector(`.seg button[data-mode="${m}"]`), pill = $("segpill");
   pill.style.width = on.offsetWidth + "px"; pill.style.transform = `translateX(${on.offsetLeft - 4}px)`;
   $("modehint").innerHTML = m === "atacado" ? `<span class="mh-k">Atacado</span><span class="mh-t">A partir de ${MIN_ATACADO} unidades por peça, com preço menor</span>` : `<span class="mh-k">Varejo</span><span class="mh-t">Compre a partir de 1 unidade</span>`;
-  if (m === "atacado"){ cart = cart.filter(l => !acon(byId[l.id])); store.set("tf_cart", cart); }
+  if (m === "atacado" && prev !== "atacado"){
+    // itens sob consulta saem do carrinho no atacado, mas ficam guardados para voltar no varejo
+    const held = cart.filter(l => acon(byId[l.id]));
+    if (held.length) store.set("tf_held", store.get("tf_held", []).concat(held));
+    cart = cart.filter(l => !acon(byId[l.id]));
+    cart.forEach(l => { if (l.qtyV == null) l.qtyV = l.qty; });
+  }
+  if (m === "varejo" && prev === "atacado"){
+    // voltou para o varejo: cada item volta para a quantidade que tinha antes do atacado
+    cart.forEach(l => { const i = byId[l.id];
+      if (l.qtyV != null){ l.qty = l.qtyV; delete l.qtyV; }
+      else if (i && l.qty === (i.min || MIN_ATACADO)) l.qty = 1; });
+    store.get("tf_held", []).forEach(h => { if (!cart.some(l => l.key === h.key)) cart.push(h); });
+    store.set("tf_held", []);
+  }
+  if (prev !== m) document.querySelectorAll(".card").forEach(card => { const i = byId[card.dataset.id], q = $("q-" + i.id); if (q) q.value = minFor(i); });
   cart.forEach(l => { const mn = minFor(byId[l.id]); if (l.qty < mn) l.qty = mn; });
+  store.set("tf_cart", cart);
   paintPrices(); renderCart();
+  document.querySelectorAll(".shelf[data-shelf]").forEach(sec => { const st = shelfSt[sec.id]; if (st && !st.open){ st.lim = lim0(sec); applyShelf(sec); } });
 }
 
 /* ---------- interações dos cards ---------- */
@@ -1517,14 +1542,14 @@ $("lines").addEventListener("click", e => {
   const line = e.target.closest(".line"); if (!line) return;
   const l = cart.find(x => x.key === line.dataset.key);
   if (e.target.closest("[data-rm]")) cart = cart.filter(x => x !== l);
-  else if (e.target.closest("[data-cstep]")){ const step = mode === "atacado" ? 5 : 1; l.qty = Math.max(minFor(byId[l.id]), l.qty + (+e.target.closest("[data-cstep]").dataset.cstep) * step); }
+  else if (e.target.closest("[data-cstep]")){ const step = mode === "atacado" ? 5 : 1; delete l.qtyV; l.qty = Math.max(minFor(byId[l.id]), l.qty + (+e.target.closest("[data-cstep]").dataset.cstep) * step); }
   else return;
   store.set("tf_cart", cart); renderCart();
 });
 $("lines").addEventListener("change", e => {
   if (!e.target.matches("[data-cqty]")) return;
   const l = cart.find(x => x.key === e.target.closest(".line").dataset.key);
-  l.qty = Math.max(minFor(byId[l.id]), parseInt(e.target.value) || 1); store.set("tf_cart", cart); renderCart();
+  delete l.qtyV; l.qty = Math.max(minFor(byId[l.id]), parseInt(e.target.value) || 1); store.set("tf_cart", cart); renderCart();
 });
 function openCart(o){ $("drawer").classList.toggle("open", o); $("scrim").classList.toggle("open", o); $("drawer").setAttribute("aria-hidden", !o); if (o) $("close").focus(); }
 $("cartbtn").addEventListener("click", () => openCart(true));
