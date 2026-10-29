@@ -1175,6 +1175,7 @@ const SHELVES = [
  {id:"desenhos", k:"Desenhos, filmes e ícones", t:"Personagens", items:[
   {id:"x-hogwarts", n:"Castelo de Hogwarts", i:"tag", img:"p/x-hogwarts.webp", photo:true, cores:"branco", v:99.90, a:79.90, tag:"Destaque"},
   {id:"x-einstein", n:"Einstein colecionável", i:"bust", img:"p/x-einstein.webp", photo:true, cores:"cinza, bege, marrom e branco", v:129.90, a:99.90, tag:"Novo"},
+  {id:"e-senna", n:"Busto Ayrton Senna", i:"bust", img:"p/e-senna.webp", photo:true, real:true, dark:true, s:"cerca de 10 cm", cores:"branco", v:99.90, a:79.90, tag:"Destaque"},
   {id:"d-trono", n:"Dragão sobre o trono de espadas", i:"dragon", img:"p/d-trono1.webp", imgs:["p/d-trono1.webp","p/d-trono2.webp","p/d-trono3.webp"], photo:true, real:true, cores:"preto", v:259.90, a:189.90, tag:"Destaque"},
   {id:"d-venom", n:"Venom cabeçudo", i:"bust", img:"p/d-venom.webp", photo:true, real:true, cores:"preto e branco", v:79.90, a:59.90, tag:"Novo"},
   {id:"d-batman", n:"Batman cabeçudo", i:"bust", img:"p/d-batman.webp", photo:true, cover:true, cores:"preto, bege e branco", v:79.90, a:59.90, tag:"Novo"},
@@ -1193,7 +1194,6 @@ const SHELVES = [
   {id:"chav-joelho", n:"Chaveiro Anatômico – Articulação do Joelho", i:"tag", img:"p/joelho.webp", photo:true, d:"Presente certeiro para fisioterapeutas, ortopedistas e estudantes.", cores:"branco osso", v:24.90, a:14.90, tag:"Chaveiro"}
  ]},
  {id:"esporte", k:"Para atletas", t:"Esporte", d:"Para quem vive o esporte.", items:[
-  {id:"e-senna", n:"Busto Ayrton Senna", i:"bust", img:"p/e-senna.webp", photo:true, real:true, dark:true, s:"cerca de 10 cm", cores:"branco", v:99.90, a:79.90, tag:"Destaque"},
   {id:"e-medalhas", n:"Porta-medalhas hexagonal", i:"tag", img:"p/e-medalhas.webp", photo:true, d:"Cada hexágono guarda uma medalha e encaixa no outro. Monte a colmeia do seu jeito.", cores:"preto", v:34.90, a:24.90, ask:"Quantas peças e esporte"},
   {id:"c-kettlebell", n:"Chaveiro kettlebell com nome", i:"tag", img:"p/c-kettlebell2.webp", photo:true, d:"As cores podem mudar da foto.", v:19.90, a:11.90, ask:"Nome no chaveiro", tag:"Personalizado"},
   {id:"e-suporte-medalhas", n:"Suporte de medalhas do seu esporte", i:"tag", img:"p/e-suporte-medalhas2.webp", photo:true, cores:"branco", v:59.90, a:44.90, ask:"Qual esporte", tag:"Novo"},
@@ -1273,9 +1273,9 @@ SHELVES.sort((a, b) => ORDEM.indexOf(a.id) - ORDEM.indexOf(b.id));
 const PRIORIDADE = ["n-combo","j-atlas","j-revolver","j-dust2","j-busto","j-faca","n-rena","n-urso","n-neve","n-gengibre","n-poodle",
   "b-placa-google","chaveiro-logo",
   "m-flamengo","m-corinthians","m-palmeiras","m-santos",
-  "e-senna","e-suporte-medalhas","e-medalhas","e-porta-anel-kettlebell",
+  "e-medalhas","e-suporte-medalhas","e-porta-anel-kettlebell",
   "pk-charizard","a-goku","a-luffy","pk-squirtle","pk-bulbasaur","pk-charmander",
-  "d-trono","d-batman","x-hogwarts","x-einstein","d-venom","d-aranha",
+  "d-trono","d-batman","e-senna","x-hogwarts","x-einstein","d-venom","d-aranha",
   "caricatura","pix","chaveiro-nome","b-selo","p-lapis",
   "r-presepio-estrela","r-presepio","r-nossa-senhora","r-sagrada",
   "f-bastao","f-laranja","estrela","cone","clicker",
@@ -1313,7 +1313,7 @@ function galHTML(i){
     + `<button class="gal-nav prev" type="button" aria-label="Foto anterior" hidden>‹</button><button class="gal-nav next" type="button" aria-label="Próxima foto">›</button>`
     + `<span class="gal-dots">${i.imgs.map((_, k) => `<i${k ? "" : ' class="on"'}></i>`).join("")}</span>`;
 }
-const CAPA = {esporte:"e-suporte-medalhas", bichinhos:"z-tubarao"};  // foto de cada bloco de categoria, quando não é a primeira peça
+const CAPA = {esporte:"e-medalhas", fidgets:"f-laranja", bichinhos:"z-tubarao"};  // foto de cada bloco de categoria, quando não é a primeira peça
 $("cats").innerHTML = SHELVES.filter(s => s.id !== "promocao").map(s => { const f = s.items.find(i => i.id === CAPA[s.id] && i.img) || s.items.find(i => i.img); return `<a href="#${s.id}" data-shelf="${s.id}"><span class="ct">${f ? `<img loading="lazy"${f.cover ? ' class="photo"' : ""} src="${f.img}" alt="">` : svg(s.items[0].i)}</span><b>${esc(s.t)}</b></a>`; }).join("");
 const TAGS_OK = ["Destaque","Novo","Sob encomenda","Personalizado","Inauguração"];
 function vitrineHTML(){
