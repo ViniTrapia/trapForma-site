@@ -1,0 +1,37 @@
+# Publica o site no Cloudflare Pages (projeto "trapforma").
+# - Pull request aberto/atualizado: publica na prévia (previa-produtos.trapforma.pages.dev).
+# - Merge na main: publica no site real (trapforma.com.br).
+# Precisa dos segredos CLOUDFLARE_API_TOKEN e CLOUDFLARE_ACCOUNT_ID no repositório.
+name: Publicar site
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: publicar-${{ github.event_name }}
+  cancel-in-progress: false
+
+jobs:
+  publicar:
+    if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Separar só os arquivos do site
+        run: |
+          mkdir -p ../site
+          rsync -a --exclude '.git' --exclude '.github' --exclude 'README.md' ./ ../site/
+
+      - name: Publicar no Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: >-
+            pages deploy ../site --project-name trapforma
+            --branch ${{ github.event_name == 'push' && 'main' || 'previa-produtos' }}
+            --commit-dirty=true
