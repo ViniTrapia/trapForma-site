@@ -1249,17 +1249,17 @@ const SHELVES = [
  ]}
 ];
 // Produtos guardados (não aparecem no site). Ids da página ADM.
-const OCULTOS = ["b-microfone","porta-panetone","k-furada","k-lisa","k-presilha","r-cristo","a-capa-aranha","c-corinthians","clicker","e-porta-anel-kettlebell"];
+const OCULTOS = ["b-microfone","porta-panetone","k-furada","k-lisa","k-presilha","r-cristo","a-capa-aranha","c-corinthians","clicker","e-porta-anel-kettlebell","j-dust2","j-faca","j-revolver","x-einstein"];
 SHELVES.forEach(s => s.items = s.items.filter(i => !OCULTOS.includes(i.id)));
 // Promoção (ADM > Promoção): itens escolhidos sobem para a prateleira da campanha. Preço null = mesmo preço.
 // Nomes alterados pelo ADM: {id: nome}.
-const NOMES = {"c-kettlebell":"Chaveiro kettlebell"};
+const NOMES = {"c-kettlebell":"Chaveiro kettlebell","j-busto":"Omen - Valorant"};
 SHELVES.forEach(s => s.items.forEach(i => { if (NOMES[i.id]) i.n = NOMES[i.id]; }));
 // Atacado sob consulta (ADM): produtos que mostram "Sob consulta" no atacado; o varejo continua normal.
 const ATAC_CONSULTA = ["c-kettlebell"];
 SHELVES.forEach(s => s.items.forEach(i => { if (ATAC_CONSULTA.includes(i.id)) i.ac = true; }));
 const acon = i => i.consulta || i.ac;
-const PROMO = {ativa:true, nome:"Promoção de inauguração", itens:{"a-luffy":69.9,"chav-joelho":20,"e-suporte-medalhas":null,"r-nossa-senhora":49.9,"s-jaleco":44.9}};
+const PROMO = {ativa:true, nome:"Promoção de inauguração", itens:{"a-luffy":69.9,"chav-joelho":20,"e-suporte-medalhas":null,"r-nossa-senhora":49.9}};
 if (PROMO.ativa && Object.keys(PROMO.itens).length){
   const sobem = [];
   SHELVES.forEach(s => s.items = s.items.filter(i => { if (!(i.id in PROMO.itens)) return true; const p = PROMO.itens[i.id]; if (p && !i.consulta && !i.tiers) i.pv = p; i.tag = "Inauguração"; i.g = ""; sobem.push(i); return false; }));
