@@ -1300,7 +1300,7 @@ SHELVES.forEach(s => s.items = s.items.filter(i => !OCULTOS.includes(i.id)));
 const NOMES = {"c-kettlebell":"Chaveiro kettlebell","j-busto":"Omen - Valorant"};
 SHELVES.forEach(s => s.items.forEach(i => { if (NOMES[i.id]) i.n = NOMES[i.id]; }));
 // Atacado sob consulta (ADM): produtos que mostram "Sob consulta" no atacado; o varejo continua normal.
-const ATAC_CONSULTA = ["c-kettlebell"];
+const ATAC_CONSULTA = ["c-kettlebell","caricatura"];
 SHELVES.forEach(s => s.items.forEach(i => { if (ATAC_CONSULTA.includes(i.id)) i.ac = true; }));
 const acon = i => i.consulta || i.ac;
 const PROMO = {ativa:true, nome:"Promoção de inauguração", itens:{"caricatura":109.99,"a-luffy":69.9,"chav-joelho":20,"e-suporte-medalhas":null,"r-nossa-senhora":49.9}};
