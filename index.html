@@ -1018,9 +1018,14 @@ body{background-color:#0a0a0b;background-image:linear-gradient(rgba(0,0,0,.62),r
 /* janela do produto: no Safari (iPhone/iPad) a foto animada ficava presa por cima do texto ao rolar */
 .pm[open] .pm-ph img:not(.photo){animation-fill-mode:backwards!important}
 .pm .pm-ph img{will-change:auto}
-.pm-ph{isolation:isolate;-webkit-transform:translateZ(0);transform:translateZ(0)}
-.pm-in{-webkit-transform:translateZ(0);transform:translateZ(0)}
 .pm-body{position:relative;z-index:2}
+/* celular: a foto fica fixa no topo da janela e só o texto rola embaixo dela.
+   Assim nada rola por cima da foto (no Safari do iPhone, rolar a janela inteira deixava a foto presa por cima do texto). */
+@media (max-width:760px){
+  .pm-in{display:flex;flex-direction:column;overflow:hidden;max-height:94dvh}
+  .pm-ph{flex:0 0 auto;width:100%;height:min(40dvh,72vw);aspect-ratio:auto;min-height:0}
+  .pm-body{flex:1 1 auto;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
+}
 </style>
 
 <header class="hero" id="topo">
@@ -1795,7 +1800,7 @@ const DESC = {"s-dente-escovas": ["Porta-escovas grande em forma de dente sorrid
     if (opts && opts.children.length){ q$(".pm-opts").append(opts); } else opts = null;
     sync();
     document.documentElement.classList.add("pm-open");
-    pm.showModal(); q$(".pm-x").focus({preventScroll:true});
+    pm.showModal(); q$(".pm-body").scrollTop = 0; q$(".pm-in").scrollTop = 0; q$(".pm-x").focus({preventScroll:true});
   }
   pm.addEventListener("close", () => { restore(); card = null; document.documentElement.classList.remove("pm-open"); });
   pm.addEventListener("click", e => {
