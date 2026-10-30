@@ -1159,6 +1159,7 @@ const ICONS = {
 };
 /* Filamentos que você tem agora. Comprou cor nova? Acrescente aqui: ["Nome","#cor"] */
 const MEUS_FILAMENTOS = [["Preto","#1b1b1b"],["Branco","#f4f4f4"],["Azul","#2f6fd6"],["Verde","#2fa04e"],["Marrom","#7a4a2a"],["Laranja","#f07a1a"]];
+const corList = i => i.cs ? COLORS.filter(([c]) => i.cs.includes(c)) : COLORS;  // i.cs: só estas cores
 const COLORS = [...MEUS_FILAMENTOS, ["Outra cor","conic-gradient(#f2431e,#f5c400,#2bb673,#2f7de1,#9b51e0,#f2431e)"]];
 const CORES_BICHO = {"b-canguru-articulado": "caramelo, marrom, creme e preto", "b-estrela-do-mar-flexivel": "rosa, pink, branco e preto", "b-gatinho-das-sombras-flexivel": "preto, amarelo e lilás", "b-macaquinho-articulado": "marrom, bege, branco e preto"};
 const NOME_BICHO = {"b-capivara-flexivel":"Capivara fantasminha","b-gatinho-das-sombras-flexivel":"Gatinho preto"};
@@ -1225,7 +1226,7 @@ const SHELVES = [
   {id:"e-porta-anel-kettlebell", n:"Porta-anel kettlebell", i:"tag", img:"p/e-porta-anel-kettlebell2.webp", photo:true, cover:true, d:"Tampa de rosca. Guarda anel e corrente.", v:24.90, a:11.90, tag:"Novo"}
  ]},
  {id:"personalizados", k:"Com o seu nome", t:"Personalizados", d:"Nome, cor ou o seu pet. Você escreve aqui e já vai na mensagem.", items:[
-  {id:"caricatura", n:"Caricatura 3D da sua foto", i:"bust", img:"p/caricatura.webp", photo:true, fit:true, dark:true, real:true, d:"Você manda a foto e a gente cria o bonequinho.", v:149.90, a:119.90, ask:"Para quem é", tag:"Sob encomenda"},
+  {id:"caricatura", n:"Caricatura 3D da sua foto", cs:["Branco","Preto"], i:"bust", img:"p/caricatura.webp", photo:true, fit:true, dark:true, real:true, d:"Você manda a foto e a gente cria o bonequinho.", v:149.90, a:119.90, ask:"Para quem é", tag:"Sob encomenda"},
   {id:"chaveiro-nome", n:"Chaveiro com nome", i:"tag", img:"p/p-chaveiro-nome.webp", photo:true, d:"Seu nome em relevo, na cor que escolher.", v:14.90, a:6.90, ask:"Nome no chaveiro", c:["Customisable Nametag","Ryno_man","CC0"]},
   {id:"b-selo", n:"Carimbo com a sua logo", i:"logo", img:"p/p-carimbo.webp", photo:true, cover:true, d:"Selo de fabricante com a sua marca. A logo você manda no WhatsApp.", v:44.90, a:30.90, ask:"Nome da marca", tag:"Personalizado"},
   {id:"p-lapis", n:"Ponteira de lápis com nome", i:"tag", img:"p/p-lapis.webp", photo:true, v:9.90, a:5.90, ask:"Nome", tag:"Novo"}
@@ -1385,7 +1386,7 @@ $("shelves").innerHTML = SHELVES.map(s => `<section class="shelf" id="${s.id}" d
       <h3>${esc(i.n)}</h3>${i.s ? `<span class="spec">${esc(i.s)}</span>` : ""}
       <div class="opts">
         ${i.tam ? `<div class="swatches sizes" id="tam-${i.id}" role="group" aria-label="Tamanho">${i.tam.map((t, k) => `<button type="button" data-tam="${k}" aria-pressed="${k === 0}">${esc(t.t)}</button>`).join("")}</div>` : ""}
-        ${i.cores ? "" : `<div class="swatches" role="group" aria-label="Cor">${COLORS.map(([c, bg], k) => `<button type="button" data-cor="${c}" aria-pressed="${k === 0}"${k >= 4 ? ' class="cx"' : ""}><i style="background:${bg}"></i>${c}</button>`).join("")}${COLORS.length > 4 ? `<button type="button" class="sw-more" data-swmore aria-label="Ver mais cores">+${COLORS.length - 4} cores</button>` : ""}</div>`}
+        ${i.cores ? "" : `<div class="swatches" role="group" aria-label="Cor">${corList(i).map(([c, bg], k) => `<button type="button" data-cor="${c}" aria-pressed="${k === 0}"${k >= 4 ? ' class="cx"' : ""}><i style="background:${bg}"></i>${c}</button>`).join("")}${corList(i).length > 4 ? `<button type="button" class="sw-more" data-swmore aria-label="Ver mais cores">+${corList(i).length - 4} cores</button>` : ""}</div>`}
         ${i.ask ? `<label for="ask-${i.id}">${esc(i.ask)}<input id="ask-${i.id}" maxlength="60" placeholder="Escreva aqui"></label>` : ""}
       </div>
       <div class="buy"><span class="price" data-price></span>
