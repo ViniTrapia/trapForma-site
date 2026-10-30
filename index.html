@@ -1015,6 +1015,12 @@ body{background-color:#0a0a0b;background-image:linear-gradient(rgba(0,0,0,.62),r
 .swatches .sw-more:hover{border-color:var(--brand)!important;color:#fff!important}
 .swatches.open .sw-more{display:none}
 .pm-cr{display:block;margin-top:8px;font-size:11.5px;color:rgba(236,236,240,.4)}
+/* janela do produto: no Safari (iPhone/iPad) a foto animada ficava presa por cima do texto ao rolar */
+.pm[open] .pm-ph img:not(.photo){animation-fill-mode:backwards!important}
+.pm .pm-ph img{will-change:auto}
+.pm-ph{isolation:isolate;-webkit-transform:translateZ(0);transform:translateZ(0)}
+.pm-in{-webkit-transform:translateZ(0);transform:translateZ(0)}
+.pm-body{position:relative;z-index:2}
 </style>
 
 <header class="hero" id="topo">
