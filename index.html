@@ -1311,18 +1311,36 @@ SHELVES.forEach(s => s.items = s.items.filter(i => !OCULTOS.includes(i.id)));
 // Nomes alterados pelo ADM: {id: nome}.
 const NOMES = {"c-kettlebell":"Chaveiro kettlebell","j-busto":"Omen - Valorant"};
 SHELVES.forEach(s => s.items.forEach(i => { if (NOMES[i.id]) i.n = NOMES[i.id]; }));
+// Tamanhos conferidos (02/11/2026): só entra aqui medida informada pelo Vinícius ou medida do arquivo que ele imprime.
+const TAMANHOS = {"m-santos":"cerca de 18 cm","m-palmeiras":"cerca de 18 cm","m-flamengo":"cerca de 18 cm","m-corinthians":"cerca de 18 cm","a-goku":"cerca de 18 cm",
+  "pk-bulbasaur":"cerca de 10 cm de altura","pk-charmander":"cerca de 10 cm de altura","pk-squirtle":"cerca de 8,5 cm de altura","pk-charizard":"cerca de 17 cm de asa a asa",
+  "b-canguru-articulado":"cerca de 6 cm","b-estrela-do-mar-flexivel":"cerca de 6 cm","b-gatinho-das-sombras-flexivel":"cerca de 5 cm","b-macaquinho-articulado":"cerca de 7 cm"};
+SHELVES.forEach(s => s.items.forEach(i => { if (TAMANHOS[i.id] && !i.s) i.s = TAMANHOS[i.id]; }));
 // Atacado sob consulta (ADM): produtos que mostram "Sob consulta" no atacado; o varejo continua normal.
 const ATAC_CONSULTA = ["c-kettlebell","caricatura"];
 SHELVES.forEach(s => s.items.forEach(i => { if (ATAC_CONSULTA.includes(i.id)) i.ac = true; }));
 const acon = i => i.consulta || i.ac;
-const PROMO = {ativa:true, nome:"Promoção de inauguração", itens:{"caricatura":109.99,"a-luffy":69.9,"chav-joelho":20,"e-suporte-medalhas":null,"r-nossa-senhora":49.9}};
+// Lançamentos (em breve): ficam GUARDADOS até liberar. liberado:false = não aparecem no site.
+// Para conferir antes de lançar, abra o site com ?lancamentos no fim do endereço.
+const LANCAMENTOS = {liberado:false, k:"Chegando na loja", t:"Lançamentos", itens:[
+  {id:"l-cristo", n:"Luminária litofania Cristo no Getsêmani", i:"tag", img:"p/l-cristo.webp", photo:true, cores:"branco", d:"Apagada parece um relevo branco. Com a luz acesa por trás, a cena aparece.", v:99.90, a:69.90, tag:"Novo"},
+  {id:"l-cr7", n:"Busto CR7 com base de nome", i:"bust", img:"p/l-cr7.webp", photo:true, cores:"cinza, preto e dourado", d:"Busto com base preta e o nome em dourado.", v:139.90, a:99.90, tag:"Novo"},
+  {id:"l-oculos", n:"Suporte de óculos rosto", i:"tag", img:"p/l-oculos.webp", photo:true, cores:"branco", d:"Um rosto de perfil que segura os óculos na mesa ou no criado-mudo. Os óculos não acompanham.", v:34.90, a:22.90, tag:"Novo"},
+  {id:"l-rb20", n:"Carro de F1 coberto (lançamento)", i:"tag", img:"p/l-rb20.webp", photo:true, cores:"cinza", d:"O carro escondido sob a capa, como na apresentação da equipe.", v:49.90, a:34.90, tag:"Novo"}
+]};
+const verLanc = LANCAMENTOS.liberado || /[?&]lancamentos\b/.test(location.search);
+if (verLanc && LANCAMENTOS.itens.length) SHELVES.unshift({id:"lancamentos", k:LANCAMENTOS.liberado ? LANCAMENTOS.k : "Prévia: ainda não está no site", t:LANCAMENTOS.t, items:LANCAMENTOS.itens});
+function fimTxt(f){ const d = new Date(Date.parse(f) - 3*3600e3); return String(d.getUTCDate()).padStart(2,"0") + "/" + String(d.getUTCMonth()+1).padStart(2,"0") + ", " + d.getUTCHours() + "h"; }
+// fim: a promoção some sozinha nesse horário (horário de Petrolina, UTC-3).
+const PROMO = {ativa:true, fim:"2026-11-03T12:00:00-03:00", nome:"Promoção de inauguração", itens:{"caricatura":109.99,"a-luffy":69.9,"chav-joelho":20,"e-suporte-medalhas":null,"r-nossa-senhora":49.9}};
+PROMO.ativa = PROMO.ativa && !(PROMO.fim && Date.now() >= Date.parse(PROMO.fim));
 if (PROMO.ativa && Object.keys(PROMO.itens).length){
   const sobem = [];
   SHELVES.forEach(s => s.items = s.items.filter(i => { if (!(i.id in PROMO.itens)) return true; const p = PROMO.itens[i.id]; if (p && !i.consulta && !i.tiers) i.pv = p; i.tag = "Inauguração"; i.g = ""; sobem.push(i); return false; }));
-  if (sobem.length) SHELVES.unshift({id:"promocao", k:"Por tempo limitado", t:PROMO.nome, items:sobem});
+  if (sobem.length) SHELVES.unshift({id:"promocao", k:PROMO.fim ? "Só até " + fimTxt(PROMO.fim) : "Por tempo limitado", t:PROMO.nome, items:sobem});
 }
 for (let k = SHELVES.length - 1; k >= 0; k--) if (!SHELVES[k].items.length) SHELVES.splice(k, 1);
-const ORDEM = ["promocao","natal","brindes","religioso","futebol","casa","desenhos","animes","esporte","saude","cases","pet","jogos","personalizados","fidgets","bichinhos"];
+const ORDEM = ["lancamentos","promocao","natal","brindes","religioso","futebol","casa","desenhos","animes","esporte","saude","cases","pet","jogos","personalizados","fidgets","bichinhos"];
 SHELVES.sort((a, b) => ORDEM.indexOf(a.id) - ORDEM.indexOf(b.id));
 // o que aparece na primeira fileira de cada prateleira: o mais bonito e com mais chance de vender
 const PRIORIDADE = ["n-combo","j-atlas","j-suporte-bola","j-logo-gta","j-revolver","j-dust2","j-busto","j-faca","n-noel","n-rena-canelada","n-rena","n-urso","n-neve","n-gengibre","n-poodle",
@@ -1361,9 +1379,16 @@ cart = cart.filter(l => byId[l.id] && !(mode === "atacado" && acon(byId[l.id])))
 
 /* ---------- catálogo ---------- */
 if (PROMO.ativa){
-  const msgs = [PROMO.nome, "Peças selecionadas com preço especial", "Aproveite enquanto durar"];
+  const msgs = [PROMO.nome, PROMO.fim ? "Só até " + fimTxt(PROMO.fim) : "Peças selecionadas com preço especial", PROMO.fim ? "<i data-falta></i>" : "Aproveite enquanto durar"];
   document.querySelector(".ticker").classList.add("promo");
-  $("tick").innerHTML = [0, 1].map(() => msgs.concat(msgs).map(t => `<span>${esc(t)}</span>`).join("")).join("");
+  $("tick").innerHTML = [0, 1].map(() => msgs.concat(msgs).map(t => `<span>${t.startsWith("<i") ? t : esc(t)}</span>`).join("")).join("");
+  if (PROMO.fim){
+    const fimMs = Date.parse(PROMO.fim);
+    const falta = () => { const m = Math.max(0, Math.ceil((fimMs - Date.now()) / 60000)), h = Math.floor(m / 60);
+      if (m <= 0) return location.reload();
+      document.querySelectorAll("[data-falta]").forEach(e => e.textContent = "Faltam " + (h ? h + "h " : "") + (m % 60) + "min"); };
+    falta(); setInterval(falta, 30000);
+  }
 } else $("tick").innerHTML = ["Impressão 3D","Varejo e atacado","Peças sob medida"].map(t => `<span>${t}</span>`).join("");
 function galHTML(i){
   return `<div class="gal-tr">${i.imgs.map((src, k) => /\.mp4$/.test(src) ? `<video class="photo" src="${src}"${i.poster ? ` poster="${i.poster}"` : ""} muted loop playsinline preload="none" aria-label="Vídeo: ${esc(i.n)}"></video>` : `<img loading="lazy" class="photo" src="${src}" alt="${esc(i.n)}${k ? " (foto " + (k + 1) + ")" : ""}">`).join("")}</div>`
