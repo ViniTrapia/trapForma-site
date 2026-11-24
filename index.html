@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>TrapForma · Impressão 3D</title>
-<meta name="description" content="Peças em impressão 3D: personagens, chaveiros, brindes, Natal e peças sob encomenda. Varejo e atacado, pedido direto pelo WhatsApp.">
+<title>TrapForma · Impressão 3D em Petrolina e Belém de São Francisco</title>
+<meta name="description" content="Impressão 3D em Petrolina e Belém de São Francisco (PE): personagens, chaveiros, brindes, Natal e peças sob encomenda. Varejo e atacado, pedido direto pelo WhatsApp.">
 <meta name="theme-color" content="#0a0a0b">
 <link rel="canonical" href="https://trapforma.com.br/">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
@@ -1113,7 +1113,7 @@ body{background-color:#0a0a0b;background-image:linear-gradient(rgba(0,0,0,.62),r
 </main>
 
 <footer><div class="in">
-  <p><b>TrapForma</b> · impressão 3D · Instagram <a href="https://www.instagram.com/trapforma/" target="_blank" rel="noopener">@trapforma</a></p>
+  <p><b>TrapForma</b> · impressão 3D em Petrolina e Belém de São Francisco (PE) · Instagram <a href="https://www.instagram.com/trapforma/" target="_blank" rel="noopener">@trapforma</a> · WhatsApp <a id="footwa" style="white-space:nowrap" href="https://api.whatsapp.com/send?phone=5587996798263" target="_blank" rel="noopener">(87) 99679-8263</a></p>
 </div></footer>
 
 <button class="fab" type="button" id="fab">Ver pedido <span class="n" id="fabn">0</span></button>
@@ -1225,7 +1225,7 @@ const SHELVES = [
   {id:"s-jaleco", n:"Porta-canetas jaleco com nome", i:"tag", img:"p/s-jaleco.webp", photo:true, d:"Com o nome e a especialidade em relevo.", cores:"branco e preto", v:59.90, a:44.90, ask:"Nome e especialidade", tag:"Personalizado"},
   {id:"s-dente", n:"Porta-cartões de dentista", i:"tag", img:"p/s-dente.webp", photo:true, d:"Dente, escova e instrumentos, com espaço para cartões de visita.", cores:"branco", v:69.90, a:39.90},
   {id:"s-dente-escovas", n:"Porta-escovas dente sorridente", i:"tag", img:"p/s-dente-escovas.webp", photo:true, cores:"branco", d:"Dente sorridente que guarda escovas e pasta. Lindo no consultório ou no banheiro.", v:199.90, a:149.90, tag:"Novo"},
-  {id:"chav-joelho", n:"Chaveiro Anatômico – Articulação do Joelho", i:"tag", img:"p/joelho.webp", photo:true, d:"Presente certeiro para fisioterapeutas, ortopedistas e estudantes.", cores:"branco osso", v:24.90, a:9.90, tag:"Chaveiro"}
+  {id:"chav-joelho", n:"Chaveiro de joelho anatômico", i:"tag", img:"p/joelho.webp", photo:true, d:"Presente certeiro para fisioterapeutas, ortopedistas e estudantes.", cores:"branco osso", v:24.90, a:9.90, tag:"Chaveiro"}
  ]},
  {id:"esporte", k:"Para atletas", t:"Esporte", d:"Para quem vive o esporte.", items:[
   {id:"e-medalhas", n:"Porta-medalhas hexagonal", i:"tag", img:"p/e-medalhas.webp", photo:true, d:"Cada hexágono guarda uma medalha e encaixa no outro. Monte a colmeia do seu jeito.", cores:"preto", v:34.90, a:20.90, ask:"Quantas peças e esporte"},
@@ -1308,22 +1308,6 @@ const SHELVES = [
   {id:"b-microfone", n:"Canopla de microfone com logo", i:"logo", img:"p/b-microfone.webp", photo:true, d:"Para entrevistas, eventos e podcasts.", v:59.90, a:25.90, ask:"Nome da empresa", tag:"Personalizado"}
  ]}
 ];
-// Produtos guardados (não aparecem no site). Ids da página ADM.
-const OCULTOS = ["c-lixeira-carro","b-microfone","porta-panetone","k-furada","k-lisa","k-presilha","r-cristo","a-capa-aranha","c-corinthians","clicker","e-porta-anel-kettlebell","j-dust2","j-faca","j-revolver","x-einstein"];
-SHELVES.forEach(s => s.items = s.items.filter(i => !OCULTOS.includes(i.id)));
-// Promoção (ADM > Promoção): itens escolhidos sobem para a prateleira da campanha. Preço null = mesmo preço.
-// Nomes alterados pelo ADM: {id: nome}.
-const NOMES = {"c-kettlebell":"Chaveiro kettlebell","j-busto":"Omen - Valorant"};
-SHELVES.forEach(s => s.items.forEach(i => { if (NOMES[i.id]) i.n = NOMES[i.id]; }));
-// Tamanhos conferidos (02/11/2026): só entra aqui medida informada pelo Vinícius ou medida do arquivo que ele imprime.
-const TAMANHOS = {"m-santos":"cerca de 18 cm","m-palmeiras":"cerca de 18 cm","m-flamengo":"cerca de 18 cm","m-corinthians":"cerca de 18 cm","a-goku":"cerca de 18 cm",
-  "pk-bulbasaur":"cerca de 10 cm de altura","pk-charmander":"cerca de 10 cm de altura","pk-squirtle":"cerca de 8,5 cm de altura","pk-charizard":"cerca de 17 cm de asa a asa",
-  "b-canguru-articulado":"cerca de 6 cm","b-estrela-do-mar-flexivel":"cerca de 6 cm","b-gatinho-das-sombras-flexivel":"cerca de 5 cm","b-macaquinho-articulado":"cerca de 7 cm"};
-SHELVES.forEach(s => s.items.forEach(i => { if (TAMANHOS[i.id] && !i.s) i.s = TAMANHOS[i.id]; }));
-// Atacado sob consulta (ADM): produtos que mostram "Sob consulta" no atacado; o varejo continua normal.
-const ATAC_CONSULTA = ["c-kettlebell","caricatura","b-igreja","b-mercado","r-chav-aparecida"];
-SHELVES.forEach(s => s.items.forEach(i => { if (ATAC_CONSULTA.includes(i.id)) i.ac = true; }));
-const acon = i => i.consulta || i.ac;
 // Lançamentos (em breve): ficam GUARDADOS até liberar. liberado:false = não aparecem no site.
 // Para conferir antes de lançar, abra o site com ?lancamentos no fim do endereço.
 const LANCAMENTOS = {liberado:true, k:"Acabou de chegar", t:"Novidades", itens:[
@@ -1354,6 +1338,22 @@ const LANC_GUARDADOS = [
 ];
 const verLanc = LANCAMENTOS.liberado || /[?&]lancamentos\b/.test(location.search);
 if (verLanc && LANCAMENTOS.itens.length) SHELVES.unshift({id:"lancamentos", k:LANCAMENTOS.liberado ? LANCAMENTOS.k : "Prévia: ainda não está no site", t:LANCAMENTOS.t, items:LANCAMENTOS.itens});
+// Produtos guardados (não aparecem no site). Ids da página ADM.
+const OCULTOS = ["c-lixeira-carro","b-microfone","porta-panetone","k-furada","k-lisa","k-presilha","r-cristo","a-capa-aranha","c-corinthians","clicker","e-porta-anel-kettlebell","j-dust2","j-faca","j-revolver","x-einstein"];
+SHELVES.forEach(s => s.items = s.items.filter(i => !OCULTOS.includes(i.id)));
+// Promoção (ADM > Promoção): itens escolhidos sobem para a prateleira da campanha. Preço null = mesmo preço.
+// Nomes alterados pelo ADM: {id: nome}.
+const NOMES = {"c-kettlebell":"Chaveiro kettlebell","j-busto":"Omen - Valorant"};
+SHELVES.forEach(s => s.items.forEach(i => { if (NOMES[i.id]) i.n = NOMES[i.id]; }));
+// Tamanhos conferidos (02/11/2026): só entra aqui medida informada pelo Vinícius ou medida do arquivo que ele imprime.
+const TAMANHOS = {"m-santos":"cerca de 18 cm","m-palmeiras":"cerca de 18 cm","m-flamengo":"cerca de 18 cm","m-corinthians":"cerca de 18 cm","a-goku":"cerca de 18 cm",
+  "pk-bulbasaur":"cerca de 10 cm de altura","pk-charmander":"cerca de 10 cm de altura","pk-squirtle":"cerca de 8,5 cm de altura","pk-charizard":"cerca de 17 cm de asa a asa",
+  "b-canguru-articulado":"cerca de 6 cm","b-estrela-do-mar-flexivel":"cerca de 6 cm","b-gatinho-das-sombras-flexivel":"cerca de 5 cm","b-macaquinho-articulado":"cerca de 7 cm"};
+SHELVES.forEach(s => s.items.forEach(i => { if (TAMANHOS[i.id] && !i.s) i.s = TAMANHOS[i.id]; }));
+// Atacado sob consulta (ADM): produtos que mostram "Sob consulta" no atacado; o varejo continua normal.
+const ATAC_CONSULTA = ["c-kettlebell","caricatura","b-igreja","b-mercado","r-chav-aparecida"];
+SHELVES.forEach(s => s.items.forEach(i => { if (ATAC_CONSULTA.includes(i.id)) i.ac = true; }));
+const acon = i => i.consulta || i.ac;
 function fimTxt(f){ const d = new Date(Date.parse(f) - 3*3600e3); return String(d.getUTCDate()).padStart(2,"0") + "/" + String(d.getUTCMonth()+1).padStart(2,"0") + ", " + d.getUTCHours() + "h"; }
 // fim: a promoção some sozinha nesse horário (horário de Petrolina, UTC-3).
 const PROMO = {ativa:true, fim:"2026-11-03T12:00:00-03:00", nome:"Promoção de inauguração", itens:{"caricatura":109.99,"a-luffy":69.9,"chav-joelho":20,"e-suporte-medalhas":null,"r-nossa-senhora":49.9}};
@@ -1426,7 +1426,7 @@ function vitrineHTML(){
   const from = id => { const sh = SHELVES.find(x => x.id === id), v = sh.items.filter(i => !acon(i)).map(i => i.tiers ? i.tiers[i.tiers.length-1][1] : i.a); return v.length ? Math.min(...v) : null; };
   return `<div class="atac"><p class="atac-lead">A partir de ${MIN_ATACADO} unidades por peça, com preço de atacado. Ideal para empresas, festas, clínicas e eventos.</p>
   <div class="vgrid">${VITRINE.map(([img, t, id]) => `<a class="vt" href="#${id}" data-goatac="${id}"><span class="vimg"><img loading="lazy" src="${img}" alt=""></span><b>${esc(t)}</b><small>${id === "brindes" ? "a partir de 15 unidades" : from(id) == null ? "sob consulta" : `a partir de ${brl(from(id))}/un`}</small></a>`).join("")}</div>
-  <div class="nfc"><div class="process-media"><video src="nfc.mp4" muted loop playsinline autoplay preload="metadata" aria-hidden="true"></video></div><div class="nfc-txt"><span class="eyebrow">Feito aqui</span><b>Da impressora para a sua mão.</b><p>Chaveiros, enfeites, bonecos e peças sob medida, impressos camada por camada.</p></div></div>
+  <div class="nfc"><div class="process-media"><video data-src="nfc.mp4" poster="nfc-poster.webp" muted loop playsinline preload="none" aria-hidden="true"></video></div><div class="nfc-txt"><span class="eyebrow">Feito aqui</span><b>Da impressora para a sua mão.</b><p>Chaveiros, enfeites, bonecos e peças sob medida, impressos camada por camada.</p></div></div>
   <div class="atac-cta"><button class="btn primary" type="button" data-goatac="">Ver preços de atacado</button><a class="btn outline" id="orcwa" href="#" target="_blank" rel="noopener">Pedir orçamento</a></div></div>`;
 }
 const SUBS = [["","Todos"],["pets","Pets"],["selvagens","Bichos da mata"],["mar","Do mar"],["repteis","Répteis, dinos e insetos"]];
@@ -1435,7 +1435,7 @@ $("shelves").innerHTML = SHELVES.map(s => `<section class="shelf" id="${s.id}" d
   ${s.tabs ? `<div class="subf tabs" role="group" aria-label="Escolher anime">${s.tabs.map(([k, l], n) => `<button type="button" data-tab="${k}" aria-pressed="${n === 0}">${l}</button>`).join("")}</div>` : ""}
   ${s.sub ? `<div class="subf" role="group" aria-label="Filtrar bichinhos">${SUBS.map(([k, l], n) => `<button type="button" data-sub="${k}" aria-pressed="${n === 0}">${l}</button>`).join("")}</div>` : ""}
   <div class="grid">${s.items.map(i => `<article class="card pre" data-id="${i.id}" data-g="${i.g || ""}">
-    <div class="ph${i.dark ? " dark" : ""}${i.imgs ? " gal" : ""}">${i.imgs ? galHTML(i) : i.img ? `<img loading="lazy"${i.cover ? ' class="photo"' : ""} src="${i.img}" alt="${esc(i.n)}">` : svg(i.i)}${i.photo && !i.real ? `<span class="soon">Foto ilustrativa</span>` : ""}${TAGS_OK.includes(i.tag) ? `<span class="tag">${esc(i.tag)}</span>` : ""}</div>
+    <div class="ph${i.dark ? " dark" : ""}${i.imgs ? " gal" : ""}">${i.imgs ? galHTML(i) : i.img ? `<img loading="lazy"${i.cover ? ' class="photo"' : ""} src="${i.img}" alt="${esc(i.n)}">` : svg(i.i)}${i.photo && !i.real ? `<span class="soon">Foto ilustrativa</span>` : ""}${TAGS_OK.includes(i.tag) && !(i.tag === "Novo" && s.id !== "lancamentos") ? `<span class="tag">${esc(i.tag)}</span>` : ""}</div>
     <div class="body">
       <h3>${esc(i.n)}</h3>${i.s ? `<span class="spec">${esc(i.s)}</span>` : ""}
       <div class="opts">
@@ -1582,7 +1582,7 @@ function renderCart(){
     <div class="mini">${i.img ? `<img src="${i.img}" alt="">` : svg(i.i)}</div>
     <div><h4>${esc(i.n)}</h4><div class="meta">${i.tam ? esc(i.tam[l.tam || 0].t) + " · " : ""}${esc(l.cor)}${l.obs ? " · " + esc(l.obs) : ""}<br>${brl(u)} cada</div></div>
     <div class="right"><b>${brl(u * l.qty)}</b><span class="qty"><button type="button" data-cstep="-1" aria-label="Menos">−</button><input type="number" value="${l.qty}" aria-label="Quantidade" data-cqty><button type="button" data-cstep="1" aria-label="Mais">+</button></span><button class="rm" type="button" data-rm>Remover</button></div>
-  </div>`; }).join("") : `<div class="empty">Seu pedido está vazio.<br>Escolha as peças no catálogo e toque em <b>Adicionar ao pedido</b>.</div>`;
+  </div>`; }).join("") : `<div class="empty">Seu pedido está vazio.<br>Escolha as peças no catálogo e toque em <b>Adicionar</b>.</div>`;
   $("total").textContent = brl(totals());
   const short = mode === "atacado" ? cart.filter(l => l.qty < minFor(byId[l.id])) : [];
   $("warn").hidden = !short.length; $("warn").textContent = short.length ? "Algumas peças estão abaixo do mínimo do atacado." : "";
@@ -1644,7 +1644,15 @@ document.addEventListener("keydown", e => { if (e.key === "Escape") openCart(fal
 document.querySelectorAll(".orcwa2").forEach(a => a.href = waLink("Olá, TrapForma! Quero um orçamento: "));
 $("customwa").href = waLink("Olá, TrapForma! Tenho uma ideia de peça sob encomenda: ");
 const setSbw = () => document.documentElement.style.setProperty("--sbw", (innerWidth - document.documentElement.clientWidth) + "px"); setSbw(); addEventListener("resize", setSbw);
+$("footwa").href = waLink("Olá, TrapForma! ");
 $("orcwa").href = waLink("Olá, TrapForma! Quero um orçamento de atacado/brindes: ");
+
+/* ---------- vídeo da vitrine: só baixa quando chega perto da tela ---------- */
+document.querySelectorAll("video[data-src]").forEach(v => {
+  const go = () => { if (!v.src){ v.src = v.dataset.src; } v.play().catch(() => {}); };
+  if (!("IntersectionObserver" in window)) return go();
+  new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting) go(); else if (v.src) v.pause(); }), {rootMargin:"300px 0px"}).observe(v);
+});
 
 /* ---------- créditos ---------- */
 
