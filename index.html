@@ -1058,7 +1058,7 @@ body{background-color:#0a0a0b;background-image:linear-gradient(rgba(0,0,0,.62),r
 </div></div>
 
 <main class="in" id="catalogo">
-  <aside class="aviso" role="note" aria-label="Aviso sobre cores"><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9c0-1.2-.9-2-2-2h-2.2a2 2 0 0 1-1.4-3.4A9 9 0 0 0 12 3z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="7.6" cy="11.4" r="1.2" fill="currentColor"/><circle cx="10.6" cy="7.4" r="1.2" fill="currentColor"/><circle cx="15" cy="6.9" r="1.2" fill="currentColor"/></svg></i><p><b>Chegaram cores novas.</b> Escolha a sua no pedido. Quer uma cor que não está na lista? Pergunte no WhatsApp.</p></aside>
+  <aside class="aviso" role="note" aria-label="Aviso sobre cores"><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9c0-1.2-.9-2-2-2h-2.2a2 2 0 0 1-1.4-3.4A9 9 0 0 0 12 3z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="7.6" cy="11.4" r="1.2" fill="currentColor"/><circle cx="10.6" cy="7.4" r="1.2" fill="currentColor"/><circle cx="15" cy="6.9" r="1.2" fill="currentColor"/></svg></i><p><b>Cores variadas.</b> A cor de cada peça você combina com a gente no WhatsApp, conforme o estoque do dia.</p></aside>
   <section class="how" aria-label="Como comprar">
     <div class="hw"><i><svg viewBox="0 0 24 24"><path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L21 8H6.2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="10" cy="20" r="1.5" fill="currentColor"/><circle cx="17" cy="20" r="1.5" fill="currentColor"/></svg></i><div><b>Escolha suas peças</b><span>Adicione seus favoritos ao pedido.</span></div></div>
     <div class="hw"><i><svg viewBox="0 0 24 24"><path d="M4 7h11M4 7l3-3M4 7l3 3M20 17H9m11 0-3-3m3 3-3 3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></i><div><b>Varejo ou atacado</b><span>A partir de 10 unidades no atacado.</span></div></div>
@@ -1104,7 +1104,7 @@ body{background-color:#0a0a0b;background-image:linear-gradient(rgba(0,0,0,.62),r
   <section class="shelf" id="duvidas">
     <div class="sh"><h2><small>Informações úteis</small>Dúvidas</h2></div>
     <div class="faq">
-      <div><span class="fi"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7v5l3 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span><h3>Prazo</h3><p>Até 3 dias úteis. Personalizado e atacado: 5 a 10. Cor fora da lista: a gente combina o prazo no WhatsApp.</p></div>
+      <div><span class="fi"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7v5l3 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span><h3>Prazo</h3><p>Até 3 dias úteis. Personalizado e atacado: 5 a 10.</p></div>
       <div><span class="fi"><svg viewBox="0 0 24 24"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="7" cy="18" r="2" fill="currentColor"/><circle cx="17" cy="18" r="2" fill="currentColor"/></svg></span><h3>Entrega</h3><p>Na região ou Correios para todo o Brasil.</p></div>
       <div><span class="fi"><svg viewBox="0 0 24 24"><path d="M12 3l3 3-3 3-3-3zM6 9l3 3-3 3-3-3zM18 9l3 3-3 3-3-3zM12 15l3 3-3 3-3-3z" fill="currentColor"/></svg></span><h3>Pagamento</h3><p>Pix, combinado no WhatsApp.</p></div>
       <div><span class="fi"><svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span><h3>Atacado</h3><p>A partir de 10 peças, com preço menor.</p></div>
@@ -1127,6 +1127,7 @@ body{background-color:#0a0a0b;background-image:linear-gradient(rgba(0,0,0,.62),r
       <label for="f-empresa" id="l-empresa" hidden>Empresa ou loja (opcional)<input id="f-empresa" placeholder="Nome da empresa"></label>
       <label for="f-cidade">Cidade<input id="f-cidade" autocomplete="address-level2" placeholder="Sua cidade"></label>
       <label for="f-entrega">Como quer receber<select id="f-entrega"><option>Entrega no meu endereço</option><option>Vou retirar</option><option>Envio pelos Correios</option></select></label>
+      <label for="f-bairro" id="l-bairro">Bairro<input id="f-bairro" autocomplete="address-level3" placeholder="Seu bairro"></label>
       <label for="f-obs">Observações<textarea id="f-obs" placeholder="Data que precisa, cores, ideia de embalagem..."></textarea></label>
     </div>
   </div>
@@ -1251,6 +1252,7 @@ const SHELVES = [
   {id:"n-poodle", n:"Poodle de Natal", i:"ornament", img:"p/n-poodle.webp", photo:true, d:"Com gorro de Papai Noel.", cores:"caramelo, vermelho, branco e preto", v:39.90, a:21.90, tag:"Natal"},
   {id:"porta-panetone", n:"Porta-panetone Papai Noel", i:"ornament", img:"p/panetone.webp", photo:true, cores:"vermelho, branco, preto e amarelo", v:89.90, a:69.90, tag:"Natal"}
  ]},
+ {id:"festas", k:"Para a sua festa", t:"Aniversário e festas", items:[]},
  {id:"religioso", k:"Fé em casa", t:"Religioso", d:"Imagens e presépios para o lar e para presentear.", items:[
   {id:"r-nossa-senhora", n:"Nossa Senhora porta-terço", i:"tag", img:"p/c-porta-terco.webp", photo:true, d:"Guarda o terço com carinho e enfeita o cantinho de oração.", cores:"branco", v:59.90, a:34.90, tag:"Novo"},
   {id:"r-presepio", n:"Presépio completo com arco", i:"ornament", img:"p/r-presepio1.webp", photo:true, cores:"branco", v:129.90, a:96.90, tag:"Novo"},
@@ -1313,6 +1315,7 @@ const SHELVES = [
 const LANCAMENTOS = {liberado:true, k:"Acabou de chegar", t:"Novidades", itens:[
   {id:"b-igreja", n:"Igreja de Belém", i:"tag", img:"p/b-igreja.webp", photo:true, real:true, cores:"branco e laranja, como na foto", d:"A igreja de Belém de São Francisco em relevo colorido. Escolha chaveiro ou ímã de geladeira.", tam:[{t:"Chaveiro", v:12.00, a:12.00},{t:"Ímã", v:12.00, a:12.00}], v:12.00, a:12.00, tag:"Belém"},
   {id:"b-mercado", n:"Mercado de Belém", i:"tag", img:"p/b-mercado.webp", photo:true, real:true, cores:"azul e branco, como na foto", d:"O mercado de Belém de São Francisco em relevo colorido. Escolha chaveiro ou ímã de geladeira.", tam:[{t:"Chaveiro", v:12.00, a:12.00},{t:"Ímã", v:12.00, a:12.00}], v:12.00, a:12.00, tag:"Belém"},
+  {id:"b-bandeira", n:"Bandeira de Belém", i:"tag", img:"p/b-bandeira.webp", photo:true, real:true, cores:"branco, azul, verde e amarelo, como na foto", d:"A bandeira de Belém de São Francisco em relevo colorido, com mastro. Escolha chaveiro ou ímã de geladeira.", tam:[{t:"Chaveiro", v:12.00, a:12.00},{t:"Ímã", v:12.00, a:12.00}], v:12.00, a:12.00, tag:"Belém"},
   {id:"r-chav-aparecida", img:"p/r-chav-aparecida.webp", photo:true, n:"Chaveiro Nossa Senhora Aparecida", i:"tag", cores:"azul, branco e amarelo", d:"Nossa Senhora Aparecida de 6,5 cm, com argola. Lembrancinha certa para novena e terço.", v:12.00, a:12.00, tag:"Novo", c:["Chaveiro Nossa Senhora Aparecida 6,5 cm", "Elkabong58", "CC BY"]},
   {id:"r-espirito-santo", img:"p/r-espirito-santo.webp", photo:true, n:"Divino Espírito Santo", i:"star", cores:"branco e dourado", d:"A pomba do Espírito Santo com raios dourados, para a parede ou o cantinho de oração.", v:29.90, a:17.90, tag:"Novo", c:["Divino Espírito Santo", "RamonZin", "CC BY"]},
   {id:"n-placa-nome", img:"p/n-placa-nome.webp", photo:true, n:"Placa com inicial e nome", i:"tag", cores:"branco, rosa e amarelo (ou as cores da festa)", ask:"Nome e inicial", d:"Letra grande com o nome da criança, coroa e borboleta. Decora a mesa do aniversário e depois o quarto.", v:69.90, a:44.90, tag:"Personalizado", c:["Letreiro personalizável", "Suyanasilva", "CC BY-SA"]},
@@ -1351,7 +1354,7 @@ const TAMANHOS = {"m-santos":"cerca de 18 cm","m-palmeiras":"cerca de 18 cm","m-
   "b-canguru-articulado":"cerca de 6 cm","b-estrela-do-mar-flexivel":"cerca de 6 cm","b-gatinho-das-sombras-flexivel":"cerca de 5 cm","b-macaquinho-articulado":"cerca de 7 cm"};
 SHELVES.forEach(s => s.items.forEach(i => { if (TAMANHOS[i.id] && !i.s) i.s = TAMANHOS[i.id]; }));
 // Atacado sob consulta (ADM): produtos que mostram "Sob consulta" no atacado; o varejo continua normal.
-const ATAC_CONSULTA = ["c-kettlebell","caricatura","b-igreja","b-mercado","r-chav-aparecida"];
+const ATAC_CONSULTA = ["c-kettlebell","caricatura","b-igreja","b-mercado","b-bandeira","r-chav-aparecida"];
 SHELVES.forEach(s => s.items.forEach(i => { if (ATAC_CONSULTA.includes(i.id)) i.ac = true; }));
 const acon = i => i.consulta || i.ac;
 function fimTxt(f){ const d = new Date(Date.parse(f) - 3*3600e3); return String(d.getUTCDate()).padStart(2,"0") + "/" + String(d.getUTCMonth()+1).padStart(2,"0") + ", " + d.getUTCHours() + "h"; }
@@ -1363,11 +1366,23 @@ if (PROMO.ativa && Object.keys(PROMO.itens).length){
   SHELVES.forEach(s => s.items = s.items.filter(i => { if (!(i.id in PROMO.itens)) return true; const p = PROMO.itens[i.id]; if (p && !i.consulta && !i.tiers) i.pv = p; i.tag = "Inauguração"; i.g = ""; sobem.push(i); return false; }));
   if (sobem.length) SHELVES.unshift({id:"promocao", k:PROMO.fim ? "Só até " + fimTxt(PROMO.fim) : "Por tempo limitado", t:PROMO.nome, items:sobem});
 }
+// Novidades com no máximo 8 peças: as outras vão para a prateleira de cada uma (o selo "Novo" só aparece nas Novidades).
+const MUDAR_PARA = {"r-chav-fe":"religioso","r-chav-cruz-pomba":"religioso","r-deus-e-bom":"religioso","r-cruz-parede":"religioso","l-cristo":"religioso",
+  "n-placa-nome":"festas","n-topo-bolo":"festas","n-lembr-estrela":"festas","l-feliz-natal":"natal","l-oculos":"casa","l-prensa":"casa","l-capacete":"esporte"};
+SHELVES.forEach(s => s.items = s.items.filter(i => { const d = MUDAR_PARA[i.id], alvo = d && d !== s.id && SHELVES.find(x => x.id === d); if (!alvo) return true; alvo.items.push(i); return false; }));
+// Prateleira "Até R$ 20": cópia das peças baratas (mesmo produto, preço de varejo até R$ 20), da mais barata para a mais cara.
+const ATE = 20, precoV = i => i.tam ? Math.min(...i.tam.map(t => t.pv || t.v)) : (i.pv || i.v);
+const baratas = SHELVES.filter(s => s.id !== "promocao").flatMap(s => s.items).filter(i => !i.consulta && !i.tiers && precoV(i) <= ATE)
+  .map(i => ({...i, id:i.id + "--20"})).sort((a, b) => precoV(a) - precoV(b));
+const ATE_TOPO = ["b-igreja","b-mercado","b-bandeira","r-chav-aparecida","z-tubarao","chaveiro-nome","b-macaquinho-articulado","n-topo-bolo"];  // primeira fileira
+const topo = i => { const k = ATE_TOPO.indexOf(i.id.replace(/--20$/, "")); return k < 0 ? 99 : k; };
+baratas.sort((a, b) => topo(a) - topo(b));
+if (baratas.length) SHELVES.push({id:"ate20", k:"Lembrancinhas e presentes", t:"Até R$ 20", items:baratas});
 for (let k = SHELVES.length - 1; k >= 0; k--) if (!SHELVES[k].items.length) SHELVES.splice(k, 1);
-const ORDEM = ["lancamentos","promocao","natal","brindes","religioso","futebol","casa","desenhos","animes","esporte","saude","cases","pet","jogos","personalizados","fidgets","bichinhos"];
+const ORDEM = ["lancamentos","promocao","natal","ate20","brindes","religioso","festas","futebol","casa","desenhos","animes","esporte","saude","cases","pet","jogos","personalizados","fidgets","bichinhos"];
 SHELVES.sort((a, b) => ORDEM.indexOf(a.id) - ORDEM.indexOf(b.id));
 // o que aparece na primeira fileira de cada prateleira: o mais bonito e com mais chance de vender
-const PRIORIDADE = ["b-igreja","b-mercado","r-chav-aparecida","n-placa-nome","r-espirito-santo","n-topo-bolo","r-placa-jesus","n-lembr-estrela","r-chav-fe","r-nossa-senhora-vela","l-feliz-natal","r-placa-ore","r-chav-cruz-pomba","l-cristo","r-deus-e-bom","r-cruz-parede","l-oculos","l-capacete","l-prensa","n-combo","j-atlas","j-suporte-bola","j-logo-gta","j-revolver","j-dust2","j-busto","j-faca","n-noel","n-rena-canelada","n-rena","n-urso","n-neve","n-gengibre","n-poodle",
+const PRIORIDADE = ["b-igreja","b-mercado","b-bandeira","r-chav-aparecida","n-placa-nome","r-espirito-santo","n-topo-bolo","r-placa-jesus","n-lembr-estrela","r-chav-fe","r-nossa-senhora-vela","l-feliz-natal","r-placa-ore","r-chav-cruz-pomba","l-cristo","r-deus-e-bom","r-cruz-parede","l-oculos","l-capacete","l-prensa","n-combo","j-atlas","j-suporte-bola","j-logo-gta","j-revolver","j-dust2","j-busto","j-faca","n-noel","n-rena-canelada","n-rena","n-urso","n-neve","n-gengibre","n-poodle",
   "b-placa-google","b-cartao-nfc","pix","b-placa-wifi","chaveiro-logo","b-chaveiro-suporte",
   "m-flamengo","m-corinthians","m-palmeiras","m-santos",
   "e-medalhas","e-logo-f1","e-suporte-medalhas","e-porta-anel-kettlebell",
@@ -1378,7 +1393,7 @@ const PRIORIDADE = ["b-igreja","b-mercado","r-chav-aparecida","n-placa-nome","r-
   "f-bastao","f-ovo-dragao","f-polvo","f-varinha-sereia","f-laranja","f-cafe","f-formas","estrela","cone","clicker",
   "z-camaleao","b-macaquinho-articulado","b-gatinho-das-sombras-flexivel","z-tubarao"];
 const rank = i => { const k = PRIORIDADE.indexOf(i.id); return k < 0 ? 999 : k; };
-SHELVES.forEach(sh => sh.items.sort((a, b) => rank(a) - rank(b)));
+SHELVES.forEach(sh => { if (sh.id !== "ate20") sh.items.sort((a, b) => rank(a) - rank(b)); });
 const VITRINE = [["p/b-chaveiro-logo2.webp","Chaveiros com sua logo","brindes"],["p/n-rena.webp","Lembrancinhas de Natal","natal"],["p/z-tubarao.webp","Lembrancinhas de festa","bichinhos"],["p/s-jaleco.webp","Presentes para clínicas","saude"],["p/e-medalhas.webp","Porta-medalhas para eventos","esporte"],["p/f-squirtle.webp","Bonecos para coleção","animes"]];
 VITRINE.splice(0, VITRINE.length, ...VITRINE.filter(v => SHELVES.some(s => s.id === v[2])));
 const ALL = SHELVES.flatMap(s => s.items.map(i => ({...i, shelf:s.id, onlyA:!!s.onlyA})));
@@ -1419,7 +1434,7 @@ function galHTML(i){
     + `<button class="gal-nav prev" type="button" aria-label="Foto anterior" hidden>‹</button><button class="gal-nav next" type="button" aria-label="Próxima foto">›</button>`
     + `<span class="gal-dots">${i.imgs.map((_, k) => `<i${k ? "" : ' class="on"'}></i>`).join("")}</span>`;
 }
-const CAPA = {esporte:"e-medalhas", fidgets:"f-laranja", bichinhos:"z-tubarao"};  // foto de cada bloco de categoria, quando não é a primeira peça
+const CAPA = {esporte:"e-medalhas", fidgets:"f-laranja", bichinhos:"z-tubarao", ate20:"b-igreja--20", festas:"n-placa-nome"};  // foto de cada bloco de categoria, quando não é a primeira peça
 $("cats").innerHTML = SHELVES.filter(s => s.id !== "promocao").map(s => { const f = s.items.find(i => i.id === CAPA[s.id] && i.img) || s.items.find(i => i.img); return `<a href="#${s.id}" data-shelf="${s.id}"><span class="ct">${f ? `<img loading="lazy"${f.cover ? ' class="photo"' : ""} src="${f.img}" alt="">` : svg(s.items[0].i)}</span><b>${esc(s.t)}</b></a>`; }).join("");
 const TAGS_OK = ["Destaque","Novo","Belém","Sob encomenda","Personalizado","Inauguração"];
 function vitrineHTML(){
@@ -1440,7 +1455,7 @@ $("shelves").innerHTML = SHELVES.map(s => `<section class="shelf" id="${s.id}" d
       <h3>${esc(i.n)}</h3>${i.s ? `<span class="spec">${esc(i.s)}</span>` : ""}
       <div class="opts">
         ${i.tam ? `<div class="swatches sizes" id="tam-${i.id}" role="group" aria-label="Tamanho">${i.tam.map((t, k) => `<button type="button" data-tam="${k}" aria-pressed="${k === 0}">${esc(t.t)}</button>`).join("")}</div>` : ""}
-        ${i.cores ? "" : `<div class="swatches" role="group" aria-label="Cor">${corList(i).map(([c, bg], k) => `<button type="button" data-cor="${c}" aria-pressed="${k === 0}"${k >= 4 ? ' class="cx"' : ""}><i style="background:${bg}"></i>${c}</button>`).join("")}${corList(i).length > 4 ? `<button type="button" class="sw-more" data-swmore aria-label="Ver mais cores">+${corList(i).length - 4} cores</button>` : ""}</div>`}
+        ${true ? "" : `<div class="swatches" role="group" aria-label="Cor">${corList(i).map(([c, bg], k) => `<button type="button" data-cor="${c}" aria-pressed="${k === 0}"${k >= 4 ? ' class="cx"' : ""}><i style="background:${bg}"></i>${c}</button>`).join("")}${corList(i).length > 4 ? `<button type="button" class="sw-more" data-swmore aria-label="Ver mais cores">+${corList(i).length - 4} cores</button>` : ""}</div>`}
         ${i.ask ? `<label for="ask-${i.id}">${esc(i.ask)}<input id="ask-${i.id}" maxlength="60" placeholder="Escreva aqui"></label>` : ""}
       </div>
       <div class="buy"><span class="price" data-price></span>
@@ -1544,7 +1559,7 @@ document.addEventListener("click", e => {
     const card = add.closest(".card"), i = byId[card.dataset.id];
     if (add.hasAttribute("data-consulta")){ const q = Math.max(minFor(i), parseInt($("q-" + i.id).value) || 1), emp = i.ask ? $("ask-" + i.id).value.trim() : ""; openWa(waLink(i.consulta ? `Olá, TrapForma! Quero orçamento de ${q} chaveiros com a minha logo${emp ? " (" + emp + ")" : ""}.` : `Olá, TrapForma! Quero orçamento no atacado de ${q} un. de ${i.n}${emp ? " (" + emp + ")" : ""}.`)); return; }
     const qty = Math.max(minFor(i), parseInt($("q-" + i.id).value) || 1);
-    const cor = card.querySelector('.swatches:not(.sizes) button[aria-pressed="true"]')?.dataset.cor || (i.cores ? "cores originais" : "Preto");
+    const cor = "";  // a cor é combinada no WhatsApp, conforme o estoque de filamento
     const obs = i.ask ? $("ask-" + i.id).value.trim() : "";
     const tam = i.tam ? selTam(i) : 0;
     const key = [i.id, cor, obs, tam].join("|"), ex = cart.find(l => l.key === key);
@@ -1580,7 +1595,7 @@ function renderCart(){
   $("l-empresa").hidden = mode !== "atacado";
   $("lines").innerHTML = cart.length ? cart.map(l => { const i = byId[l.id], u = unit(i, l.qty, l.tam); return `<div class="line" data-key="${esc(l.key)}">
     <div class="mini">${i.img ? `<img src="${i.img}" alt="">` : svg(i.i)}</div>
-    <div><h4>${esc(i.n)}</h4><div class="meta">${i.tam ? esc(i.tam[l.tam || 0].t) + " · " : ""}${esc(l.cor)}${l.obs ? " · " + esc(l.obs) : ""}<br>${brl(u)} cada</div></div>
+    <div><h4>${esc(i.n)}</h4><div class="meta">${i.tam ? esc(i.tam[l.tam || 0].t) + " · " : ""}${l.obs ? esc(l.obs) : "Cor a combinar"}<br>${brl(u)} cada</div></div>
     <div class="right"><b>${brl(u * l.qty)}</b><span class="qty"><button type="button" data-cstep="-1" aria-label="Menos">−</button><input type="number" value="${l.qty}" aria-label="Quantidade" data-cqty><button type="button" data-cstep="1" aria-label="Mais">+</button></span><button class="rm" type="button" data-rm>Remover</button></div>
   </div>`; }).join("") : `<div class="empty">Seu pedido está vazio.<br>Escolha as peças no catálogo e toque em <b>Adicionar</b>.</div>`;
   $("total").textContent = brl(totals());
@@ -1594,9 +1609,10 @@ function message(){
   if (nome) L.push(`Nome: ${nome}`);
   if (mode === "atacado" && emp) L.push(`Empresa: ${emp}`);
   if (cid) L.push(`Cidade: ${cid}`);
+  const bai = $("f-bairro").value.trim(); if (bai && $("f-entrega").value === "Entrega no meu endereço") L.push(`Bairro: ${bai}`);
   L.push(`Receber: ${$("f-entrega").value}`, "", "Itens:");
-  cart.forEach(l => { const i = byId[l.id], u = unit(i, l.qty, l.tam); L.push(`- ${l.qty}x ${i.n}${i.tam ? " " + i.tam[l.tam || 0].t : ""} (${l.cor}): ${brl(u * l.qty)}`); if (i.ask) L.push(`  ${i.ask}: ${l.obs || "vou mandar aqui na conversa"}`); });
-  L.push("", `Total estimado: ${brl(totals())} (sem frete)`);
+  cart.forEach(l => { const i = byId[l.id], u = unit(i, l.qty, l.tam); L.push(`- ${l.qty}x ${i.n}${i.tam ? " " + i.tam[l.tam || 0].t : ""}: ${brl(u * l.qty)}`); if (i.ask) L.push(`  ${i.ask}: ${l.obs || "vou mandar aqui na conversa"}`); });
+  L.push("", "Cores: quero combinar aqui na conversa.", `Total estimado: ${brl(totals())} (sem frete)`);
   const obs = $("f-obs").value.trim(); if (obs) L.push(`Observações: ${obs}`);
   L.push("", "Pedido montado no site da TrapForma.");
   return L.join("\n");
@@ -1621,7 +1637,8 @@ function updateLink(){
 $("send").addEventListener("click", e => { if (!cart.length){ e.preventDefault(); return; } refreshSend(); });
 function refreshSend(){ $("send").href = waLink(message()); }
 $("copy").addEventListener("click", () => { const b = $("copy"); copyText(message()).then(ok => { b.textContent = ok ? "✓ Pedido copiado. Cole no WhatsApp." : "Não deu para copiar. Toque em Enviar no WhatsApp."; setTimeout(() => b.textContent = "Copiar o pedido", 2600); }); });
-["f-nome","f-empresa","f-cidade","f-entrega","f-obs"].forEach(id => $(id).addEventListener("input", updateLink));
+["f-nome","f-empresa","f-cidade","f-bairro","f-entrega","f-obs"].forEach(id => $(id).addEventListener("input", updateLink));
+const bairroVis = () => { $("l-bairro").hidden = $("f-entrega").value !== "Entrega no meu endereço"; }; bairroVis(); $("f-entrega").addEventListener("change", () => { bairroVis(); updateLink(); });
 $("lines").addEventListener("click", e => {
   const line = e.target.closest(".line"); if (!line) return;
   const l = cart.find(x => x.key === line.dataset.key);
@@ -1869,7 +1886,7 @@ const DESC = {"b-igreja": ["Lembrança de Belém de São Francisco: a igreja da 
     q$(".pm-n").textContent = i.n;
     q$(".pm-t").textContent = d[0];
     q$(".pm-b").innerHTML = (d[1] || []).map((t, k) => `<li style="animation-delay:${.15 + k * .08}s">${esc(t)}</li>`).join("");
-    q$(".pm-c").innerHTML = (i.cores ? `<b>Cores:</b> ${esc(i.cores)}` : "") + (i.c && i.c[2] !== "CC0" ? `<small class="pm-cr">Modelo "${esc(i.c[0])}" de ${esc(i.c[1])} (${esc(i.c[2])})</small>` : "");
+    q$(".pm-c").innerHTML = (i.cores ? `<b>Cores da foto:</b> ${esc(i.cores)}. A cor você combina com a gente no WhatsApp.` : `<b>Cor:</b> você combina com a gente no WhatsApp.`) + (i.c && i.c[2] !== "CC0" ? `<small class="pm-cr">Modelo "${esc(i.c[0])}" de ${esc(i.c[1])} (${esc(i.c[2])})</small>` : "");
     opts = c.querySelector(".opts");
     if (opts && opts.children.length){ q$(".pm-opts").append(opts); } else opts = null;
     sync();
