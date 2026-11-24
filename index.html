@@ -1321,7 +1321,7 @@ const TAMANHOS = {"m-santos":"cerca de 18 cm","m-palmeiras":"cerca de 18 cm","m-
   "b-canguru-articulado":"cerca de 6 cm","b-estrela-do-mar-flexivel":"cerca de 6 cm","b-gatinho-das-sombras-flexivel":"cerca de 5 cm","b-macaquinho-articulado":"cerca de 7 cm"};
 SHELVES.forEach(s => s.items.forEach(i => { if (TAMANHOS[i.id] && !i.s) i.s = TAMANHOS[i.id]; }));
 // Atacado sob consulta (ADM): produtos que mostram "Sob consulta" no atacado; o varejo continua normal.
-const ATAC_CONSULTA = ["c-kettlebell","caricatura","b-igreja","b-mercado"];
+const ATAC_CONSULTA = ["c-kettlebell","caricatura","b-igreja","b-mercado","r-chav-aparecida"];
 SHELVES.forEach(s => s.items.forEach(i => { if (ATAC_CONSULTA.includes(i.id)) i.ac = true; }));
 const acon = i => i.consulta || i.ac;
 // Lançamentos (em breve): ficam GUARDADOS até liberar. liberado:false = não aparecem no site.
@@ -1329,7 +1329,7 @@ const acon = i => i.consulta || i.ac;
 const LANCAMENTOS = {liberado:true, k:"Acabou de chegar", t:"Novidades", itens:[
   {id:"b-igreja", n:"Igreja de Belém", i:"tag", img:"p/b-igreja.webp", photo:true, real:true, cores:"branco e laranja, como na foto", d:"A igreja de Belém de São Francisco em relevo colorido. Escolha chaveiro ou ímã de geladeira.", tam:[{t:"Chaveiro", v:12.00, a:12.00},{t:"Ímã", v:12.00, a:12.00}], v:12.00, a:12.00, tag:"Belém"},
   {id:"b-mercado", n:"Mercado de Belém", i:"tag", img:"p/b-mercado.webp", photo:true, real:true, cores:"azul e branco, como na foto", d:"O mercado de Belém de São Francisco em relevo colorido. Escolha chaveiro ou ímã de geladeira.", tam:[{t:"Chaveiro", v:12.00, a:12.00},{t:"Ímã", v:12.00, a:12.00}], v:12.00, a:12.00, tag:"Belém"},
-  {id:"r-chav-aparecida", img:"p/r-chav-aparecida.webp", photo:true, n:"Chaveiro Nossa Senhora Aparecida", i:"tag", cores:"azul, branco e amarelo", d:"Nossa Senhora Aparecida de 6,5 cm, com argola. Lembrancinha certa para novena e terço.", v:19.90, a:12.90, tag:"Novo", c:["Chaveiro Nossa Senhora Aparecida 6,5 cm", "Elkabong58", "CC BY"]},
+  {id:"r-chav-aparecida", img:"p/r-chav-aparecida.webp", photo:true, n:"Chaveiro Nossa Senhora Aparecida", i:"tag", cores:"azul, branco e amarelo", d:"Nossa Senhora Aparecida de 6,5 cm, com argola. Lembrancinha certa para novena e terço.", v:12.00, a:12.00, tag:"Novo", c:["Chaveiro Nossa Senhora Aparecida 6,5 cm", "Elkabong58", "CC BY"]},
   {id:"r-espirito-santo", img:"p/r-espirito-santo.webp", photo:true, n:"Divino Espírito Santo", i:"star", cores:"branco e dourado", d:"A pomba do Espírito Santo com raios dourados, para a parede ou o cantinho de oração.", v:29.90, a:17.90, tag:"Novo", c:["Divino Espírito Santo", "RamonZin", "CC BY"]},
   {id:"n-placa-nome", img:"p/n-placa-nome.webp", photo:true, n:"Placa com inicial e nome", i:"tag", cores:"branco, rosa e amarelo (ou as cores da festa)", ask:"Nome e inicial", d:"Letra grande com o nome da criança, coroa e borboleta. Decora a mesa do aniversário e depois o quarto.", v:69.90, a:44.90, tag:"Personalizado", c:["Letreiro personalizável", "Suyanasilva", "CC BY-SA"]},
   {id:"r-placa-jesus", img:"p/r-placa-jesus.webp", photo:true, n:"Placa Jesus Te Ama", i:"tag", cores:"amarelo e branco (ou a cor que preferir)", d:"Letreiro em pé para estante, mesa ou altar de casa.", v:39.90, a:27.90, tag:"Novo", c:["Jesus Te Ama - Placa Decorativa", "iarema", "CC BY-ND"]},
