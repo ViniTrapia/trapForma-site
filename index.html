@@ -223,6 +223,9 @@ footer b{color:var(--night-fg)}
 .total span{font-size:13px;color:var(--muted)}
 .send{display:flex;align-items:center;justify-content:center;gap:10px;border-radius:14px;background:var(--wa);color:var(--wa-ink);font:700 16px var(--f-body);text-decoration:none;padding:14px;transition:filter .2s}
 .send[aria-disabled="true"]{opacity:.45;pointer-events:none}
+.copy{width:100%;margin-top:6px;border:1px solid var(--line);background:transparent;color:var(--fg);border-radius:12px;padding:8px;font:600 13px var(--f-body);cursor:pointer}
+.drawer [hidden]{display:none!important}
+.copy:hover{border-color:var(--wa)}
 .warn{font-size:12.5px;color:var(--brand);margin:0}
 .note{font-size:12px;color:var(--muted);margin:0}
 .fly{position:fixed;z-index:70;width:18px;height:18px;border-radius:50%;background:var(--brand);pointer-events:none;transition:transform .65s cubic-bezier(.5,-.3,.6,1),opacity .65s}
@@ -1131,7 +1134,8 @@ body{background-color:#0a0a0b;background-image:linear-gradient(rgba(0,0,0,.62),r
     <div class="total"><span>Total estimado<br><span id="totnote">frete à parte</span></span><b id="total">R$ 0,00</b></div>
     <p class="warn" id="warn" hidden></p>
     <a class="send" id="send" href="#" target="_blank" rel="noopener" aria-disabled="true">Enviar no WhatsApp</a>
-    <p class="note">Nada é cobrado aqui. A gente confirma tudo no WhatsApp.</p>
+    <button class="copy" type="button" id="copy" hidden>Copiar o pedido</button>
+    <p class="note">Nada é cobrado aqui. Se o WhatsApp não abrir com a mensagem, copie o pedido e cole no (87) 99679-8263.</p>
   </div>
 </aside>
 
@@ -1521,7 +1525,7 @@ document.addEventListener("click", e => {
   const add = e.target.closest("[data-add]");
   if (add){
     const card = add.closest(".card"), i = byId[card.dataset.id];
-    if (add.hasAttribute("data-consulta")){ const q = Math.max(minFor(i), parseInt($("q-" + i.id).value) || 1), emp = i.ask ? $("ask-" + i.id).value.trim() : ""; window.open(waLink(i.consulta ? `Olá, TrapForma! Quero orçamento de ${q} chaveiros com a minha logo${emp ? " (" + emp + ")" : ""}.` : `Olá, TrapForma! Quero orçamento no atacado de ${q} un. de ${i.n}${emp ? " (" + emp + ")" : ""}.`), "_blank", "noopener"); return; }
+    if (add.hasAttribute("data-consulta")){ const q = Math.max(minFor(i), parseInt($("q-" + i.id).value) || 1), emp = i.ask ? $("ask-" + i.id).value.trim() : ""; openWa(waLink(i.consulta ? `Olá, TrapForma! Quero orçamento de ${q} chaveiros com a minha logo${emp ? " (" + emp + ")" : ""}.` : `Olá, TrapForma! Quero orçamento no atacado de ${q} un. de ${i.n}${emp ? " (" + emp + ")" : ""}.`)); return; }
     const qty = Math.max(minFor(i), parseInt($("q-" + i.id).value) || 1);
     const cor = card.querySelector('.swatches:not(.sizes) button[aria-pressed="true"]')?.dataset.cor || (i.cores ? "cores originais" : "Preto");
     const obs = i.ask ? $("ask-" + i.id).value.trim() : "";
@@ -1537,6 +1541,7 @@ document.addEventListener("change", e => { if (e.target.matches(".qty input")) p
 document.querySelectorAll(".seg button").forEach(b => b.addEventListener("click", () => setMode(b.dataset.mode)));
 document.addEventListener("click", e => { const g = e.target.closest("[data-goatac]"); if (!g) return; e.preventDefault(); setMode("atacado"); document.getElementById(g.dataset.goatac || "brindes").scrollIntoView({behavior:"smooth"}); });
 
+function openWa(url){ const a = document.createElement("a"); a.href = url; a.target = "_blank"; a.rel = "noopener"; document.body.appendChild(a); a.click(); a.remove(); }
 function flyTo(from){
   const target = $("fab").classList.contains("show") ? $("fab") : $("cartbtn");
   const a = from.getBoundingClientRect(), b = target.getBoundingClientRect();
@@ -1567,22 +1572,38 @@ function renderCart(){
   updateLink();
 }
 function message(){
-  const nome = $("f-nome").value.trim(), emp = $("f-empresa").value.trim();
+  const nome = $("f-nome").value.trim(), emp = $("f-empresa").value.trim(), cid = $("f-cidade").value.trim();
   const L = [`Olá, TrapForma! Quero fazer um pedido (${mode === "atacado" ? "ATACADO" : "VAREJO"}).`, ""];
   if (nome) L.push(`Nome: ${nome}`);
   if (mode === "atacado" && emp) L.push(`Empresa: ${emp}`);
-  L.push(`Cidade: ${$("f-cidade").value}`, `Receber: ${$("f-entrega").value}`, "", "Itens:");
-  cart.forEach(l => { const i = byId[l.id], u = unit(i, l.qty, l.tam); L.push(`• ${l.qty}x ${i.n}${i.tam ? " " + i.tam[l.tam || 0].t : ""} (${l.cor}) = ${brl(u * l.qty)}`); if (l.obs) L.push(`   ${i.ask}: ${l.obs}`); });
+  if (cid) L.push(`Cidade: ${cid}`);
+  L.push(`Receber: ${$("f-entrega").value}`, "", "Itens:");
+  cart.forEach(l => { const i = byId[l.id], u = unit(i, l.qty, l.tam); L.push(`- ${l.qty}x ${i.n}${i.tam ? " " + i.tam[l.tam || 0].t : ""} (${l.cor}): ${brl(u * l.qty)}`); if (i.ask) L.push(`  ${i.ask}: ${l.obs || "vou mandar aqui na conversa"}`); });
   L.push("", `Total estimado: ${brl(totals())} (sem frete)`);
   const obs = $("f-obs").value.trim(); if (obs) L.push(`Observações: ${obs}`);
   L.push("", "Pedido montado no site da TrapForma.");
   return L.join("\n");
 }
-const waLink = text => `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(text)}`;
+// Texto limpo para o WhatsApp: acentos no formato padrão (NFC), sem espaços invisíveis e sem caracteres de controle.
+const waText = t => String(t).normalize("NFC").replace(/[\u00a0\u2007\u202f]/g, " ").replace(/[\u200b-\u200d\ufeff]/g, "").replace(/[^\S\n]+\n/g, "\n").replace(/[\u0000-\u0009\u000b-\u001f\u007f]/g, "");
+// Link direto do api.whatsapp.com com espaços como %20. O wa.me redireciona e troca os espaços por "+",
+// e alguns celulares (navegador do Instagram, WhatsApp Business no Android) mostram esses "+" na mensagem.
+const waLink = text => `https://api.whatsapp.com/send?phone=${WHATSAPP}&text=${encodeURIComponent(waText(text))}`;
+function copyText(t){
+  t = waText(t);
+  if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(t).then(() => true, () => copyOld(t));
+  return Promise.resolve(copyOld(t));
+}
+function copyOld(t){ const a = document.createElement("textarea"); a.value = t; a.setAttribute("readonly", ""); a.style.cssText = "position:fixed;top:0;left:0;opacity:0"; document.body.appendChild(a); a.select(); a.setSelectionRange(0, t.length); let ok = false; try{ ok = document.execCommand("copy"); }catch(_){} a.remove(); return ok; }
 function updateLink(){
   const s = $("send"), ok = cart.length > 0;
   s.setAttribute("aria-disabled", !ok); s.href = ok ? waLink(message()) : "#";
+  $("copy").hidden = !ok;
 }
+// carrinho vazio: o botão não abre outra aba do site
+$("send").addEventListener("click", e => { if (!cart.length){ e.preventDefault(); return; } refreshSend(); });
+function refreshSend(){ $("send").href = waLink(message()); }
+$("copy").addEventListener("click", () => { const b = $("copy"); copyText(message()).then(ok => { b.textContent = ok ? "✓ Pedido copiado. Cole no WhatsApp." : "Não deu para copiar. Toque em Enviar no WhatsApp."; setTimeout(() => b.textContent = "Copiar o pedido", 2600); }); });
 ["f-nome","f-empresa","f-cidade","f-entrega","f-obs"].forEach(id => $(id).addEventListener("input", updateLink));
 $("lines").addEventListener("click", e => {
   const line = e.target.closest(".line"); if (!line) return;
